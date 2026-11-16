@@ -1,0 +1,172 @@
+{
+  "schema_version": "2.0.0",
+  "camera_id": "synthetic_cam_01",
+  "segment_id": "segment_synthetic",
+  "source_video_hash": "3ed25e1b246ccebbe7904d76a22fbea65ebfcb86701499417cd52962f1fc4c26",
+  "original_image_wh": [
+    2160,
+    3840
+  ],
+  "status": "draft",
+  "is_synthetic": true,
+  "reference_frame_index": 0,
+  "reference_pts_s": 0.0,
+  "court_coordinate_system": {
+    "origin": "basket_center_floor",
+    "axes": {
+      "x_positive": "right",
+      "y_positive": "towards_half_court"
+    },
+    "units": "meters",
+    "court_bounds": {
+      "x_min": -7.5,
+      "x_max": 7.5,
+      "y_min": 0.0,
+      "y_max": 11.0
+    },
+    "scale_factor": 1.0,
+    "scale_status": "verified_meters"
+  },
+  "point_correspondences": [
+    {
+      "point_id": "syn_p1_baseline_left",
+      "name": "Baseline Left Corner (-7.5m, 0.0m)",
+      "image_xy": [
+        280.0,
+        3500.0
+      ],
+      "court_xy": [
+        -7.5,
+        0.0
+      ],
+      "is_coplanar": true,
+      "usage": "fit",
+      "uncertainty_px": 0.0,
+      "notes": "Synthetic exact point"
+    },
+    {
+      "point_id": "syn_p2_baseline_right",
+      "name": "Baseline Right Corner (7.5m, 0.0m)",
+      "image_xy": [
+        1880.0,
+        3500.0
+      ],
+      "court_xy": [
+        7.5,
+        0.0
+      ],
+      "is_coplanar": true,
+      "usage": "fit",
+      "uncertainty_px": 0.0,
+      "notes": "Synthetic exact point"
+    },
+    {
+      "point_id": "syn_p3_halfcourt_left",
+      "name": "Half Court Left Corner (-7.5m, 11.0m)",
+      "image_xy": [
+        680.0,
+        1400.0
+      ],
+      "court_xy": [
+        -7.5,
+        11.0
+      ],
+      "is_coplanar": true,
+      "usage": "fit",
+      "uncertainty_px": 0.0,
+      "notes": "Synthetic exact point"
+    },
+    {
+      "point_id": "syn_p4_halfcourt_right",
+      "name": "Half Court Right Corner (7.5m, 11.0m)",
+      "image_xy": [
+        1480.0,
+        1400.0
+      ],
+      "court_xy": [
+        7.5,
+        11.0
+      ],
+      "is_coplanar": true,
+      "usage": "fit",
+      "uncertainty_px": 0.0,
+      "notes": "Synthetic exact point"
+    },
+    {
+      "point_id": "syn_check_ft_center",
+      "name": "Free throw circle top center (0.0m, 5.8m)",
+      "image_xy": [
+        1080.0,
+        2240.0
+      ],
+      "court_xy": [
+        0.0,
+        5.8
+      ],
+      "is_coplanar": true,
+      "usage": "check",
+      "uncertainty_px": 0.0,
+      "notes": "Independent check point for reprojection verification"
+    }
+  ],
+  "court_roi_image": [
+    [
+      200.0,
+      3600.0
+    ],
+    [
+      1960.0,
+      3600.0
+    ],
+    [
+      1520.0,
+      1350.0
+    ],
+    [
+      640.0,
+      1350.0
+    ]
+  ],
+  "court_roi_court": [
+    [
+      -8.0,
+      -0.5
+    ],
+    [
+      8.0,
+      -0.5
+    ],
+    [
+      8.0,
+      11.5
+    ],
+    [
+      -8.0,
+      11.5
+    ]
+  ],
+  "sub_zones": {
+    "rim_image_roi": [
+      1030.0,
+      1750.0,
+      1130.0,
+      1850.0
+    ],
+    "rim_court_xy": [
+      0.0,
+      1.575
+    ],
+    "rim_elevation_m": 3.05,
+    "rim_coplanar_with_floor": false
+  },
+  "thresholds": {
+    "max_reprojection_error_px": 10.0
+  },
+  "provenance": {
+    "created_utc": "2026-11-03T00:00:00Z",
+    "reviewed_by": "synthetic_fixture_generator",
+    "review_status": "approved",
+    "notes": "Synthetic test fixture for verifying homography, reprojection, and time integration algorithms."
+  }
+}
+

@@ -1,0 +1,16 @@
+{
+  "schema_version": "task07a-context-preview-1",
+  "source_sha256": "1443c1d263c8037a5684f3dbc0ef9216beb5097d9a47c4c1c9b94d1363e26865",
+  "window_id": "vt_pilot_06m",
+  "scope": "Experimental source-image geometry for this 60s camera window only; not calibrated court geometry, not generalizable to other windows/videos. Inspect overlays after camera pan/zoom.",
+  "geometry_basis": "Source wide views: broad floor footprint for human filtering, separate elevated ball search envelope including rim/air. No ball GT coordinates used to set polygons.",
+  "human_footpoint_roi_normalized": [[0,0.63],[0.2,0.60],[0.35,0.57],[0.63,0.49],[1,0.56],[1,1],[0,1]],
+  "ball_image_roi_normalized": [[0,0.28],[0.48,0.22],[1,0.36],[1,1],[0,1]],
+  "ball": {
+    "min_confidence": 0.15,
+    "human_context_weight": 0.5,
+    "max_initial_body_distance": 0.2,
+    "max_diameter_diagonal": 0.025
+  },
+  "promotion_status": "experimental_not_promoted"
+}

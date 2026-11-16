@@ -1,0 +1,9 @@
+control_id,video_id,player_id,team_id,start_time_s,end_time_s,state,evidence_status,notes
+ctrl_vt_dev_001,vt_development,a_nguyen_huynh_phu_vinh,team_a,1.8333,7.9999,controlled,reviewed,Reviewed control interval from Task07
+ctrl_vt_dev_002,vt_development,a_nguyen_phuc_vinh,team_a,8.6332,9.5666,controlled,reviewed,Reviewed control interval from Task07
+ctrl_vt_dev_003,vt_development,b_11,team_b,10.4332,10.9999,controlled,reviewed,Reviewed control interval from Task07
+ctrl_vt_dev_004,vt_development,b_18,team_b,10.9999,12.2665,controlled,reviewed,Reviewed control interval from Task07
+ctrl_vt_dev_005,vt_development,b_11,team_b,13.1999,15.7665,controlled,reviewed,Reviewed control interval from Task07
+ctrl_vt_dev_006,vt_development,a_nguyen_phuc_vinh,team_a,17.3665,18.1665,controlled,reviewed,Reviewed control interval from Task07
+ctrl_vt_dev_007,vt_development,a_huynh_thanh_tam,team_a,18.8331,19.5665,controlled,reviewed,Reviewed control interval from Task07
+ctrl_vt_dev_008,vt_development,a_nguyen_phuc_vinh,team_a,19.9998,21.2665,controlled,reviewed,Reviewed control interval from Task07

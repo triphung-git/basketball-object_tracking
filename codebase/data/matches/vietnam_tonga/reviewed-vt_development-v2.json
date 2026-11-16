@@ -1,0 +1,4967 @@
+{
+  "schema_version": "task07-evaluation-1",
+  "source_video_sha256": "8fd370b0668860a5c70d56bf256c76e3783bc1fe6598b529944ad00ca0616b45",
+  "video_id": "vt_development",
+  "is_synthetic": false,
+  "review_status": "approved",
+  "reviewer": "triphung",
+  "protocol_status": "approved",
+  "protocol_version": "task07-vietnam-tonga-20261104",
+  "parent_time_offset_s": 300,
+  "original_wh": [
+    1920,
+    1080
+  ],
+  "nominal_fps": 30,
+  "coverage": [
+    {
+      "start_time_s": 0,
+      "end_time_s": 28.533333333333335
+    }
+  ],
+  "ball_samples": [
+    {
+      "frame_index": 0,
+      "source_time_s": 0,
+      "xyxy": [
+        841,
+        408,
+        865,
+        434
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          862,
+          306,
+          894,
+          330
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1078,
+          282,
+          1094,
+          306
+        ],
+        [
+          1562,
+          134,
+          1590,
+          162
+        ],
+        [
+          1072,
+          342,
+          1086,
+          367
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 8,
+      "source_time_s": 0.266667,
+      "xyxy": [
+        852,
+        442,
+        877,
+        457
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          868,
+          304,
+          898,
+          330
+        ],
+        [
+          1084,
+          282,
+          1100,
+          306
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1568,
+          134,
+          1598,
+          160
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 16,
+      "source_time_s": 0.533333,
+      "xyxy": [
+        859,
+        531,
+        887,
+        555
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          868,
+          304,
+          898,
+          330
+        ],
+        [
+          1084,
+          284,
+          1103,
+          306
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1568,
+          134,
+          1598,
+          158
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 24,
+      "source_time_s": 0.8,
+      "xyxy": [
+        870,
+        496,
+        890,
+        512
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          868,
+          304,
+          898,
+          330
+        ],
+        [
+          1084,
+          284,
+          1106,
+          306
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1568,
+          134,
+          1598,
+          162
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 32,
+      "source_time_s": 1.066667,
+      "xyxy": [
+        878,
+        471,
+        900,
+        486
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          1084,
+          284,
+          1106,
+          307
+        ],
+        [
+          868,
+          304,
+          898,
+          332
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1568,
+          134,
+          1598,
+          162
+        ],
+        [
+          1078,
+          346,
+          1092,
+          367
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 40,
+      "source_time_s": 1.333333,
+      "xyxy": [
+        887,
+        502,
+        912,
+        519
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          868,
+          304,
+          898,
+          332
+        ],
+        [
+          1084,
+          284,
+          1104,
+          308
+        ],
+        [
+          1078,
+          346,
+          1088,
+          367
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1568,
+          134,
+          1596,
+          162
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 48,
+      "source_time_s": 1.6,
+      "xyxy": [
+        866,
+        306,
+        896,
+        332
+      ],
+      "visible": false,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          866,
+          306,
+          896,
+          332
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1082,
+          286,
+          1102,
+          308
+        ],
+        [
+          1076,
+          345,
+          1090,
+          368
+        ],
+        [
+          1568,
+          134,
+          1596,
+          162
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 56,
+      "source_time_s": 1.866667,
+      "xyxy": [
+        864,
+        306,
+        894,
+        332
+      ],
+      "visible": false,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          864,
+          306,
+          894,
+          332
+        ],
+        [
+          1080,
+          286,
+          1100,
+          308
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1074,
+          345,
+          1086,
+          368
+        ],
+        [
+          1566,
+          136,
+          1594,
+          162
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 64,
+      "source_time_s": 2.133333,
+      "xyxy": [
+        862,
+        306,
+        890,
+        332
+      ],
+      "visible": false,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          862,
+          306,
+          890,
+          332
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1563,
+          136,
+          1592,
+          162
+        ],
+        [
+          1077,
+          286,
+          1096,
+          308
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 72,
+      "source_time_s": 2.4,
+      "xyxy": [
+        858,
+        306,
+        886,
+        330
+      ],
+      "visible": false,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          858,
+          306,
+          886,
+          330
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1072,
+          286,
+          1092,
+          308
+        ],
+        [
+          1557,
+          135,
+          1586,
+          162
+        ],
+        [
+          1066,
+          346,
+          1080,
+          366
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 80,
+      "source_time_s": 2.666667,
+      "xyxy": [
+        854,
+        306,
+        882,
+        332
+      ],
+      "visible": false,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          854,
+          306,
+          882,
+          332
+        ],
+        [
+          1068,
+          286,
+          1087,
+          308
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1550,
+          135,
+          1580,
+          163
+        ],
+        [
+          1062,
+          344,
+          1074,
+          366
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 88,
+      "source_time_s": 2.933333,
+      "xyxy": [
+        850,
+        306,
+        878,
+        330
+      ],
+      "visible": false,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          850,
+          306,
+          878,
+          330
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1064,
+          286,
+          1082,
+          307
+        ],
+        [
+          1059,
+          346,
+          1070,
+          366
+        ],
+        [
+          1545,
+          134,
+          1574,
+          162
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 96,
+      "source_time_s": 3.2,
+      "xyxy": [
+        974,
+        500,
+        993,
+        522
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          848,
+          306,
+          874,
+          330
+        ],
+        [
+          1542,
+          134,
+          1572,
+          162
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1056,
+          346,
+          1068,
+          366
+        ],
+        [
+          1062,
+          286,
+          1080,
+          307
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 104,
+      "source_time_s": 3.466667,
+      "xyxy": [
+        876,
+        500,
+        900,
+        522
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          848,
+          306,
+          874,
+          330
+        ],
+        [
+          1542,
+          134,
+          1570,
+          162
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1062,
+          284,
+          1080,
+          306
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 112,
+      "source_time_s": 3.733333,
+      "xyxy": [
+        810,
+        566,
+        837,
+        587
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          1542,
+          134,
+          1570,
+          162
+        ],
+        [
+          844,
+          304,
+          874,
+          330
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1062,
+          284,
+          1078,
+          306
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 120,
+      "source_time_s": 4,
+      "xyxy": [
+        799,
+        528,
+        819,
+        550
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          844,
+          304,
+          876,
+          330
+        ],
+        [
+          1542,
+          134,
+          1570,
+          162
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1062,
+          284,
+          1080,
+          306
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 128,
+      "source_time_s": 4.266667,
+      "xyxy": [
+        873,
+        545,
+        895,
+        570
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          844,
+          304,
+          876,
+          330
+        ],
+        [
+          1542,
+          132,
+          1570,
+          161
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1061,
+          283,
+          1080,
+          306
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 136,
+      "source_time_s": 4.533333,
+      "xyxy": [
+        1027,
+        707,
+        1060,
+        735
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          838,
+          302,
+          866,
+          330
+        ],
+        [
+          1532,
+          133,
+          1560,
+          160
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1054,
+          284,
+          1070,
+          305
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 144,
+      "source_time_s": 4.8,
+      "xyxy": [
+        1098,
+        592,
+        1123,
+        628
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          822,
+          302,
+          852,
+          328
+        ],
+        [
+          1515,
+          132,
+          1543,
+          158
+        ],
+        [
+          1730,
+          1070,
+          1750,
+          1080
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 152,
+      "source_time_s": 5.066667,
+      "xyxy": [
+        1177,
+        583,
+        1210,
+        609
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          806,
+          300,
+          836,
+          328
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1710,
+          1064,
+          1726,
+          1078
+        ],
+        [
+          1496,
+          132,
+          1524,
+          160
+        ],
+        [
+          1022,
+          280,
+          1038,
+          302
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 160,
+      "source_time_s": 5.333333,
+      "xyxy": [
+        1327,
+        607,
+        1358,
+        642
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          790,
+          300,
+          820,
+          326
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1477,
+          132,
+          1504,
+          158
+        ],
+        [
+          1001,
+          338,
+          1014,
+          363
+        ],
+        [
+          1006,
+          278,
+          1020,
+          300
+        ],
+        [
+          1692,
+          1057,
+          1706,
+          1070
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 168,
+      "source_time_s": 5.6,
+      "xyxy": [
+        1420,
+        641,
+        1460,
+        664
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          772,
+          300,
+          802,
+          326
+        ],
+        [
+          1702,
+          1072,
+          1718,
+          1080
+        ],
+        [
+          1670,
+          1050,
+          1686,
+          1062
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1458,
+          132,
+          1484,
+          157
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 176,
+      "source_time_s": 5.866667,
+      "xyxy": [
+        1473,
+        552,
+        1506,
+        579
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          1660,
+          1070,
+          1674,
+          1080
+        ],
+        [
+          756,
+          300,
+          786,
+          326
+        ],
+        [
+          1682,
+          1066,
+          1698,
+          1080
+        ],
+        [
+          1440,
+          132,
+          1466,
+          154
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          968,
+          340,
+          978,
+          361
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 184,
+      "source_time_s": 6.133333,
+      "xyxy": [
+        748,
+        300,
+        778,
+        326
+      ],
+      "visible": false,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          748,
+          300,
+          778,
+          326
+        ],
+        [
+          1650,
+          1068,
+          1666,
+          1080
+        ],
+        [
+          960,
+          340,
+          970,
+          361
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1430,
+          131,
+          1456,
+          154
+        ],
+        [
+          1672,
+          1062,
+          1694,
+          1080
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 192,
+      "source_time_s": 6.4,
+      "xyxy": [
+        746,
+        298,
+        776,
+        326
+      ],
+      "visible": false,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          746,
+          298,
+          776,
+          326
+        ],
+        [
+          1648,
+          1067,
+          1664,
+          1080
+        ],
+        [
+          1670,
+          1062,
+          1692,
+          1080
+        ],
+        [
+          1640,
+          1041,
+          1650,
+          1054
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1428,
+          132,
+          1456,
+          154
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 200,
+      "source_time_s": 6.666667,
+      "xyxy": [
+        1461,
+        428,
+        1497,
+        456
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          746,
+          298,
+          776,
+          326
+        ],
+        [
+          1648,
+          1067,
+          1664,
+          1080
+        ],
+        [
+          1639,
+          1041,
+          1650,
+          1054
+        ],
+        [
+          1669,
+          1062,
+          1692,
+          1080
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1428,
+          132,
+          1454,
+          157
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 208,
+      "source_time_s": 6.933333,
+      "xyxy": [
+        1489,
+        424,
+        1522,
+        455
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          746,
+          298,
+          778,
+          326
+        ],
+        [
+          1649,
+          1066,
+          1665,
+          1080
+        ],
+        [
+          1638,
+          1040,
+          1652,
+          1054
+        ],
+        [
+          963,
+          276,
+          978,
+          296
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1428,
+          132,
+          1454,
+          154
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 216,
+      "source_time_s": 7.2,
+      "xyxy": [
+        1488,
+        436,
+        1522,
+        474
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          746,
+          298,
+          778,
+          326
+        ],
+        [
+          1648,
+          1066,
+          1664,
+          1080
+        ],
+        [
+          964,
+          276,
+          980,
+          294
+        ],
+        [
+          1428,
+          132,
+          1454,
+          154
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1670,
+          1062,
+          1692,
+          1080
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 224,
+      "source_time_s": 7.466667,
+      "xyxy": [
+        1481,
+        475,
+        1513,
+        501
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          1650,
+          1066,
+          1664,
+          1080
+        ],
+        [
+          746,
+          298,
+          778,
+          326
+        ],
+        [
+          1492,
+          478,
+          1512,
+          498
+        ],
+        [
+          964,
+          276,
+          980,
+          294
+        ],
+        [
+          654,
+          398,
+          666,
+          406
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 232,
+      "source_time_s": 7.733333,
+      "xyxy": [
+        1460,
+        564,
+        1485,
+        603
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          1656,
+          1066,
+          1672,
+          1080
+        ],
+        [
+          752,
+          296,
+          784,
+          324
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1646,
+          1040,
+          1661,
+          1054
+        ],
+        [
+          970,
+          272,
+          986,
+          292
+        ],
+        [
+          1677,
+          1062,
+          1699,
+          1080
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 240,
+      "source_time_s": 8,
+      "xyxy": [
+        1367,
+        590,
+        1398,
+        612
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          768,
+          292,
+          798,
+          320
+        ],
+        [
+          1674,
+          1067,
+          1690,
+          1080
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1696,
+          1062,
+          1718,
+          1080
+        ],
+        [
+          980,
+          330,
+          994,
+          354
+        ],
+        [
+          1454,
+          124,
+          1480,
+          148
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 248,
+      "source_time_s": 8.266667,
+      "xyxy": [
+        1106,
+        595,
+        1131,
+        621
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          1713,
+          1067,
+          1734,
+          1080
+        ],
+        [
+          782,
+          292,
+          812,
+          320
+        ],
+        [
+          1692,
+          1070,
+          1706,
+          1080
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1682,
+          1045,
+          1698,
+          1058
+        ],
+        [
+          1469,
+          126,
+          1496,
+          150
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 256,
+      "source_time_s": 8.533333,
+      "xyxy": [
+        800,
+        296,
+        830,
+        322
+      ],
+      "visible": false,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          800,
+          296,
+          830,
+          322
+        ],
+        [
+          1702,
+          1054,
+          1719,
+          1066
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          788,
+          576,
+          798,
+          588
+        ],
+        [
+          706,
+          396,
+          718,
+          404
+        ],
+        [
+          1010,
+          334,
+          1021,
+          358
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 264,
+      "source_time_s": 8.8,
+      "xyxy": [
+        818,
+        302,
+        848,
+        328
+      ],
+      "visible": false,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          818,
+          302,
+          848,
+          328
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1728,
+          1068,
+          1746,
+          1080
+        ],
+        [
+          766,
+          542,
+          777,
+          554
+        ],
+        [
+          1510,
+          134,
+          1537,
+          160
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 272,
+      "source_time_s": 9.066667,
+      "xyxy": [
+        834,
+        304,
+        862,
+        330
+      ],
+      "visible": false,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          834,
+          304,
+          862,
+          330
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1533,
+          134,
+          1560,
+          159
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 280,
+      "source_time_s": 9.333333,
+      "xyxy": [
+        831,
+        379,
+        856,
+        404
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          844,
+          302,
+          872,
+          328
+        ],
+        [
+          1062,
+          278,
+          1078,
+          303
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1551,
+          129,
+          1580,
+          154
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 288,
+      "source_time_s": 9.6,
+      "xyxy": [
+        808,
+        266,
+        825,
+        282
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          846,
+          300,
+          876,
+          328
+        ],
+        [
+          1067,
+          278,
+          1086,
+          302
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1559,
+          127,
+          1588,
+          152
+        ],
+        [
+          1062,
+          344,
+          1072,
+          363
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 296,
+      "source_time_s": 9.866667,
+      "xyxy": [
+        802,
+        251,
+        827,
+        272
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          848,
+          300,
+          878,
+          328
+        ],
+        [
+          1068,
+          278,
+          1090,
+          302
+        ],
+        [
+          1562,
+          127,
+          1590,
+          152
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 304,
+      "source_time_s": 10.133333,
+      "xyxy": [
+        810,
+        313,
+        826,
+        337
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          1070,
+          278,
+          1090,
+          302
+        ],
+        [
+          850,
+          302,
+          880,
+          328
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1562,
+          128,
+          1592,
+          152
+        ],
+        [
+          812,
+          318,
+          826,
+          328
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 312,
+      "source_time_s": 10.4,
+      "xyxy": [
+        814,
+        435,
+        839,
+        457
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          1072,
+          278,
+          1093,
+          302
+        ],
+        [
+          852,
+          300,
+          882,
+          328
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          756,
+          402,
+          768,
+          410
+        ],
+        [
+          1564,
+          128,
+          1594,
+          154
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 320,
+      "source_time_s": 10.666667,
+      "xyxy": [
+        805,
+        503,
+        832,
+        521
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          852,
+          300,
+          882,
+          328
+        ],
+        [
+          1072,
+          278,
+          1093,
+          302
+        ],
+        [
+          1566,
+          128,
+          1594,
+          154
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          814,
+          510,
+          828,
+          522
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 328,
+      "source_time_s": 10.933333,
+      "xyxy": [
+        925,
+        402,
+        947,
+        422
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          1074,
+          278,
+          1094,
+          301
+        ],
+        [
+          852,
+          300,
+          884,
+          328
+        ],
+        [
+          1568,
+          126,
+          1596,
+          154
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 336,
+      "source_time_s": 11.2,
+      "xyxy": [
+        1218,
+        349,
+        1250,
+        363
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          856,
+          300,
+          886,
+          328
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1076,
+          276,
+          1094,
+          300
+        ],
+        [
+          1570,
+          126,
+          1600,
+          154
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 344,
+      "source_time_s": 11.466667,
+      "xyxy": [
+        1452,
+        349,
+        1479,
+        372
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          856,
+          300,
+          888,
+          328
+        ],
+        [
+          1572,
+          126,
+          1600,
+          153
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1077,
+          276,
+          1094,
+          300
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 352,
+      "source_time_s": 11.733333,
+      "xyxy": [
+        1509,
+        353,
+        1535,
+        373
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          858,
+          300,
+          888,
+          326
+        ],
+        [
+          1078,
+          276,
+          1095,
+          300
+        ],
+        [
+          1072,
+          342,
+          1083,
+          362
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1572,
+          126,
+          1602,
+          153
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 360,
+      "source_time_s": 12,
+      "xyxy": [
+        1501,
+        371,
+        1520,
+        390
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          858,
+          300,
+          888,
+          326
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1080,
+          276,
+          1098,
+          301
+        ],
+        [
+          1074,
+          341,
+          1084,
+          362
+        ],
+        [
+          1574,
+          126,
+          1604,
+          153
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 368,
+      "source_time_s": 12.266667,
+      "xyxy": [
+        1498,
+        353,
+        1523,
+        379
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          860,
+          300,
+          890,
+          326
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1081,
+          276,
+          1100,
+          301
+        ],
+        [
+          1576,
+          126,
+          1606,
+          154
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 376,
+      "source_time_s": 12.533333,
+      "xyxy": [
+        864,
+        300,
+        892,
+        328
+      ],
+      "visible": true,
+      "uncertain": true,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          864,
+          300,
+          892,
+          328
+        ],
+        [
+          1579,
+          128,
+          1608,
+          152
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1078,
+          344,
+          1088,
+          364
+        ],
+        [
+          1084,
+          278,
+          1102,
+          300
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 384,
+      "source_time_s": 12.8,
+      "xyxy": [
+        1280,
+        278,
+        1311,
+        305
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          870,
+          300,
+          900,
+          328
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1587,
+          128,
+          1617,
+          152
+        ],
+        [
+          1090,
+          278,
+          1106,
+          302
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 392,
+      "source_time_s": 13.066667,
+      "xyxy": [
+        1174,
+        355,
+        1197,
+        383
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          880,
+          302,
+          910,
+          328
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1176,
+          362,
+          1190,
+          370
+        ],
+        [
+          1100,
+          278,
+          1118,
+          302
+        ],
+        [
+          1599,
+          128,
+          1630,
+          155
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 400,
+      "source_time_s": 13.333333,
+      "xyxy": [
+        1120,
+        491,
+        1145,
+        517
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          892,
+          302,
+          922,
+          330
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1614,
+          128,
+          1644,
+          154
+        ],
+        [
+          1136,
+          494,
+          1148,
+          504
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 408,
+      "source_time_s": 13.6,
+      "xyxy": [
+        1081,
+        520,
+        1113,
+        545
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          910,
+          304,
+          938,
+          330
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1636,
+          129,
+          1666,
+          154
+        ],
+        [
+          1130,
+          282,
+          1148,
+          305
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 416,
+      "source_time_s": 13.866667,
+      "xyxy": [
+        1083,
+        515,
+        1108,
+        542
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          926,
+          306,
+          956,
+          332
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1147,
+          282,
+          1164,
+          306
+        ],
+        [
+          1658,
+          130,
+          1688,
+          158
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 424,
+      "source_time_s": 14.133333,
+      "xyxy": [
+        1190,
+        551,
+        1212,
+        577
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          946,
+          308,
+          972,
+          334
+        ],
+        [
+          1160,
+          352,
+          1170,
+          372
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1166,
+          284,
+          1184,
+          309
+        ],
+        [
+          1681,
+          132,
+          1712,
+          159
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 432,
+      "source_time_s": 14.4,
+      "xyxy": [
+        1188,
+        580,
+        1210,
+        605
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          958,
+          308,
+          986,
+          336
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1179,
+          286,
+          1198,
+          310
+        ],
+        [
+          1698,
+          132,
+          1729,
+          160
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 440,
+      "source_time_s": 14.666667,
+      "xyxy": [
+        1181,
+        533,
+        1200,
+        554
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          962,
+          308,
+          994,
+          336
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1178,
+          351,
+          1188,
+          372
+        ],
+        [
+          1184,
+          286,
+          1202,
+          310
+        ],
+        [
+          1706,
+          132,
+          1737,
+          158
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 448,
+      "source_time_s": 14.933333,
+      "xyxy": [
+        1164,
+        554,
+        1189,
+        581
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          966,
+          310,
+          996,
+          336
+        ],
+        [
+          342,
+          998,
+          369,
+          1024
+        ],
+        [
+          1188,
+          286,
+          1206,
+          310
+        ],
+        [
+          1180,
+          559,
+          1190,
+          574
+        ],
+        [
+          1710,
+          132,
+          1742,
+          160
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 456,
+      "source_time_s": 15.2,
+      "xyxy": [
+        1176,
+        540,
+        1191,
+        560
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          966,
+          308,
+          996,
+          336
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1188,
+          286,
+          1205,
+          310
+        ],
+        [
+          1710,
+          132,
+          1744,
+          160
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 464,
+      "source_time_s": 15.466667,
+      "xyxy": [
+        966,
+        308,
+        998,
+        336
+      ],
+      "visible": false,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          966,
+          308,
+          998,
+          336
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1182,
+          351,
+          1196,
+          374
+        ],
+        [
+          1188,
+          286,
+          1206,
+          310
+        ],
+        [
+          1710,
+          132,
+          1744,
+          160
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 472,
+      "source_time_s": 15.733333,
+      "xyxy": [
+        1116,
+        387,
+        1136,
+        408
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          964,
+          308,
+          994,
+          336
+        ],
+        [
+          1186,
+          288,
+          1202,
+          308
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1706,
+          134,
+          1738,
+          162
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 480,
+      "source_time_s": 16,
+      "xyxy": [
+        996,
+        260,
+        1020,
+        281
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          954,
+          312,
+          986,
+          338
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1694,
+          136,
+          1726,
+          164
+        ],
+        [
+          1176,
+          288,
+          1194,
+          311
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 488,
+      "source_time_s": 16.266667,
+      "xyxy": [
+        921,
+        221,
+        939,
+        244
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          944,
+          314,
+          976,
+          340
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1685,
+          138,
+          1716,
+          166
+        ],
+        [
+          1168,
+          290,
+          1184,
+          314
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 496,
+      "source_time_s": 16.533333,
+      "xyxy": [
+        884,
+        247,
+        906,
+        267
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          938,
+          314,
+          968,
+          340
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1161,
+          292,
+          1178,
+          313
+        ],
+        [
+          1678,
+          138,
+          1710,
+          166
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 504,
+      "source_time_s": 16.8,
+      "xyxy": [
+        854,
+        289,
+        878,
+        318
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          934,
+          314,
+          964,
+          342
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1676,
+          136,
+          1708,
+          165
+        ],
+        [
+          1158,
+          290,
+          1176,
+          312
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 512,
+      "source_time_s": 17.066667,
+      "xyxy": [
+        872,
+        326,
+        894,
+        347
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          932,
+          314,
+          962,
+          342
+        ],
+        [
+          1156,
+          290,
+          1172,
+          312
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1676,
+          136,
+          1707,
+          165
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 520,
+      "source_time_s": 17.333333,
+      "xyxy": [
+        858,
+        410,
+        882,
+        425
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          930,
+          316,
+          962,
+          342
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1150,
+          357,
+          1160,
+          378
+        ],
+        [
+          1156,
+          290,
+          1174,
+          315
+        ],
+        [
+          1676,
+          136,
+          1708,
+          164
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 528,
+      "source_time_s": 17.6,
+      "xyxy": [
+        930,
+        318,
+        960,
+        342
+      ],
+      "visible": false,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          930,
+          318,
+          960,
+          342
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1156,
+          292,
+          1174,
+          316
+        ],
+        [
+          1677,
+          138,
+          1708,
+          167
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 536,
+      "source_time_s": 17.866667,
+      "xyxy": [
+        671,
+        547,
+        695,
+        571
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          932,
+          318,
+          962,
+          344
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          834,
+          418,
+          850,
+          428
+        ],
+        [
+          1158,
+          294,
+          1176,
+          318
+        ],
+        [
+          1680,
+          138,
+          1712,
+          167
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 544,
+      "source_time_s": 18.133333,
+      "xyxy": [
+        549,
+        597,
+        574,
+        630
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          954,
+          318,
+          984,
+          344
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          858,
+          418,
+          870,
+          426
+        ],
+        [
+          1180,
+          294,
+          1198,
+          317
+        ],
+        [
+          1708,
+          136,
+          1741,
+          166
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 552,
+      "source_time_s": 18.4,
+      "xyxy": [
+        407,
+        639,
+        441,
+        667
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          990,
+          318,
+          1018,
+          344
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1216,
+          294,
+          1234,
+          316
+        ],
+        [
+          1209,
+          364,
+          1220,
+          384
+        ],
+        [
+          1754,
+          136,
+          1788,
+          166
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 560,
+      "source_time_s": 18.666667,
+      "xyxy": [
+        339,
+        574,
+        364,
+        604
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          1022,
+          318,
+          1050,
+          342
+        ],
+        [
+          350,
+          582,
+          370,
+          594
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1248,
+          294,
+          1264,
+          316
+        ],
+        [
+          1796,
+          134,
+          1830,
+          164
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 568,
+      "source_time_s": 18.933333,
+      "xyxy": [
+        254,
+        586,
+        282,
+        617
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          1058,
+          316,
+          1088,
+          340
+        ],
+        [
+          22,
+          384,
+          42,
+          396
+        ],
+        [
+          32,
+          366,
+          46,
+          378
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1286,
+          292,
+          1302,
+          316
+        ],
+        [
+          1846,
+          130,
+          1880,
+          162
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 576,
+      "source_time_s": 19.2,
+      "xyxy": [
+        228,
+        612,
+        259,
+        642
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          1086,
+          312,
+          1118,
+          338
+        ],
+        [
+          86,
+          362,
+          98,
+          372
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1314,
+          288,
+          1330,
+          312
+        ],
+        [
+          1880,
+          128,
+          1916,
+          160
+        ],
+        [
+          76,
+          376,
+          92,
+          388
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 584,
+      "source_time_s": 19.466667,
+      "xyxy": [
+        190,
+        557,
+        225,
+        590
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          1088,
+          306,
+          1118,
+          332
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1312,
+          284,
+          1330,
+          307
+        ],
+        [
+          90,
+          372,
+          106,
+          382
+        ],
+        [
+          1874,
+          124,
+          1909,
+          156
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 592,
+      "source_time_s": 19.733333,
+      "xyxy": [
+        302,
+        526,
+        322,
+        550
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          302,
+          526,
+          322,
+          550
+        ],
+        [
+          1072,
+          310,
+          1102,
+          336
+        ],
+        [
+          616,
+          688,
+          628,
+          708
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1292,
+          286,
+          1308,
+          310
+        ],
+        [
+          90,
+          370,
+          104,
+          386
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 600,
+      "source_time_s": 20,
+      "xyxy": [
+        419,
+        601,
+        465,
+        644
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          1054,
+          314,
+          1084,
+          338
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          584,
+          678,
+          596,
+          704
+        ],
+        [
+          1271,
+          292,
+          1288,
+          314
+        ],
+        [
+          1802,
+          141,
+          1835,
+          170
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 608,
+      "source_time_s": 20.266667,
+      "xyxy": [
+        418,
+        753,
+        465,
+        800
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          1038,
+          314,
+          1070,
+          340
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1256,
+          292,
+          1272,
+          314
+        ],
+        [
+          1248,
+          358,
+          1258,
+          378
+        ],
+        [
+          1780,
+          142,
+          1812,
+          171
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 616,
+      "source_time_s": 20.533333,
+      "xyxy": [
+        1020,
+        314,
+        1050,
+        340
+      ],
+      "visible": false,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          1020,
+          314,
+          1050,
+          340
+        ],
+        [
+          456,
+          776,
+          478,
+          810
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1236,
+          294,
+          1254,
+          317
+        ],
+        [
+          1754,
+          144,
+          1786,
+          172
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 624,
+      "source_time_s": 20.8,
+      "xyxy": [
+        1002,
+        314,
+        1032,
+        340
+      ],
+      "visible": false,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          1002,
+          314,
+          1032,
+          340
+        ],
+        [
+          414,
+          796,
+          438,
+          830
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1216,
+          294,
+          1232,
+          317
+        ],
+        [
+          1722,
+          146,
+          1754,
+          175
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 632,
+      "source_time_s": 21.066667,
+      "xyxy": [
+        399,
+        682,
+        449,
+        732
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          990,
+          316,
+          1020,
+          340
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          14,
+          368,
+          24,
+          380
+        ],
+        [
+          1202,
+          296,
+          1220,
+          318
+        ],
+        [
+          419,
+          682,
+          438,
+          694
+        ],
+        [
+          418,
+          832,
+          428,
+          849
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 640,
+      "source_time_s": 21.333333,
+      "xyxy": [
+        479,
+        433,
+        521,
+        478
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          982,
+          318,
+          1012,
+          344
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1680,
+          155,
+          1710,
+          180
+        ],
+        [
+          1192,
+          298,
+          1207,
+          320
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 648,
+      "source_time_s": 21.6,
+      "xyxy": [
+        639,
+        187,
+        678,
+        225
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          978,
+          324,
+          1004,
+          348
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1664,
+          162,
+          1692,
+          186
+        ],
+        [
+          1182,
+          302,
+          1200,
+          324
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 656,
+      "source_time_s": 21.866667,
+      "xyxy": [
+        742,
+        116,
+        773,
+        150
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          970,
+          324,
+          998,
+          348
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          6,
+          374,
+          20,
+          386
+        ],
+        [
+          1175,
+          304,
+          1191,
+          325
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 664,
+      "source_time_s": 22.133333,
+      "xyxy": [
+        821,
+        141,
+        852,
+        165
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          962,
+          324,
+          988,
+          348
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1642,
+          164,
+          1670,
+          188
+        ],
+        [
+          1166,
+          304,
+          1181,
+          326
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 672,
+      "source_time_s": 22.4,
+      "xyxy": [
+        891,
+        238,
+        911,
+        258
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          954,
+          324,
+          980,
+          348
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1631,
+          164,
+          1660,
+          188
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 680,
+      "source_time_s": 22.666667,
+      "xyxy": [
+        937,
+        294,
+        959,
+        309
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          948,
+          324,
+          976,
+          348
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1624,
+          164,
+          1652,
+          192
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 688,
+      "source_time_s": 22.933333,
+      "xyxy": [
+        993,
+        329,
+        1010,
+        352
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          946,
+          324,
+          972,
+          348
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1148,
+          304,
+          1164,
+          326
+        ],
+        [
+          1618,
+          166,
+          1646,
+          192
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 696,
+      "source_time_s": 23.2,
+      "xyxy": [
+        1037,
+        420,
+        1050,
+        442
+      ],
+      "visible": true,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          944,
+          324,
+          968,
+          348
+        ],
+        [
+          1145,
+          304,
+          1162,
+          324
+        ],
+        [
+          1614,
+          166,
+          1642,
+          192
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 704,
+      "source_time_s": 23.466667,
+      "xyxy": [
+        342,
+        998,
+        368,
+        1024
+      ],
+      "visible": false,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1610,
+          166,
+          1638,
+          192
+        ],
+        [
+          1142,
+          302,
+          1160,
+          322
+        ],
+        [
+          938,
+          324,
+          966,
+          348
+        ],
+        [
+          1136,
+          366,
+          1146,
+          385
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 712,
+      "source_time_s": 23.733333,
+      "xyxy": [
+        930,
+        324,
+        956,
+        350
+      ],
+      "visible": false,
+      "uncertain": false,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          930,
+          324,
+          956,
+          350
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1598,
+          166,
+          1626,
+          190
+        ],
+        [
+          1132,
+          302,
+          1150,
+          326
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 720,
+      "source_time_s": 24,
+      "xyxy": [
+        1118,
+        366,
+        1133,
+        377
+      ],
+      "visible": false,
+      "uncertain": true,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          914,
+          324,
+          942,
+          348
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1586,
+          162,
+          1614,
+          186
+        ],
+        [
+          1120,
+          302,
+          1135,
+          325
+        ],
+        [
+          1114,
+          365,
+          1128,
+          379
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 728,
+      "source_time_s": 24.266667,
+      "xyxy": [
+        896,
+        322,
+        924,
+        348
+      ],
+      "visible": false,
+      "uncertain": true,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          896,
+          322,
+          924,
+          348
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1103,
+          300,
+          1120,
+          322
+        ],
+        [
+          1095,
+          363,
+          1108,
+          383
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 736,
+      "source_time_s": 24.533333,
+      "xyxy": [
+        876,
+        320,
+        904,
+        346
+      ],
+      "visible": false,
+      "uncertain": true,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          876,
+          320,
+          904,
+          346
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1080,
+          362,
+          1090,
+          378
+        ],
+        [
+          1086,
+          296,
+          1104,
+          321
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 744,
+      "source_time_s": 24.8,
+      "xyxy": [
+        854,
+        320,
+        882,
+        344
+      ],
+      "visible": false,
+      "uncertain": true,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          854,
+          320,
+          882,
+          344
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1066,
+          294,
+          1084,
+          319
+        ],
+        [
+          1541,
+          152,
+          1568,
+          178
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 752,
+      "source_time_s": 25.066667,
+      "xyxy": [
+        836,
+        316,
+        866,
+        342
+      ],
+      "visible": false,
+      "uncertain": true,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          836,
+          316,
+          866,
+          342
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1052,
+          293,
+          1068,
+          317
+        ],
+        [
+          1530,
+          149,
+          1558,
+          175
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 760,
+      "source_time_s": 25.333333,
+      "xyxy": [
+        826,
+        316,
+        856,
+        340
+      ],
+      "visible": false,
+      "uncertain": true,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          826,
+          316,
+          856,
+          340
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1523,
+          145,
+          1551,
+          172
+        ],
+        [
+          1044,
+          290,
+          1060,
+          314
+        ],
+        [
+          1738,
+          1012,
+          1782,
+          1059
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 768,
+      "source_time_s": 25.6,
+      "xyxy": [
+        824,
+        314,
+        850,
+        338
+      ],
+      "visible": false,
+      "uncertain": true,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          824,
+          314,
+          850,
+          338
+        ],
+        [
+          1746,
+          950,
+          1764,
+          966
+        ],
+        [
+          1742,
+          979,
+          1754,
+          1000
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1761,
+          962,
+          1776,
+          986
+        ],
+        [
+          1758,
+          982,
+          1778,
+          998
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 776,
+      "source_time_s": 25.866667,
+      "xyxy": [
+        816,
+        314,
+        844,
+        338
+      ],
+      "visible": false,
+      "uncertain": true,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          816,
+          314,
+          844,
+          338
+        ],
+        [
+          1742,
+          938,
+          1758,
+          955
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1728,
+          942,
+          1740,
+          965
+        ],
+        [
+          1754,
+          951,
+          1766,
+          970
+        ],
+        [
+          1750,
+          972,
+          1769,
+          986
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 784,
+      "source_time_s": 26.133333,
+      "xyxy": [
+        806,
+        312,
+        836,
+        336
+      ],
+      "visible": false,
+      "uncertain": true,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          806,
+          312,
+          836,
+          336
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1724,
+          970,
+          1740,
+          982
+        ],
+        [
+          1690,
+          918,
+          1700,
+          930
+        ],
+        [
+          1714,
+          936,
+          1728,
+          952
+        ],
+        [
+          1728,
+          948,
+          1738,
+          966
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 792,
+      "source_time_s": 26.4,
+      "xyxy": [
+        342,
+        998,
+        368,
+        1024
+      ],
+      "visible": false,
+      "uncertain": true,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1694,
+          942,
+          1705,
+          956
+        ],
+        [
+          1492,
+          142,
+          1520,
+          166
+        ],
+        [
+          800,
+          312,
+          828,
+          336
+        ],
+        [
+          1682,
+          954,
+          1690,
+          966
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 800,
+      "source_time_s": 26.666667,
+      "xyxy": [
+        342,
+        998,
+        368,
+        1024
+      ],
+      "visible": false,
+      "uncertain": true,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1682,
+          950,
+          1692,
+          964
+        ],
+        [
+          1015,
+          288,
+          1031,
+          308
+        ],
+        [
+          798,
+          312,
+          826,
+          336
+        ],
+        [
+          1692,
+          964,
+          1700,
+          978
+        ],
+        [
+          1489,
+          142,
+          1518,
+          168
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 808,
+      "source_time_s": 26.933333,
+      "xyxy": [
+        342,
+        998,
+        368,
+        1024
+      ],
+      "visible": false,
+      "uncertain": true,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1656,
+          962,
+          1664,
+          976
+        ],
+        [
+          796,
+          324,
+          816,
+          338
+        ],
+        [
+          1487,
+          142,
+          1514,
+          168
+        ],
+        [
+          1012,
+          286,
+          1028,
+          310
+        ],
+        [
+          798,
+          312,
+          824,
+          334
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 816,
+      "source_time_s": 27.2,
+      "xyxy": [
+        798,
+        312,
+        818,
+        324
+      ],
+      "visible": false,
+      "uncertain": true,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          798,
+          312,
+          818,
+          324
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1648,
+          960,
+          1656,
+          974
+        ],
+        [
+          794,
+          322,
+          804,
+          334
+        ],
+        [
+          1484,
+          141,
+          1511,
+          168
+        ],
+        [
+          1008,
+          286,
+          1027,
+          307
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 824,
+      "source_time_s": 27.466667,
+      "xyxy": [
+        342,
+        998,
+        368,
+        1024
+      ],
+      "visible": false,
+      "uncertain": true,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1658,
+          948,
+          1666,
+          960
+        ],
+        [
+          1006,
+          286,
+          1022,
+          307
+        ],
+        [
+          1480,
+          141,
+          1508,
+          167
+        ],
+        [
+          790,
+          312,
+          818,
+          338
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 832,
+      "source_time_s": 27.733333,
+      "xyxy": [
+        342,
+        998,
+        368,
+        1024
+      ],
+      "visible": false,
+      "uncertain": true,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1477,
+          140,
+          1504,
+          164
+        ],
+        [
+          1003,
+          286,
+          1019,
+          307
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 840,
+      "source_time_s": 28,
+      "xyxy": [
+        782,
+        310,
+        814,
+        336
+      ],
+      "visible": false,
+      "uncertain": true,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          782,
+          310,
+          814,
+          336
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          1474,
+          140,
+          1500,
+          164
+        ],
+        [
+          1001,
+          286,
+          1017,
+          307
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 848,
+      "source_time_s": 28.266667,
+      "xyxy": [
+        780,
+        310,
+        810,
+        336
+      ],
+      "visible": false,
+      "uncertain": true,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          780,
+          310,
+          810,
+          336
+        ],
+        [
+          1472,
+          140,
+          1498,
+          164
+        ],
+        [
+          342,
+          998,
+          368,
+          1024
+        ],
+        [
+          999,
+          286,
+          1015,
+          308
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    },
+    {
+      "frame_index": 856,
+      "source_time_s": 28.533333,
+      "xyxy": [
+        409,
+        1070,
+        409,
+        1070
+      ],
+      "visible": false,
+      "uncertain": true,
+      "reviewed": true,
+      "annotation_candidates": [
+        [
+          72,
+          866,
+          96,
+          890
+        ],
+        [
+          1180,
+          638,
+          1194,
+          650
+        ],
+        [
+          1246,
+          790,
+          1266,
+          804
+        ],
+        [
+          342,
+          998,
+          368,
+          1025
+        ]
+      ],
+      "annotation_method": "source-only HSV proposals; requires human correction/review; not detector predictions"
+    }
+  ],
+  "control_intervals": [
+    {
+      "start_time_s": 1.833315,
+      "end_time_s": 7.99992,
+      "player_id": "a_nguyen_huynh_phu_vinh",
+      "team_id": "team_a",
+      "uncertain": false,
+      "reviewed": true
+    },
+    {
+      "start_time_s": 8.633247,
+      "end_time_s": 9.566571,
+      "player_id": "a_nguyen_phuc_vinh",
+      "team_id": "team_a",
+      "uncertain": false,
+      "reviewed": true
+    },
+    {
+      "start_time_s": 10.433229,
+      "end_time_s": 10.99989,
+      "player_id": "b_11",
+      "team_id": "team_b",
+      "uncertain": false,
+      "reviewed": true
+    },
+    {
+      "start_time_s": 10.99989,
+      "end_time_s": 12.266544,
+      "player_id": "b_18",
+      "team_id": "team_b",
+      "uncertain": false,
+      "reviewed": true
+    },
+    {
+      "start_time_s": 13.199868,
+      "end_time_s": 15.766509,
+      "player_id": "b_11",
+      "team_id": "team_b",
+      "uncertain": false,
+      "reviewed": true
+    },
+    {
+      "start_time_s": 17.366493,
+      "end_time_s": 18.166485,
+      "player_id": "a_nguyen_phuc_vinh",
+      "team_id": "team_a",
+      "uncertain": false,
+      "reviewed": true
+    },
+    {
+      "start_time_s": 18.833145,
+      "end_time_s": 19.566471,
+      "player_id": "a_huynh_thanh_tam",
+      "team_id": "team_a",
+      "uncertain": false,
+      "reviewed": true
+    },
+    {
+      "start_time_s": 19.9998,
+      "end_time_s": 21.266454,
+      "player_id": "a_nguyen_phuc_vinh",
+      "team_id": "team_a",
+      "uncertain": false,
+      "reviewed": true
+    }
+  ],
+  "passes": [
+    {
+      "pass_id": "review_pass_1",
+      "release_time_s": 8.066586,
+      "receive_time_s": 8.533248,
+      "passer": {
+        "player_id": "a_nguyen_huynh_phu_vinh",
+        "team_id": "team_a"
+      },
+      "receiver": {
+        "player_id": "a_nguyen_phuc_vinh",
+        "team_id": "team_a"
+      },
+      "uncertain": false,
+      "reviewed": true
+    },
+    {
+      "pass_id": "review_pass_2",
+      "release_time_s": 10.933224,
+      "receive_time_s": 11.566551,
+      "passer": {
+        "player_id": "b_11",
+        "team_id": "team_b"
+      },
+      "receiver": {
+        "player_id": "b_18",
+        "team_id": "team_b"
+      },
+      "uncertain": false,
+      "reviewed": true
+    },
+    {
+      "pass_id": "review_pass_3",
+      "release_time_s": 12.266544,
+      "receive_time_s": 13.199868,
+      "passer": {
+        "player_id": "b_18",
+        "team_id": "team_b"
+      },
+      "receiver": {
+        "player_id": "b_11",
+        "team_id": "team_b"
+      },
+      "uncertain": false,
+      "reviewed": true
+    },
+    {
+      "pass_id": "review_pass_4",
+      "release_time_s": 18.166485,
+      "receive_time_s": 18.933144,
+      "passer": {
+        "player_id": "a_nguyen_phuc_vinh",
+        "team_id": "team_a"
+      },
+      "receiver": {
+        "player_id": "a_huynh_thanh_tam",
+        "team_id": "team_a"
+      },
+      "uncertain": false,
+      "reviewed": true
+    },
+    {
+      "pass_id": "review_pass_5",
+      "release_time_s": 19.466472,
+      "receive_time_s": 19.9998,
+      "passer": {
+        "player_id": "a_huynh_thanh_tam",
+        "team_id": "team_a"
+      },
+      "receiver": {
+        "player_id": "a_nguyen_phuc_vinh",
+        "team_id": "team_a"
+      },
+      "uncertain": false,
+      "reviewed": true
+    }
+  ],
+  "pass_tolerance_s": 0.25,
+  "ball_iou_threshold": 0.3,
+  "annotation_note": "User-reviewed development labels; control conflicts resolved by explicit user confirmation. No recognition predictions used to edit GT.",
+  "reviewed_utc": "2026-11-04T14:02:38.986Z",
+  "review_confirmation_record": "User confirmed in conversation 2026-11-04: Vietnam #6 controls 8.633247-9.566571s; Tonga #11 controls overlapping 10.566561-10.999890s. Remove duplicate controls and subtract overlap from Tonga #18 only; preserve remaining labels.",
+  "supersedes_ground_truth_sha256": "1d8b3cdd7a8496d946ab2b18d798e634ecf57feb3f7e634a5f8332a9c3da1ebb"
+}

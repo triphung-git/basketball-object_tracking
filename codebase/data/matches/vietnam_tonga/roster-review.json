@@ -1,0 +1,9 @@
+{
+  "review_status": "approved",
+  "approved_by": "user",
+  "approved_date_local": "2026-11-04",
+  "approval_source": "User confirmed roster-proposed.csv in conversation",
+  "roster_sha256": "1da124769768148f1b2448f99fd07b20319994a8df4a1e56e0674fdfe46289d3",
+  "video_sha256": "1443c1d263c8037a5684f3dbc0ef9216beb5097d9a47c4c1c9b94d1363e26865",
+  "note": "Roster approval only; ball/control/pass GT not yet reviewed"
+}

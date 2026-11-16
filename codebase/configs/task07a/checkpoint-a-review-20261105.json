@@ -1,0 +1,79 @@
+{
+  "schema_version": "task07-checkpoint-a-settings-1",
+  "source_video": "assets_test\\vietnam-tonga.mp4",
+  "pilot_source": "outputs\\task07a-dataset-first-20261105\\pilot-candidate\\annotations-draft.json",
+  "prior_progress": "outputs\\task07a-reviewed-feedback-20261105\\draft-task07a-pilot-corrected-v2.json",
+  "pilot_sampling_audit": "outputs\\task07a-dataset-first-20261105\\pilot-candidate\\sampling-audit.json",
+  "detector_suggestions": "outputs\\task07a-dataset-first-20261105\\pilot-candidate\\model-review\\suggestions.jsonl",
+  "prior_selector_predictions": "outputs\\task07a-reviewed-feedback-20261105\\corrected-evaluation-v2\\predictions-before-label-evaluation.json",
+  "identity_video": "outputs\\task07-vietnam-tonga-segments-20261104\\media\\vt_development.mp4",
+  "identity_packet": "outputs\\task07a-improvement-checkpoint-20261105\\identity-review-preparation\\annotations-draft.json",
+  "identity_preparation_manifest": "outputs\\task07a-improvement-checkpoint-20261105\\identity-review-preparation\\manifest.json",
+  "identity_source_evidence": "outputs\\task07a-improvement-checkpoint-20261105\\identity-review-preparation\\source-evidence.json",
+  "identity_tracking_run": "outputs\\task07-vietnam-tonga-segments-20261104\\development-tracking-v2\\run.json",
+  "identity_observations": "outputs\\task07-vietnam-tonga-segments-20261104\\development-tracking-v2\\tracked_observations.jsonl",
+  "identity_team_evidence": "outputs\\task07-vietnam-tonga-segments-20261104\\development-tracking-v2\\team_evidence.json",
+  "identity_jersey_evidence": "outputs\\task07-vietnam-tonga-segments-20261104\\development-tracking-v2\\jersey_evidence.json",
+  "identity_parent_offset_s": 300.0,
+  "frames": [
+    {"sample_id":"pilot_0060","reason":"Wide-play transition with two competing ball candidates; checks whether the raw detector contains the actual ball."},
+    {"sample_id":"pilot_0061","reason":"One-second continuation of the same play; checks candidate movement without extending this cluster."},
+    {"sample_id":"pilot_0062","reason":"Second continuation with low-confidence competing candidates; verifies motion and false-candidate behavior."},
+    {"sample_id":"pilot_0090","reason":"Contact/dribble sequence with two candidates; tests ball near players and possible occlusion."},
+    {"sample_id":"pilot_0091","reason":"One-second continuation of the contact sequence; checks whether the candidate follows the ball."},
+    {"sample_id":"pilot_0092","reason":"Second continuation; preserves a short motion context for association."},
+    {"sample_id":"pilot_0140","reason":"Wide court near a restart; three candidates make this useful for ambiguity review, not an assumed negative."},
+    {"sample_id":"pilot_0141","reason":"One-second continuation; detector proposes an unusually large ball box that needs human adjudication."},
+    {"sample_id":"pilot_0142","reason":"Second continuation of the same oversized proposal; checks persistence and scene context."},
+    {"sample_id":"pilot_0199","reason":"Wide court with several competing candidates; scene follows a broadcast transition and needs clip confirmation."},
+    {"sample_id":"pilot_0200","reason":"One-second continuation; checks movement and candidate persistence."},
+    {"sample_id":"pilot_0201","reason":"Second continuation; multiple candidates test ambiguity and false selections."}
+  ],
+  "identity_samples": [
+    {"sample_id":"crop_0020","reason":"Track 2 OCR reads 2; retain as an observation to verify, not a confirmed jersey."},
+    {"sample_id":"crop_0033","reason":"Same track later reads 09 instead of 2; inspect crop, track association and number."},
+    {"sample_id":"crop_0038","reason":"Two OCR alternatives (4 and 3) on the same crop; resolve readability or leave unknown."},
+    {"sample_id":"crop_0055","reason":"High-confidence OCR read 78; audit possible crop/recognition error without roster snapping."},
+    {"sample_id":"crop_0059","reason":"Single-digit OCR read 0; check whether the crop truncates a multi-digit number."},
+    {"sample_id":"crop_0076","reason":"Competing OCR reads 0 and 1 with a soft crop; verify visibility and avoid choosing one automatically."},
+    {"sample_id":"crop_0104","reason":"Team B track with OCR read 1; tests team-plus-number disambiguation across roster duplicates."},
+    {"sample_id":"crop_0136","reason":"Scheduled crop has no OCR evidence; verify if the number is readable or genuinely unknown."},
+    {"sample_id":"crop_0145","reason":"Track 41 reads 18; compare context, team and crop identity against the adjacent observation."},
+    {"sample_id":"crop_0151","reason":"Same track 0.5 seconds later reads 6; targeted check for a track switch or OCR conflict."},
+    {"sample_id":"crop_0161","reason":"Track 49 reads 3; verify crop ownership, team and number independently."},
+    {"sample_id":"crop_0165","reason":"Team A track reads 6; useful cross-team duplicate-number check."},
+    {"sample_id":"crop_0178","reason":"Track 59 reads 3; compare the short track sequence for an identity/track switch."},
+    {"sample_id":"crop_0192","reason":"Same track 0.33 seconds later reads 5; do not reconcile the conflict without visual evidence."}
+  ],
+  "ball_context_clips": [
+    {"clip_id":"ball-540s","start_s":538.0,"duration_s":7.0,"sample_ids":["pilot_0060","pilot_0061","pilot_0062"]},
+    {"clip_id":"ball-570s","start_s":568.0,"duration_s":7.0,"sample_ids":["pilot_0090","pilot_0091","pilot_0092"]},
+    {"clip_id":"ball-740s","start_s":738.0,"duration_s":7.0,"sample_ids":["pilot_0140","pilot_0141","pilot_0142"]},
+    {"clip_id":"ball-920s","start_s":918.0,"duration_s":7.0,"sample_ids":["pilot_0199","pilot_0200","pilot_0201"]}
+  ],
+  "identity_context_clips": [
+    {"clip_id":"identity-early","start_s":2.0,"duration_s":7.0,"sample_ids":["crop_0020","crop_0033","crop_0038"]},
+    {"clip_id":"identity-mid-a","start_s":7.0,"duration_s":7.0,"sample_ids":["crop_0055","crop_0059","crop_0076"]},
+    {"clip_id":"identity-mid-b","start_s":14.0,"duration_s":7.0,"sample_ids":["crop_0104"]},
+    {"clip_id":"identity-late-a","start_s":19.0,"duration_s":7.0,"sample_ids":["crop_0136","crop_0145","crop_0151"]},
+    {"clip_id":"identity-late-b","start_s":23.0,"duration_s":7.0,"sample_ids":["crop_0161","crop_0165","crop_0178","crop_0192"]}
+  ],
+  "scene_windows": [
+    {"window_id":"vt_pilot_06m","assessment":"Mixed window; all 40 existing approved labels in this window are reused (360-405s). Remaining samples stay unreviewed; a tight broadcast close-up is not treated as a verified replay.","confidence":"medium","evidence_sample_ids":["pilot_0000","pilot_0039","pilot_0050"],"new_samples":[]},
+    {"window_id":"vt_pilot_09m","assessment":"Wide live play dominates the selected moments, with a tight cutaway elsewhere in the window. Selected clusters have adjacent clips.","confidence":"medium","evidence_sample_ids":["pilot_0060","pilot_0090"],"new_samples":["pilot_0060","pilot_0061","pilot_0062","pilot_0090","pilot_0091","pilot_0092"]},
+    {"window_id":"vt_pilot_12m","assessment":"Mixed close-up and wide-court moments. The 740s cluster may be a restart or pause; standing players are not an exclusion reason.","confidence":"low","evidence_sample_ids":["pilot_0120","pilot_0140","pilot_0170"],"new_samples":["pilot_0140","pilot_0141","pilot_0142"]},
+    {"window_id":"vt_pilot_15m","assessment":"Tight broadcast framing transitions to a wide court around 920s; use the attached clip before deciding scope.","confidence":"medium","evidence_sample_ids":["pilot_0180","pilot_0190","pilot_0199"],"new_samples":["pilot_0199","pilot_0200","pilot_0201"]},
+    {"window_id":"vt_pilot_18m","assessment":"Mixed close-ups, graphics and wide-court samples; not chosen for this bounded review batch. No sample is marked skipped.","confidence":"low","evidence_sample_ids":["pilot_0240","pilot_0249","pilot_0259"],"new_samples":[]},
+    {"window_id":"vt_pilot_20m","assessment":"Late sequence includes tight court-side/celebration-like views; context is insufficient to label every sample post-game or replay, so the window is not used for this batch and remains unreviewed.","confidence":"low","evidence_sample_ids":["pilot_0300"],"new_samples":[]}
+  ],
+  "review_policy": {
+    "new_frame_hard_cap": 24,
+    "target_new_frames": "12-16",
+    "identity_target": "12-16",
+    "all_review_fields_start_unreviewed": true,
+    "raw_detector_suggestions_are_not_labels": true,
+    "prior_selected_ball_is_null_when_not_in_historical_artifact": true,
+    "unselected_samples_remain_unreviewed": true,
+    "training_authorized": false
+  }
+}

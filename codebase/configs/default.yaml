@@ -1,0 +1,26 @@
+# Default configuration for Basketball Scoreboard Task03 Video & Detection Pipeline
+
+model:
+  model_id: "phung-van-tri/basketball-xil7x-y8g6u-1-yolo26s-t1"
+  confidence_threshold: 0.25
+  max_edge: 1280
+  device: "cpu"
+  backend: "onnx"
+  warmup_runs: 2
+  cpu_threads: 1                 # bounded PyTorch CPU postprocessing; ONNX provider remains CPU
+
+video:
+  pts_policy: "repair_with_audit"  # options: repair_with_audit, strict_reject, flag_only
+  max_frames: null                 # null processes the entire video
+  draw_overlay: true
+
+export:
+  video_filename: "annotated.mp4"
+  detections_filename: "detections.jsonl"
+  run_filename: "run.json"
+  codec: "libx264"
+  pixel_format: "yuv420p"
+  encoder_preset: "veryfast"
+
+credentials:
+  env_file: ".env"

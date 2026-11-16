@@ -1,0 +1,80 @@
+{
+  "is_synthetic": false,
+  "provenance_status": "approved",
+  "session_id": "vietnam_tonga_same_match_2025",
+  "approval_record": "User confirmed proposed roster in conversation 2026-11-04",
+  "team_a_id": "team_a",
+  "team_b_id": "team_b",
+  "team_a_name": "Vi\u1ec7t Nam",
+  "team_b_name": "Tonga",
+  "team_a_color_rgb": [
+    180,
+    35,
+    45
+  ],
+  "team_b_color_rgb": [
+    220,
+    220,
+    225
+  ],
+  "players": [
+    {
+      "player_id": "a_nguyen_huynh_phu_vinh",
+      "team_id": "team_a",
+      "jersey_number": "1",
+      "name": "Nguy\u1ec5n Hu\u1ef3nh Ph\u00fa Vinh",
+      "is_active": true
+    },
+    {
+      "player_id": "a_nguyen_phuc_vinh",
+      "team_id": "team_a",
+      "jersey_number": "6",
+      "name": "Nguy\u1ec5n Ph\u00fac Vinh",
+      "is_active": true
+    },
+    {
+      "player_id": "a_nguyen_anh_kiet",
+      "team_id": "team_a",
+      "jersey_number": "13",
+      "name": "Nguy\u1ec5n Anh Ki\u1ec7t",
+      "is_active": true
+    },
+    {
+      "player_id": "a_huynh_thanh_tam",
+      "team_id": "team_a",
+      "jersey_number": "2",
+      "name": "Hu\u1ef3nh Thanh T\u00e2m",
+      "is_active": true
+    },
+    {
+      "player_id": "b_01",
+      "team_id": "team_b",
+      "jersey_number": "1",
+      "name": "Marcus Christian Alipate",
+      "is_active": true
+    },
+    {
+      "player_id": "b_09",
+      "team_id": "team_b",
+      "jersey_number": "9",
+      "name": "Luke Sinisa",
+      "is_active": true
+    },
+    {
+      "player_id": "b_11",
+      "team_id": "team_b",
+      "jersey_number": "11",
+      "name": "Jonah Palelei",
+      "is_active": true
+    },
+    {
+      "player_id": "b_18",
+      "team_id": "team_b",
+      "jersey_number": "18",
+      "name": "Viliami Foketi",
+      "is_active": true
+    }
+  ],
+  "color_provenance": "Initial red/white prototypes; verify from actual torso crops",
+  "roster_csv_sha256": "f836c2edd200f835a0d07b68792db9cdb5348e895816cf0d273943f8823f7c3d"
+}

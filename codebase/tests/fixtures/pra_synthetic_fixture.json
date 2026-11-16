@@ -1,0 +1,88 @@
+{
+  "schema_version": "pra-synthetic-fixture-v1",
+  "is_synthetic": true,
+  "description": "Frozen synthetic fixture for PRA evaluator CLI verification",
+  "ground_truth": {
+    "pts": [
+      {
+        "shot_id": "gt_shot_001",
+        "release_time_s": 5.0,
+        "outcome_time_s": 6.0,
+        "result": "made",
+        "team_id": "team_a",
+        "shooter_id": "player_01",
+        "point_value": 2
+      },
+      {
+        "shot_id": "gt_shot_002",
+        "release_time_s": 15.0,
+        "outcome_time_s": 16.0,
+        "result": "made",
+        "team_id": "team_b",
+        "shooter_id": "player_02",
+        "point_value": 1
+      }
+    ],
+    "reb": [
+      {
+        "rebound_id": "gt_reb_001",
+        "rebound_time_s": 8.0,
+        "team_id": "team_a",
+        "actor_id": "player_01",
+        "rebound_type": "defensive",
+        "shot_id": "gt_shot_miss_001"
+      }
+    ],
+    "ast": [
+      {
+        "assist_id": "gt_ast_001",
+        "assist_time_s": 4.5,
+        "team_id": "team_a",
+        "passer_id": "player_03",
+        "scorer_id": "player_01",
+        "shot_id": "gt_shot_001",
+        "eligibility": "eligible"
+      }
+    ]
+  },
+  "predictions": {
+    "pts": [
+      {
+        "shot_id": "pred_shot_001",
+        "release_time_s": 5.05,
+        "outcome_time_s": 6.05,
+        "outcome": "made",
+        "team_id": "team_a",
+        "player_id": "player_01",
+        "point_value": 2
+      },
+      {
+        "shot_id": "pred_shot_002",
+        "release_time_s": 15.02,
+        "outcome_time_s": 16.03,
+        "outcome": "made",
+        "team_id": "team_b",
+        "player_id": "player_02",
+        "point_value": 1
+      }
+    ],
+    "reb": [
+      {
+        "rebound_id": "pred_reb_001",
+        "recovery_time_s": 8.1,
+        "team_id": "team_a",
+        "player_id": "player_99",
+        "rebound_type": "defensive",
+        "parent_event_id": "gt_shot_miss_001"
+      },
+      {
+        "rebound_id": "pred_reb_fp_002",
+        "recovery_time_s": 25.0,
+        "team_id": "team_b",
+        "player_id": "player_05",
+        "rebound_type": "offensive"
+      }
+    ],
+    "ast": []
+  }
+}

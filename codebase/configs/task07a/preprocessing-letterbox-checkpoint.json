@@ -1,0 +1,12 @@
+{
+  "schema_version": "task07a-preprocessing-checkpoint-1",
+  "model_id": "phung-van-tri/basketball-xil7x-y8g6u-1-yolo26s-t1",
+  "source_video_sha256": "8fd370b0668860a5c70d56bf256c76e3783bc1fe6598b529944ad00ca0616b45",
+  "frame_step": 8,
+  "confidence": 0.15,
+  "grid": 2,
+  "overlap": 0.2,
+  "onnx_threads": 4,
+  "excluded_boxes": [[0.02,0.73,0.27,1.0]],
+  "profiles": [{"name": "letterbox-640", "image_size": [640,640], "pre_resize_mode": "external-letterbox"}]
+}

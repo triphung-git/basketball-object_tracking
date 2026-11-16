@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Review pha ghi điểm · Việt Nam – Tonga</title>
+<style>
+:root{font:16px/1.5 system-ui,sans-serif;color:#17282d;background:#f3f5f4}*{box-sizing:border-box}body{margin:0}header,main{max-width:1380px;margin:auto;padding:20px}header{padding-bottom:4px}h1{font-size:25px;margin:0}h2{font-size:19px;margin:0}p{margin:8px 0}.muted{color:#52636a;font-size:14px}.bar{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin:12px 0}button,select,input,textarea{font:inherit;padding:8px;border:1px solid #a6b8b5;border-radius:5px;background:white;color:inherit}button{cursor:pointer}button.primary{background:#125d50;color:white;border-color:#125d50}button:disabled{opacity:.45;cursor:default}.layout{display:grid;grid-template-columns:minmax(0,2fr) minmax(300px,1fr);gap:20px}.panel{background:white;padding:16px;border:1px solid #d5dfdc;border-radius:8px}video{width:100%;background:#111;display:block;max-height:67vh}label{display:block;margin:12px 0 4px}select,textarea{width:100%}input[type=file]{width:220px}textarea{min-height:76px}.evidence{display:grid;grid-template-columns:1fr 1fr;gap:10px}.evidence img{width:100%;max-width:495px}.evidence figure{margin:6px 0}.evidence figcaption{font-size:13px}.frames{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.frames button{padding:0;overflow:hidden;text-align:left;font-size:12px}.frames img{display:block;width:100%}.frames span{display:block;padding:3px}.hint{padding:10px;background:#e9f3ee;border-left:3px solid #277962}.error{color:#a02a20}details{margin-top:16px}#statusLine{min-height:22px}#clock{font-variant-numeric:tabular-nums}.timefield{display:flex;gap:6px;align-items:center;margin-bottom:6px}.timefield input{width:110px}.small{font-size:13px}a{color:#125d50}@media(max-width:880px){.layout{grid-template-columns:1fr}header,main{padding:12px}.frames{grid-template-columns:repeat(2,1fr)}}
+</style></head><body>
+<header><h1>Review pha ghi điểm · Việt Nam – Tonga</h1>
+<p>Chọn mẫu từ <b>thay đổi scoreboard</b>. Mỗi clip giữ hình gốc 1080p, không có âm thanh. Nhãn đang chờ bạn duyệt.</p>
+<p class="muted">Xem hành động thực tế trước khi xác nhận. Scoreboard có thể cập nhật trễ; số tăng chưa đủ để kết luận ném thường hay ném phạt.</p>
+<details id="playbackHelp"><summary>Không phát video / đang mở trong preview VS Code hoặc Codex?</summary><p class="small">Mở trang bằng <b>Chrome hoặc Edge bên ngoài IDE</b>. Trong File Explorer, vào thư mục chứa review.html rồi nhấp đúp <b>Mo-review-bang-trinh-duyet.cmd</b>. Preview có thể không phát được MP4 dù clip vẫn đầy đủ.</p><p class="small">Nếu đã nhập nhãn trong preview, bấm <b>Tải bản review JSON</b> trước khi chuyển trình duyệt, rồi dùng <b>Nạp bản review</b> để tiếp tục.</p><button id="retryVideo">Thử tải lại video</button></details>
+<div class="bar"><button id="export" class="primary">Tải bản review JSON</button><button id="importButton">Nạp bản review</button><input id="importFile" type="file" accept="application/json,.json" hidden><span id="progress"></span></div>
+<div id="statusLine" class="muted" role="status" aria-live="polite"></div></header>
+<main><div class="bar"><label for="filter" style="margin:0">Nhóm clip</label><select id="filter" style="width:auto"><option value="recommended">Ưu tiên review trước</option><option value="all">Tất cả pha tăng điểm</option><option value="pending">Chưa review</option></select><button id="prev">← Trước</button><select id="clipSelect" style="flex:1;min-width:250px"></select><button id="next">Tiếp →</button></div>
+<div class="layout"><section class="panel"><h2 id="heading"></h2><p id="summary" class="muted"></p>
+<video id="video" controls playsinline preload="metadata"></video>
+<div class="bar"><button id="backFrame">−1 frame</button><button id="forwardFrame">+1 frame</button><label for="speed" style="margin:0">Tốc độ</label><select id="speed" style="width:auto"><option value="1">1×</option><option value="0.5">0,5×</option><option value="0.25">0,25×</option></select><span id="clock" class="small"></span></div>
+<div class="evidence"><figure><img id="beforeImage" alt="Scoreboard trước thay đổi"><figcaption id="beforeText"></figcaption></figure><figure><img id="afterImage" alt="Scoreboard sau thay đổi"><figcaption id="afterText"></figcaption></figure></div>
+<details open><summary>6 ảnh điều hướng — bấm ảnh để tới thời điểm</summary><div id="frames" class="frames"></div></details>
+</section><aside class="panel"><h2>Kết quả review</h2><p class="small">Bắt buộc: chọn kết luận cho clip. Những ô còn lại điền khi nhìn rõ; không cần vẽ bbox.</p>
+<label for="decision">1. Kết luận</label><select id="decision"><option value="pending">Chưa review</option><option value="confirmed_clear">Có pha ghi điểm, hành động rõ</option><option value="confirmed_partial">Có tăng điểm, hành động bị che/mất</option><option value="not_score">Không phải pha ghi điểm / scoreboard sai</option><option value="replay">Chỉ thấy replay, không tính lượt mới</option><option value="uncertain">Chưa chắc / cần thêm ngữ cảnh</option></select>
+<label for="shotKind">2. Loại tình huống</label><select id="shotKind"><option value="unknown">Chưa xác định</option><option value="field_goal">Ném trong trận</option><option value="free_throw">Ném phạt</option><option value="other">Khác / điều chỉnh điểm</option></select>
+<label for="shooter">3. Người ném (nếu rõ)</label><select id="shooter"><option value="">Không xác định</option></select>
+<label for="visibility">4. Bóng ở các thời điểm quan trọng</label><select id="visibility"><option value="unknown">Chưa đánh giá</option><option value="clear">Nhìn rõ lúc ném và gần/vào rổ</option><option value="partial">Chỉ rõ một phần / bị che / mờ</option><option value="not_visible">Không thấy đủ để xác định</option></select>
+<details><summary>Đánh dấu thời điểm (tùy chọn, giây trong clip)</summary><p class="small">Dừng video ở frame cần đánh dấu rồi bấm nút. Để trống nếu không thấy. “Qua rổ” là mốc quan sát, không dùng thời điểm scoreboard thay thế.</p>
+<label for="release">Bóng rời tay</label><div class="timefield"><input id="release" type="number" min="0" step="0.033333"><button id="markRelease">Lấy frame hiện tại</button></div>
+<label for="basket">Bóng qua rổ / outcome</label><div class="timefield"><input id="basket" type="number" min="0" step="0.033333"><button id="markBasket">Lấy frame hiện tại</button></div></details>
+<label for="notes">Ghi chú</label><textarea id="notes" maxlength="4000" placeholder="Ví dụ: bóng mờ sát vành; scoreboard cập nhật sau replay; clip thiếu lúc ném..."></textarea>
+<p class="hint small">Tự lưu trong trình duyệt khi có thể. Luôn bấm <b>Tải bản review JSON</b> để giữ bản bàn giao; mở trên máy/trình duyệt khác không tự có dữ liệu.</p>
+<button id="saveNext" class="primary">Lưu và xem clip tiếp</button>
+<p class="small"><a href="review-manifest.json">Manifest nguồn &amp; mốc thời gian</a></p>
+</aside></div></main>
+<script id="packet" type="application/json">__PACKET__</script>
+<script>
+'use strict';
+const packet=JSON.parse(document.getElementById('packet').textContent);
+const manifestSha='__MANIFEST_SHA__';
+const $=id=>document.getElementById(id), entries=packet.entries;
+const storageKey='shot-review:'+manifestSha;
+const allowedDecisions=['pending','confirmed_clear','confirmed_partial','not_score','replay','uncertain'];
+const defaults=()=>({decision:'pending',shot_kind:'unknown',shooter_id:null,ball_visibility:'unknown',release_clip_s:null,basket_clip_s:null,notes:''});
+let reviews=Object.fromEntries(entries.map(e=>[e.id,defaults()])), current=null, loading=false, mediaFailure=false;
+function notice(message,error=false){$('statusLine').textContent=message;$('statusLine').className=error?'error':'muted';}
+function stamp(s){return `${Math.floor(s/60)}:${(s%60).toFixed(2).padStart(5,'0')}`;}
+function saveLocal(){try{localStorage.setItem(storageKey,JSON.stringify(reviews));notice('Đã lưu trên trình duyệt. Hãy tải JSON trước khi gửi lại.');}catch{notice('Trình duyệt không lưu được. Hãy tải JSON để giữ kết quả.',true);}updateProgress();}
+function updateProgress(){const done=entries.filter(e=>reviews[e.id].decision!=='pending').length;$('progress').textContent=`Đã review ${done}/${entries.length} clip`;
+ $('clipSelect').querySelectorAll('option').forEach(o=>{const e=entries.find(x=>x.id===o.value);if(e)o.textContent=title(e);});}
+function title(e){return `${reviews[e.id].decision==='pending'?'○':'✓'} ${e.id} · ${e.draft_scoring_team==='team_a'?'Việt Nam':'Tonga'} +${e.draft_points} · ${stamp(e.start_s)}`;}
+function selection(){return entries.filter(e=>$('filter').value==='all'||($('filter').value==='recommended'?e.recommended:reviews[e.id].decision==='pending'));}
+function refreshOptions(preferred){const list=selection();$('clipSelect').replaceChildren();for(const e of list){const o=document.createElement('option');o.value=e.id;o.textContent=title(e);$('clipSelect').append(o);}const id=list.some(e=>e.id===preferred)?preferred:list[0]?.id;if(id){$('clipSelect').value=id;load(id);}else{current=null;$('video').pause();$('heading').textContent='Không còn clip trong bộ lọc này';$('prev').disabled=$('next').disabled=true;}}
+function load(id){loading=true;current=entries.find(e=>e.id===id);const r=reviews[id];
+ if(mediaFailure){notice('Đang tải clip mới…');mediaFailure=false;}
+ $('heading').textContent=`${id} · ${current.draft_scoring_team==='team_a'?'Việt Nam':'Tonga'} +${current.draft_points} (đề xuất từ scoreboard)`;
+ $('summary').textContent=`Video gốc ${stamp(current.start_s)}–${stamp(current.end_s)} · ${current.duration_s.toFixed(1)} giây · cập nhật điểm khoảng ${current.scoreboard_update_bracket_s.map(stamp).join('–')}`;
+ $('video').src=current.video;$('video').poster=current.keyframes[2].image;$('video').playbackRate=Number($('speed').value);
+ $('beforeImage').src=current.evidence.before;$('afterImage').src=current.evidence.after;
+ $('beforeText').textContent='Trước: Tonga – Việt Nam '+current.before_score_tga_vie.join(' – ');$('afterText').textContent='Sau: Tonga – Việt Nam '+current.after_score_tga_vie.join(' – ');
+ $('decision').value=r.decision;$('shotKind').value=r.shot_kind;$('shooter').value=r.shooter_id||'';$('visibility').value=r.ball_visibility;$('release').value=r.release_clip_s??'';$('basket').value=r.basket_clip_s??'';$('release').max=$('basket').max=current.duration_s-1/30;$('notes').value=r.notes;
+ $('frames').replaceChildren();for(const k of current.keyframes){const b=document.createElement('button'),im=document.createElement('img'),text=document.createElement('span');im.src=k.image;im.alt='Frame nguồn '+k.source_frame_index;im.loading='lazy';text.textContent=`Clip ${k.clip_time_s.toFixed(2)}s · gốc ${stamp(k.source_time_s)}`;b.append(im,text);b.onclick=()=>{$('video').pause();$('video').currentTime=k.clip_time_s;};$('frames').append(b);}
+ const list=selection(),i=list.findIndex(e=>e.id===id);$('prev').disabled=i<=0;$('next').disabled=i===list.length-1;loading=false;clock();}
+function validTime(value,e){return value===null||(typeof value==='number'&&Number.isFinite(value)&&value>=0&&value<e.duration_s);}
+function validated(input){if(!input||typeof input!=='object'||Array.isArray(input))throw Error('Bản review không hợp lệ');
+ const result=Object.fromEntries(entries.map(e=>[e.id,defaults()]));
+ for(const [id,r] of Object.entries(input)){const e=entries.find(e=>e.id===id);if(!e)throw Error('Có clip không thuộc packet này');
+  if(!r||!allowedDecisions.includes(r.decision)||!['unknown','field_goal','free_throw','other'].includes(r.shot_kind)||!['unknown','clear','partial','not_visible'].includes(r.ball_visibility)||!(r.shooter_id===null||packet.players.some(p=>p.player_id===r.shooter_id))||typeof r.notes!=='string'||r.notes.length>4000||!validTime(r.release_clip_s,e)||!validTime(r.basket_clip_s,e)||(r.release_clip_s!==null&&r.basket_clip_s!==null&&r.release_clip_s>r.basket_clip_s))throw Error('Nhãn hoặc mốc thời gian không hợp lệ');
+  result[id]={decision:r.decision,shot_kind:r.shot_kind,shooter_id:r.shooter_id,ball_visibility:r.ball_visibility,release_clip_s:r.release_clip_s,basket_clip_s:r.basket_clip_s,notes:r.notes};}
+ return result;}
+function edit(){if(loading||!current)return;const time=id=>$(id).value===''?null:Number($(id).value);
+ const r={decision:$('decision').value,shot_kind:$('shotKind').value,shooter_id:$('shooter').value||null,ball_visibility:$('visibility').value,release_clip_s:time('release'),basket_clip_s:time('basket'),notes:$('notes').value};
+ try{validated({[current.id]:r});reviews[current.id]=r;saveLocal();}catch(e){notice(e.message,true);}}
+function navigate(offset){const list=selection(),i=list.findIndex(e=>e.id===current?.id);const next=list[i+offset];if(next){$('clipSelect').value=next.id;load(next.id);}}
+function clock(){if(current)$('clock').textContent=`Clip ${$('video').currentTime.toFixed(3)}s · gốc ${stamp(current.start_s+$('video').currentTime)}`;}
+for(const p of packet.players){const o=document.createElement('option');o.value=p.player_id;o.textContent=`${p.team_id==='team_a'?'Việt Nam':'Tonga'} #${p.jersey_number} · ${p.name}`;$('shooter').append(o);}
+try{const saved=localStorage.getItem(storageKey);if(saved)reviews=validated(JSON.parse(saved));}catch{notice('Không nạp được bản tự lưu; hãy nạp JSON đã xuất nếu có.',true);}
+for(const id of ['decision','shotKind','shooter','visibility','release','basket','notes'])$(id).addEventListener(id==='notes'?'input':'change',edit);
+$('filter').onchange=()=>refreshOptions(current?.id);$('clipSelect').onchange=()=>load($('clipSelect').value);$('prev').onclick=()=>navigate(-1);$('next').onclick=()=>navigate(1);$('saveNext').onclick=()=>{edit();navigate(1);};
+$('speed').onchange=()=>{$('video').playbackRate=Number($('speed').value);};
+for(const [id,delta] of [['backFrame',-1],['forwardFrame',1]])$(id).onclick=()=>{if(!current)return;$('video').pause();$('video').currentTime=Math.max(0,Math.min(current.duration_s-1/30,$('video').currentTime+delta/30));};
+for(const [id,target] of [['markRelease','release'],['markBasket','basket']])$(id).onclick=()=>{$('video').pause();$(target).value=(Math.round($('video').currentTime*30)/30).toFixed(6);edit();};
+$('video').addEventListener('timeupdate',clock);$('video').addEventListener('loadedmetadata',()=>{$('video').playbackRate=Number($('speed').value);clock();});
+$('video').addEventListener('error',()=>{const code=$('video').error?.code??0;const names={1:'đã hủy tải',2:'lỗi truy cập media',3:'lỗi giải mã video',4:'nguồn hoặc định dạng không được hỗ trợ'};mediaFailure=true;$('playbackHelp').open=true;notice(`Không phát được ${current?.id||'clip'}: ${names[code]||'lỗi media'} (mã ${code}). Nếu đang mở trong preview VS Code/Codex, hãy chạy Mo-review-bang-trinh-duyet.cmd trong File Explorer để mở bằng Chrome/Edge.`,true);});
+$('video').addEventListener('loadeddata',()=>{if(mediaFailure){mediaFailure=false;notice('Video đã tải được.');}});
+$('retryVideo').onclick=()=>$('video').load();
+$('export').onclick=()=>{const value={schema_version:'scoreboard-shot-review-1',manifest_sha256:manifestSha,source_sha256:packet.source_sha256,exported_at:new Date().toISOString(),purpose:'user_review_annotation_only_not_recognition_input',reviews};const blob=new Blob([JSON.stringify(value,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='vietnam-tonga-scoring-review.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);notice('Đã tải bản review JSON. Gửi lại đường dẫn file sau khi duyệt.');};
+$('importButton').onclick=()=>$('importFile').click();$('importFile').onchange=async()=>{try{const f=$('importFile').files[0];if(!f)return;if(f.size>2000000)throw Error('File review quá lớn');const input=JSON.parse(await f.text());if(input.schema_version!=='scoreboard-shot-review-1'||input.source_sha256!==packet.source_sha256||input.manifest_sha256!==manifestSha)throw Error('File không thuộc video/packet này');const next=validated(input.reviews);reviews=next;saveLocal();refreshOptions(current?.id);notice('Đã nạp bản review đúng packet.');}catch(e){notice(e.message,true);}finally{$('importFile').value='';}};
+refreshOptions();updateProgress();
+</script></body></html>

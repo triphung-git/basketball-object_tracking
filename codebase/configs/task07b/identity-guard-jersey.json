@@ -1,0 +1,23 @@
+{
+  "schema_version": "task07b-identity-crop-policy-1",
+  "source_video_sha256": "8fd370b0668860a5c70d56bf256c76e3783bc1fe6598b529944ad00ca0616b45",
+  "provenance": "Development source-image broadcast HUD at fixed screen position. Generic overlap and color cues; no sample IDs or ground truth consumed.",
+  "scope": "Only vt_development camera/source; not other windows or videos",
+  "policy": {
+    "excluded_boxes": [
+      [
+        0.045,
+        0.78,
+        0.315,
+        0.965
+      ]
+    ],
+    "max_other_overlap": 0.5,
+    "ambiguity_hold_s": 0.75,
+    "duplicate_iou": 0.8,
+    "min_visible_pixels": 256,
+    "min_visible_fraction": 0.15,
+    "team_region": "jersey",
+    "suspend_team_conflict": true
+  }
+}

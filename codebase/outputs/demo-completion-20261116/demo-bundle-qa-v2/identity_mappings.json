@@ -1,0 +1,594 @@
+[
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0001",
+    "start_time_s": 300.0,
+    "end_time_s": 300.066667,
+    "team_id": "team_b",
+    "player_id": null,
+    "revision_id": 1,
+    "confidence": 1.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "No valid jersey OCR evidence recorded for track",
+      "team_conf": 1.0,
+      "player_conf": 0.0,
+      "valid_until_s": 302.0
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0002",
+    "start_time_s": 300.0,
+    "end_time_s": 305.0,
+    "team_id": null,
+    "player_id": null,
+    "revision_id": 2,
+    "confidence": 0.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "Cannot resolve player: team is unknown",
+      "team_conf": 0.0,
+      "player_conf": 0.0,
+      "valid_until_s": 307.0
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0003",
+    "start_time_s": 300.0,
+    "end_time_s": 303.8,
+    "team_id": null,
+    "player_id": null,
+    "revision_id": 3,
+    "confidence": 0.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "Cannot resolve player: team is unknown",
+      "team_conf": 0.0,
+      "player_conf": 0.0,
+      "valid_until_s": 305.8
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0004",
+    "start_time_s": 300.0,
+    "end_time_s": 305.0,
+    "team_id": null,
+    "player_id": null,
+    "revision_id": 4,
+    "confidence": 0.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "Cannot resolve player: team is unknown",
+      "team_conf": 0.0,
+      "player_conf": 0.0,
+      "valid_until_s": 307.0
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0005",
+    "start_time_s": 300.0,
+    "end_time_s": 302.9,
+    "team_id": "team_b",
+    "player_id": null,
+    "revision_id": 5,
+    "confidence": 1.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "No valid jersey OCR evidence recorded for track",
+      "team_conf": 1.0,
+      "player_conf": 0.0,
+      "valid_until_s": 303.4
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0006",
+    "start_time_s": 300.0,
+    "end_time_s": 300.866667,
+    "team_id": "team_a",
+    "player_id": null,
+    "revision_id": 6,
+    "confidence": 1.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "No valid jersey OCR evidence recorded for track",
+      "team_conf": 1.0,
+      "player_conf": 0.0,
+      "valid_until_s": 302.2
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0007",
+    "start_time_s": 300.0,
+    "end_time_s": 302.733333,
+    "team_id": "team_b",
+    "player_id": null,
+    "revision_id": 7,
+    "confidence": 1.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "No valid jersey OCR evidence recorded for track",
+      "team_conf": 1.0,
+      "player_conf": 0.0,
+      "valid_until_s": 302.733333
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0008",
+    "start_time_s": 300.0,
+    "end_time_s": 302.366667,
+    "team_id": "team_a",
+    "player_id": null,
+    "revision_id": 8,
+    "confidence": 1.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "No valid jersey OCR evidence recorded for track",
+      "team_conf": 1.0,
+      "player_conf": 0.0,
+      "valid_until_s": 302.366667
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0001",
+    "start_time_s": 300.066667,
+    "end_time_s": 300.233333,
+    "team_id": null,
+    "player_id": null,
+    "revision_id": 9,
+    "confidence": 0.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "Cannot resolve player: team is unknown",
+      "team_conf": 0.0,
+      "player_conf": 0.0,
+      "valid_until_s": 302.1
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0009",
+    "start_time_s": 300.133333,
+    "end_time_s": 302.566667,
+    "team_id": null,
+    "player_id": null,
+    "revision_id": 10,
+    "confidence": 0.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "Cannot resolve player: team is unknown",
+      "team_conf": 0.0,
+      "player_conf": 0.0,
+      "valid_until_s": 304.566667
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0010",
+    "start_time_s": 300.133333,
+    "end_time_s": 301.966667,
+    "team_id": null,
+    "player_id": null,
+    "revision_id": 11,
+    "confidence": 0.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "Cannot resolve player: team is unknown",
+      "team_conf": 0.0,
+      "player_conf": 0.0,
+      "valid_until_s": 303.933333
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0011",
+    "start_time_s": 300.2,
+    "end_time_s": 303.766667,
+    "team_id": null,
+    "player_id": null,
+    "revision_id": 12,
+    "confidence": 0.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "Cannot resolve player: team is unknown",
+      "team_conf": 0.0,
+      "player_conf": 0.0,
+      "valid_until_s": 304.333333
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0001",
+    "start_time_s": 300.233333,
+    "end_time_s": 300.4,
+    "team_id": "team_a",
+    "player_id": null,
+    "revision_id": 13,
+    "confidence": 0.5442,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "No valid jersey OCR evidence recorded for track",
+      "team_conf": 0.544222703471256,
+      "player_conf": 0.0,
+      "valid_until_s": 302.3
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0001",
+    "start_time_s": 300.4,
+    "end_time_s": 300.633333,
+    "team_id": null,
+    "player_id": null,
+    "revision_id": 14,
+    "confidence": 0.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "Cannot resolve player: team is unknown",
+      "team_conf": 0.0,
+      "player_conf": 0.0,
+      "valid_until_s": 302.333333
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0012",
+    "start_time_s": 300.433333,
+    "end_time_s": 305.0,
+    "team_id": null,
+    "player_id": null,
+    "revision_id": 15,
+    "confidence": 0.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "Cannot resolve player: team is unknown",
+      "team_conf": 0.0,
+      "player_conf": 0.0,
+      "valid_until_s": 307.0
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0001",
+    "start_time_s": 300.633333,
+    "end_time_s": 300.766667,
+    "team_id": "team_b",
+    "player_id": null,
+    "revision_id": 16,
+    "confidence": 0.5107,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "No valid jersey OCR evidence recorded for track",
+      "team_conf": 0.5106515173103832,
+      "player_conf": 0.0,
+      "valid_until_s": 302.7
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0001",
+    "start_time_s": 300.766667,
+    "end_time_s": 300.933333,
+    "team_id": null,
+    "player_id": null,
+    "revision_id": 17,
+    "confidence": 0.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "Cannot resolve player: team is unknown",
+      "team_conf": 0.0,
+      "player_conf": 0.0,
+      "valid_until_s": 302.333333
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0006",
+    "start_time_s": 300.866667,
+    "end_time_s": 300.966667,
+    "team_id": null,
+    "player_id": null,
+    "revision_id": 18,
+    "confidence": 0.5,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "Cannot resolve player: team is unknown",
+      "team_conf": 0.5,
+      "player_conf": 0.0,
+      "valid_until_s": 302.8
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0001",
+    "start_time_s": 300.933333,
+    "end_time_s": 305.0,
+    "team_id": "team_a",
+    "player_id": null,
+    "revision_id": 19,
+    "confidence": 0.5008,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "No valid jersey OCR evidence recorded for track",
+      "team_conf": 0.5008052939153861,
+      "player_conf": 0.0,
+      "valid_until_s": 306.3
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0006",
+    "start_time_s": 300.966667,
+    "end_time_s": 305.0,
+    "team_id": "team_b",
+    "player_id": null,
+    "revision_id": 20,
+    "confidence": 0.5262,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "No valid jersey OCR evidence recorded for track",
+      "team_conf": 0.5261531789463456,
+      "player_conf": 0.0,
+      "valid_until_s": 307.0
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0013",
+    "start_time_s": 301.233333,
+    "end_time_s": 303.366667,
+    "team_id": "team_a",
+    "player_id": null,
+    "revision_id": 21,
+    "confidence": 1.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "No valid jersey OCR evidence recorded for track",
+      "team_conf": 1.0,
+      "player_conf": 0.0,
+      "valid_until_s": 303.366667
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0014",
+    "start_time_s": 301.566667,
+    "end_time_s": 305.0,
+    "team_id": null,
+    "player_id": null,
+    "revision_id": 22,
+    "confidence": 0.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "Cannot resolve player: team is unknown",
+      "team_conf": 0.0,
+      "player_conf": 0.0,
+      "valid_until_s": 307.0
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0010",
+    "start_time_s": 301.966667,
+    "end_time_s": 303.9,
+    "team_id": "team_a",
+    "player_id": null,
+    "revision_id": 23,
+    "confidence": 1.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "No valid jersey OCR evidence recorded for track",
+      "team_conf": 1.0,
+      "player_conf": 0.0,
+      "valid_until_s": 303.966667
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0015",
+    "start_time_s": 302.366667,
+    "end_time_s": 303.9,
+    "team_id": "team_b",
+    "player_id": null,
+    "revision_id": 24,
+    "confidence": 1.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "No valid jersey OCR evidence recorded for track",
+      "team_conf": 1.0,
+      "player_conf": 0.0,
+      "valid_until_s": 305.166667
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0016",
+    "start_time_s": 302.366667,
+    "end_time_s": 303.866667,
+    "team_id": "team_b",
+    "player_id": null,
+    "revision_id": 25,
+    "confidence": 1.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "No valid jersey OCR evidence recorded for track",
+      "team_conf": 1.0,
+      "player_conf": 0.0,
+      "valid_until_s": 304.533333
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0008",
+    "start_time_s": 302.4,
+    "end_time_s": 302.633333,
+    "team_id": null,
+    "player_id": null,
+    "revision_id": 26,
+    "confidence": 0.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "Cannot resolve player: team is unknown",
+      "team_conf": 0.0,
+      "player_conf": 0.0,
+      "valid_until_s": 304.6
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0017",
+    "start_time_s": 302.6,
+    "end_time_s": 305.0,
+    "team_id": null,
+    "player_id": null,
+    "revision_id": 27,
+    "confidence": 0.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "Cannot resolve player: team is unknown",
+      "team_conf": 0.0,
+      "player_conf": 0.0,
+      "valid_until_s": 307.0
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0008",
+    "start_time_s": 302.633333,
+    "end_time_s": 304.7,
+    "team_id": "team_a",
+    "player_id": null,
+    "revision_id": 28,
+    "confidence": 1.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "No valid jersey OCR evidence recorded for track",
+      "team_conf": 1.0,
+      "player_conf": 0.0,
+      "valid_until_s": 304.7
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0018",
+    "start_time_s": 302.733333,
+    "end_time_s": 305.0,
+    "team_id": null,
+    "player_id": null,
+    "revision_id": 29,
+    "confidence": 0.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "Cannot resolve player: team is unknown",
+      "team_conf": 0.0,
+      "player_conf": 0.0,
+      "valid_until_s": 307.0
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0007",
+    "start_time_s": 302.766667,
+    "end_time_s": 303.366667,
+    "team_id": null,
+    "player_id": null,
+    "revision_id": 30,
+    "confidence": 0.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "Cannot resolve player: team is unknown",
+      "team_conf": 0.0,
+      "player_conf": 0.0,
+      "valid_until_s": 305.333333
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0005",
+    "start_time_s": 302.9,
+    "end_time_s": 305.0,
+    "team_id": null,
+    "player_id": null,
+    "revision_id": 31,
+    "confidence": 0.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "Cannot resolve player: team is unknown",
+      "team_conf": 0.0,
+      "player_conf": 0.0,
+      "valid_until_s": 307.0
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0007",
+    "start_time_s": 303.366667,
+    "end_time_s": 305.0,
+    "team_id": "team_b",
+    "player_id": null,
+    "revision_id": 32,
+    "confidence": 1.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "No valid jersey OCR evidence recorded for track",
+      "team_conf": 1.0,
+      "player_conf": 0.0,
+      "valid_until_s": 306.1
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0013",
+    "start_time_s": 303.4,
+    "end_time_s": 305.0,
+    "team_id": null,
+    "player_id": null,
+    "revision_id": 33,
+    "confidence": 0.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "Cannot resolve player: team is unknown",
+      "team_conf": 0.0,
+      "player_conf": 0.0,
+      "valid_until_s": 307.0
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0015",
+    "start_time_s": 303.9,
+    "end_time_s": 305.0,
+    "team_id": null,
+    "player_id": null,
+    "revision_id": 34,
+    "confidence": 0.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "Cannot resolve player: team is unknown",
+      "team_conf": 0.0,
+      "player_conf": 0.0,
+      "valid_until_s": 307.0
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0008",
+    "start_time_s": 304.733333,
+    "end_time_s": 304.8,
+    "team_id": null,
+    "player_id": null,
+    "revision_id": 35,
+    "confidence": 0.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "Cannot resolve player: team is unknown",
+      "team_conf": 0.0,
+      "player_conf": 0.0,
+      "valid_until_s": 306.766667
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0008",
+    "start_time_s": 304.8,
+    "end_time_s": 304.833333,
+    "team_id": "team_a",
+    "player_id": null,
+    "revision_id": 36,
+    "confidence": 0.5213,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "No valid jersey OCR evidence recorded for track",
+      "team_conf": 0.5212819683610809,
+      "player_conf": 0.0,
+      "valid_until_s": 306.8
+    }
+  },
+  {
+    "track_id": "trk_session_vietnam_tonga_dev_0008",
+    "start_time_s": 304.833333,
+    "end_time_s": 305.0,
+    "team_id": null,
+    "player_id": null,
+    "revision_id": 37,
+    "confidence": 0.0,
+    "conflict_status": "none",
+    "evidence_summary": {
+      "reason": "Cannot resolve player: team is unknown",
+      "team_conf": 0.0,
+      "player_conf": 0.0,
+      "valid_until_s": 306.9
+    }
+  }
+]

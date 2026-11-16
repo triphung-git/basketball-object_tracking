@@ -1,0 +1,155 @@
+{
+  "schema_version": "2.0.0",
+  "camera_id": "template_camera",
+  "segment_id": "segment_01",
+  "source_video_hash": null,
+  "original_image_wh": [
+    2160,
+    3840
+  ],
+  "status": "template",
+  "is_synthetic": false,
+  "reference_frame_index": 0,
+  "reference_pts_s": 0.0,
+  "court_coordinate_system": {
+    "origin": "basket_center_floor",
+    "axes": {
+      "x_positive": "right",
+      "y_positive": "towards_half_court"
+    },
+    "units": "normalized",
+    "court_bounds": {
+      "x_min": -1.0,
+      "x_max": 1.0,
+      "y_min": 0.0,
+      "y_max": 1.5
+    },
+    "scale_factor": null,
+    "scale_status": "uncalibrated"
+  },
+  "point_correspondences": [
+    {
+      "point_id": "p1_baseline_left",
+      "name": "Left corner baseline intersection",
+      "image_xy": [
+        200.0,
+        3400.0
+      ],
+      "court_xy": [
+        -1.0,
+        0.0
+      ],
+      "is_coplanar": true,
+      "usage": "fit",
+      "uncertainty_px": 5.0,
+      "notes": "Unverified template coordinate"
+    },
+    {
+      "point_id": "p2_baseline_right",
+      "name": "Right corner baseline intersection",
+      "image_xy": [
+        1960.0,
+        3400.0
+      ],
+      "court_xy": [
+        1.0,
+        0.0
+      ],
+      "is_coplanar": true,
+      "usage": "fit",
+      "uncertainty_px": 5.0,
+      "notes": "Unverified template coordinate"
+    },
+    {
+      "point_id": "p3_freethrow_left",
+      "name": "Free throw line left elbow",
+      "image_xy": [
+        700.0,
+        2200.0
+      ],
+      "court_xy": [
+        -0.4,
+        0.58
+      ],
+      "is_coplanar": true,
+      "usage": "fit",
+      "uncertainty_px": 5.0,
+      "notes": "Unverified template coordinate"
+    },
+    {
+      "point_id": "p4_freethrow_right",
+      "name": "Free throw line right elbow",
+      "image_xy": [
+        1460.0,
+        2200.0
+      ],
+      "court_xy": [
+        0.4,
+        0.58
+      ],
+      "is_coplanar": true,
+      "usage": "fit",
+      "uncertainty_px": 5.0,
+      "notes": "Unverified template coordinate"
+    }
+  ],
+  "court_roi_image": [
+    [
+      100.0,
+      3600.0
+    ],
+    [
+      2060.0,
+      3600.0
+    ],
+    [
+      1800.0,
+      1200.0
+    ],
+    [
+      360.0,
+      1200.0
+    ]
+  ],
+  "court_roi_court": [
+    [
+      -1.1,
+      -0.1
+    ],
+    [
+      1.1,
+      -0.1
+    ],
+    [
+      1.1,
+      1.6
+    ],
+    [
+      -1.1,
+      1.6
+    ]
+  ],
+  "sub_zones": {
+    "rim_image_roi": [
+      1030.0,
+      1750.0,
+      1130.0,
+      1850.0
+    ],
+    "rim_court_xy": [
+      0.0,
+      0.15
+    ],
+    "rim_elevation_status": "elevated_not_on_floor"
+  },
+  "thresholds": {
+    "max_reprojection_error_px": 15.0
+  },
+  "provenance": {
+    "created_utc": "2026-11-03T00:00:00Z",
+    "reviewed_by": null,
+    "review_status": "unreviewed",
+    "notes": "Template only; cannot be used in calibrated production mode until ground truth landmarks are provided and approved."
+  }
+}
+

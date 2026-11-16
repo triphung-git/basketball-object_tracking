@@ -1,0 +1,24 @@
+[
+  {
+    "evidence_id": "ocr_trk_session_vietnam_tonga_dev_0005_9015_18",
+    "track_id": "trk_session_vietnam_tonga_dev_0005",
+    "frame_index": 9015,
+    "source_time_s": 300.5,
+    "detected_number": "18",
+    "confidence": 1.0,
+    "ocr_engine": "easyocr_local",
+    "is_valid": true,
+    "rejection_reason": null
+  },
+  {
+    "evidence_id": "ocr_trk_session_vietnam_tonga_dev_0005_9030_18",
+    "track_id": "trk_session_vietnam_tonga_dev_0005",
+    "frame_index": 9030,
+    "source_time_s": 301.0,
+    "detected_number": "18",
+    "confidence": 0.9948,
+    "ocr_engine": "easyocr_local",
+    "is_valid": true,
+    "rejection_reason": null
+  }
+]

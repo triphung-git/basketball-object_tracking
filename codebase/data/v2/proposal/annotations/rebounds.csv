@@ -1,0 +1,3 @@
+rebound_id,video_id,shot_id,actor_id,team_id,rebound_time_s,rebound_type,notes
+reb_batch1_001,vt_development,shot_vt_dev_001,a_nguyen_huynh_phu_vinh,team_a,4.5,offensive,User reviewed: VIE #1 offensive rebound after missed 2PT shot
+reb_batch1_003,vt_development,shot_vt_dev_003,b_18,team_b,26.5,defensive,User reviewed: TGA #18 defensive rebound after missed shot

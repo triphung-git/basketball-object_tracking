@@ -1,0 +1,15 @@
+{
+  "video_id": "vietnam-tonga",
+  "source_sha256": "1443c1d263c8037a5684f3dbc0ef9216beb5097d9a47c4c1c9b94d1363e26865",
+  "start_time_s": 0.0,
+  "end_time_s": 1000.0,
+  "coverage_status": "sparse_reviewed_events_not_exhaustive",
+  "independent_holdout": false,
+  "video_mappings": {
+    "vt_development": {
+      "parent_video_id": "vietnam-tonga",
+      "offset_s": 300.0,
+      "source_clip_sha256": "8fd370b0668860a5c70d56bf256c76e3783bc1fe6598b529944ad00ca0616b45"
+    }
+  }
+}

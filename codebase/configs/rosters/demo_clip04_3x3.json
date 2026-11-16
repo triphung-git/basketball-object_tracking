@@ -1,0 +1,20 @@
+{
+  "is_synthetic": true,
+  "provenance_status": "draft",
+  "session_id": "task07_clip04_demo",
+  "team_a_id": "demo_blue",
+  "team_b_id": "demo_white",
+  "team_a_name": "DEMO Blue",
+  "team_b_name": "DEMO White",
+  "team_a_color_rgb": [45, 65, 105],
+  "team_b_color_rgb": [190, 185, 180],
+  "simulation_notice": "User-authorized demo roster. Names, IDs and jersey membership are unverified placeholders; colors are approximate video setup. Not GT or an official roster.",
+  "players": [
+    {"player_id":"demo_blue_7", "team_id":"demo_blue", "jersey_number":"7", "name":"DEMO Blue 7", "is_active":true},
+    {"player_id":"demo_blue_12", "team_id":"demo_blue", "jersey_number":"12", "name":"DEMO Blue 12", "is_active":true},
+    {"player_id":"demo_blue_19", "team_id":"demo_blue", "jersey_number":"19", "name":"DEMO Blue 19", "is_active":true},
+    {"player_id":"demo_white_3", "team_id":"demo_white", "jersey_number":"3", "name":"DEMO White 3", "is_active":true},
+    {"player_id":"demo_white_8", "team_id":"demo_white", "jersey_number":"8", "name":"DEMO White 8", "is_active":true},
+    {"player_id":"demo_white_11", "team_id":"demo_white", "jersey_number":"11", "name":"DEMO White 11", "is_active":true}
+  ]
+}

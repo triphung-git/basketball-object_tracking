@@ -1,0 +1,985 @@
+{
+  "schema_version": "pra-evaluation-summary-v2",
+  "evaluated_utc": "2026-11-15T19:57:39.896110+00:00",
+  "protocol_version": "pra-production-evaluator-v2",
+  "protocol_config": {
+    "protocol_version": "pra-production-evaluator-v2",
+    "shot_release_tolerance_s": 0.5,
+    "shot_basket_tolerance_s": 0.5,
+    "rebound_time_tolerance_s": 1.0,
+    "assist_time_tolerance_s": 1.0,
+    "require_both_release_and_basket": true,
+    "greedy_trap_resolution": "maximum_cardinality_min_cost"
+  },
+  "metadata": {
+    "predictions_path": "C:\\Users\\Admin\\OneDrive - National Economics University\\Documents\\object tracking\\codebase\\outputs\\quality-revision-20261116\\full-match-01\\video-run",
+    "ground_truth_path": "C:\\Users\\Admin\\OneDrive - National Economics University\\Documents\\object tracking\\codebase\\outputs\\quality-revision-20261116\\full-match-01\\normalized-ground-truth.json",
+    "gt_metadata": {
+      "gt_source": "C:\\Users\\Admin\\OneDrive - National Economics University\\Documents\\object tracking\\codebase\\outputs\\quality-revision-20261116\\full-match-01\\normalized-ground-truth.json",
+      "data_status": "reviewed_fixture",
+      "schema_version": null,
+      "review_status": "derived_from_approved_records",
+      "reviewer": null,
+      "is_synthetic": false
+    },
+    "is_diagnostic": true
+  },
+  "combined_pra": {
+    "detection": {
+      "tp": 0,
+      "fp": 8,
+      "fn": 17,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": null,
+      "reason": null
+    },
+    "strict": {
+      "tp": 0,
+      "fp": 8,
+      "fn": 17,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": null,
+      "reason": null
+    },
+    "total_events_gt": 17,
+    "total_events_pred": 8
+  },
+  "stats": {
+    "pts": {
+      "stat": "pts",
+      "status": "no_predictions",
+      "n_gt": 14,
+      "n_pred": 0,
+      "detection": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 14,
+        "precision": null,
+        "recall": 0.0,
+        "f1": null,
+        "reason": "zero_predictions"
+      },
+      "strict": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 14,
+        "precision": null,
+        "recall": 0.0,
+        "f1": null,
+        "reason": "zero_predictions"
+      },
+      "attribution": {
+        "tp_team": 0,
+        "tp_actor": 0,
+        "tp_value": 0,
+        "tp_strict_all": 0,
+        "team_accuracy": null,
+        "player_accuracy": null,
+        "value_accuracy": null,
+        "strict_all_accuracy": null
+      },
+      "matched_pairs": [],
+      "unmatched_predictions": [],
+      "unmatched_gt": [
+        {
+          "stat": "pts",
+          "gt_id": "play_001",
+          "time_s": 141.8,
+          "team_id": "team_b",
+          "player_id": "b_01"
+        },
+        {
+          "stat": "pts",
+          "gt_id": "play_002",
+          "time_s": 151.9667,
+          "team_id": "team_a",
+          "player_id": "unresolved"
+        },
+        {
+          "stat": "pts",
+          "gt_id": "play_003",
+          "time_s": 165.8333,
+          "team_id": "team_a",
+          "player_id": "a_nguyen_huynh_phu_vinh"
+        },
+        {
+          "stat": "pts",
+          "gt_id": "play_004",
+          "time_s": 172.9667,
+          "team_id": "team_b",
+          "player_id": "b_01"
+        },
+        {
+          "stat": "pts",
+          "gt_id": "play_005",
+          "time_s": 181.7667,
+          "team_id": "team_a",
+          "player_id": "unresolved"
+        },
+        {
+          "stat": "pts",
+          "gt_id": "play_006",
+          "time_s": 205.5333,
+          "team_id": "team_a",
+          "player_id": "a_nguyen_anh_kiet"
+        },
+        {
+          "stat": "pts",
+          "gt_id": "play_007",
+          "time_s": 258.0333,
+          "team_id": "team_a",
+          "player_id": "a_nguyen_anh_kiet"
+        },
+        {
+          "stat": "pts",
+          "gt_id": "play_008",
+          "time_s": 290.8,
+          "team_id": "team_a",
+          "player_id": "a_nguyen_huynh_phu_vinh"
+        },
+        {
+          "stat": "pts",
+          "gt_id": "play_015",
+          "time_s": 521.3667,
+          "team_id": "team_b",
+          "player_id": "b_01"
+        },
+        {
+          "stat": "pts",
+          "gt_id": "play_021",
+          "time_s": 730.5,
+          "team_id": "team_a",
+          "player_id": "a_nguyen_huynh_phu_vinh"
+        },
+        {
+          "stat": "pts",
+          "gt_id": "play_023",
+          "time_s": 864.2333,
+          "team_id": "team_a",
+          "player_id": "a_nguyen_anh_kiet"
+        },
+        {
+          "stat": "pts",
+          "gt_id": "play_027",
+          "time_s": 987.2333,
+          "team_id": "team_b",
+          "player_id": "b_18"
+        },
+        {
+          "stat": "pts",
+          "gt_id": "play_028",
+          "time_s": 995.3,
+          "team_id": "team_a",
+          "player_id": "a_nguyen_huynh_phu_vinh"
+        },
+        {
+          "stat": "pts",
+          "gt_id": "shot_vt_dev_002",
+          "time_s": 310.1333,
+          "team_id": "team_b",
+          "player_id": "b_11"
+        }
+      ],
+      "errors": [
+        {
+          "error_type": "unmatched_ground_truth",
+          "stat": "pts",
+          "pred_id": null,
+          "gt_id": "play_001",
+          "time_s": 141.8,
+          "details": "Ground-truth made shot was not detected by recognition pipeline",
+          "error_id": "err_0001"
+        },
+        {
+          "error_type": "unmatched_ground_truth",
+          "stat": "pts",
+          "pred_id": null,
+          "gt_id": "play_002",
+          "time_s": 151.9667,
+          "details": "Ground-truth made shot was not detected by recognition pipeline",
+          "error_id": "err_0002"
+        },
+        {
+          "error_type": "unmatched_ground_truth",
+          "stat": "pts",
+          "pred_id": null,
+          "gt_id": "play_003",
+          "time_s": 165.8333,
+          "details": "Ground-truth made shot was not detected by recognition pipeline",
+          "error_id": "err_0003"
+        },
+        {
+          "error_type": "unmatched_ground_truth",
+          "stat": "pts",
+          "pred_id": null,
+          "gt_id": "play_004",
+          "time_s": 172.9667,
+          "details": "Ground-truth made shot was not detected by recognition pipeline",
+          "error_id": "err_0004"
+        },
+        {
+          "error_type": "unmatched_ground_truth",
+          "stat": "pts",
+          "pred_id": null,
+          "gt_id": "play_005",
+          "time_s": 181.7667,
+          "details": "Ground-truth made shot was not detected by recognition pipeline",
+          "error_id": "err_0005"
+        },
+        {
+          "error_type": "unmatched_ground_truth",
+          "stat": "pts",
+          "pred_id": null,
+          "gt_id": "play_006",
+          "time_s": 205.5333,
+          "details": "Ground-truth made shot was not detected by recognition pipeline",
+          "error_id": "err_0006"
+        },
+        {
+          "error_type": "unmatched_ground_truth",
+          "stat": "pts",
+          "pred_id": null,
+          "gt_id": "play_007",
+          "time_s": 258.0333,
+          "details": "Ground-truth made shot was not detected by recognition pipeline",
+          "error_id": "err_0007"
+        },
+        {
+          "error_type": "unmatched_ground_truth",
+          "stat": "pts",
+          "pred_id": null,
+          "gt_id": "play_008",
+          "time_s": 290.8,
+          "details": "Ground-truth made shot was not detected by recognition pipeline",
+          "error_id": "err_0008"
+        },
+        {
+          "error_type": "unmatched_ground_truth",
+          "stat": "pts",
+          "pred_id": null,
+          "gt_id": "play_015",
+          "time_s": 521.3667,
+          "details": "Ground-truth made shot was not detected by recognition pipeline",
+          "error_id": "err_0009"
+        },
+        {
+          "error_type": "unmatched_ground_truth",
+          "stat": "pts",
+          "pred_id": null,
+          "gt_id": "play_021",
+          "time_s": 730.5,
+          "details": "Ground-truth made shot was not detected by recognition pipeline",
+          "error_id": "err_0010"
+        },
+        {
+          "error_type": "unmatched_ground_truth",
+          "stat": "pts",
+          "pred_id": null,
+          "gt_id": "play_023",
+          "time_s": 864.2333,
+          "details": "Ground-truth made shot was not detected by recognition pipeline",
+          "error_id": "err_0011"
+        },
+        {
+          "error_type": "unmatched_ground_truth",
+          "stat": "pts",
+          "pred_id": null,
+          "gt_id": "play_027",
+          "time_s": 987.2333,
+          "details": "Ground-truth made shot was not detected by recognition pipeline",
+          "error_id": "err_0012"
+        },
+        {
+          "error_type": "unmatched_ground_truth",
+          "stat": "pts",
+          "pred_id": null,
+          "gt_id": "play_028",
+          "time_s": 995.3,
+          "details": "Ground-truth made shot was not detected by recognition pipeline",
+          "error_id": "err_0013"
+        },
+        {
+          "error_type": "unmatched_ground_truth",
+          "stat": "pts",
+          "pred_id": null,
+          "gt_id": "shot_vt_dev_002",
+          "time_s": 310.1333,
+          "details": "Ground-truth made shot was not detected by recognition pipeline",
+          "error_id": "err_0014"
+        }
+      ]
+    },
+    "reb": {
+      "stat": "reb",
+      "status": "evaluated",
+      "n_gt": 2,
+      "n_pred": 8,
+      "detection": {
+        "tp": 0,
+        "fp": 8,
+        "fn": 2,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": null,
+        "reason": null
+      },
+      "strict": {
+        "tp": 0,
+        "fp": 8,
+        "fn": 2,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": null,
+        "reason": null
+      },
+      "attribution": {
+        "tp_team": 0,
+        "tp_actor": 0,
+        "tp_subtype": 0,
+        "tp_parent_shot": 0,
+        "tp_strict_all": 0,
+        "team_accuracy": null,
+        "actor_accuracy": null,
+        "subtype_accuracy": null,
+        "parent_shot_accuracy": null,
+        "strict_all_accuracy": null
+      },
+      "matched_pairs": [],
+      "unmatched_predictions": [
+        {
+          "stat": "reb",
+          "pred_id": "reb_shot_vietnam-tonga_0019_014236",
+          "time_s": 142.367,
+          "team_id": "team_b",
+          "actor_id": null
+        },
+        {
+          "stat": "reb",
+          "pred_id": "reb_shot_vietnam-tonga_0030_016276",
+          "time_s": 162.767,
+          "team_id": "team_a",
+          "actor_id": null
+        },
+        {
+          "stat": "reb",
+          "pred_id": "reb_shot_vietnam-tonga_0060_024096",
+          "time_s": 240.967,
+          "team_id": "team_a",
+          "actor_id": null
+        },
+        {
+          "stat": "reb",
+          "pred_id": "reb_shot_vietnam-tonga_0078_027103",
+          "time_s": 271.033,
+          "team_id": "team_a",
+          "actor_id": null
+        },
+        {
+          "stat": "reb",
+          "pred_id": "reb_shot_vietnam-tonga_0079_027473",
+          "time_s": 274.733,
+          "team_id": "team_b",
+          "actor_id": null
+        },
+        {
+          "stat": "reb",
+          "pred_id": "reb_shot_vietnam-tonga_0088_029513",
+          "time_s": 295.133,
+          "team_id": "team_a",
+          "actor_id": null
+        },
+        {
+          "stat": "reb",
+          "pred_id": "reb_shot_vietnam-tonga_0091_030273",
+          "time_s": 302.733,
+          "team_id": "team_b",
+          "actor_id": null
+        },
+        {
+          "stat": "reb",
+          "pred_id": "reb_shot_vietnam-tonga_0157_044730",
+          "time_s": 447.3,
+          "team_id": "team_b",
+          "actor_id": null
+        }
+      ],
+      "unmatched_gt": [
+        {
+          "stat": "reb",
+          "gt_id": "reb_batch1_001",
+          "time_s": 304.5,
+          "team_id": "team_a",
+          "actor_id": "a_nguyen_huynh_phu_vinh"
+        },
+        {
+          "stat": "reb",
+          "gt_id": "reb_batch1_003",
+          "time_s": 326.5,
+          "team_id": "team_b",
+          "actor_id": "b_18"
+        }
+      ],
+      "errors": [
+        {
+          "error_type": "unmatched_prediction",
+          "stat": "reb",
+          "pred_id": "reb_shot_vietnam-tonga_0019_014236",
+          "gt_id": null,
+          "time_s": 142.367,
+          "details": "Predicted rebound has no matching ground-truth rebound within tolerance",
+          "error_id": "err_0015"
+        },
+        {
+          "error_type": "unmatched_prediction",
+          "stat": "reb",
+          "pred_id": "reb_shot_vietnam-tonga_0030_016276",
+          "gt_id": null,
+          "time_s": 162.767,
+          "details": "Predicted rebound has no matching ground-truth rebound within tolerance",
+          "error_id": "err_0016"
+        },
+        {
+          "error_type": "unmatched_prediction",
+          "stat": "reb",
+          "pred_id": "reb_shot_vietnam-tonga_0060_024096",
+          "gt_id": null,
+          "time_s": 240.967,
+          "details": "Predicted rebound has no matching ground-truth rebound within tolerance",
+          "error_id": "err_0017"
+        },
+        {
+          "error_type": "unmatched_prediction",
+          "stat": "reb",
+          "pred_id": "reb_shot_vietnam-tonga_0078_027103",
+          "gt_id": null,
+          "time_s": 271.033,
+          "details": "Predicted rebound has no matching ground-truth rebound within tolerance",
+          "error_id": "err_0018"
+        },
+        {
+          "error_type": "unmatched_prediction",
+          "stat": "reb",
+          "pred_id": "reb_shot_vietnam-tonga_0079_027473",
+          "gt_id": null,
+          "time_s": 274.733,
+          "details": "Predicted rebound has no matching ground-truth rebound within tolerance",
+          "error_id": "err_0019"
+        },
+        {
+          "error_type": "unmatched_prediction",
+          "stat": "reb",
+          "pred_id": "reb_shot_vietnam-tonga_0088_029513",
+          "gt_id": null,
+          "time_s": 295.133,
+          "details": "Predicted rebound has no matching ground-truth rebound within tolerance",
+          "error_id": "err_0020"
+        },
+        {
+          "error_type": "unmatched_prediction",
+          "stat": "reb",
+          "pred_id": "reb_shot_vietnam-tonga_0091_030273",
+          "gt_id": null,
+          "time_s": 302.733,
+          "details": "Predicted rebound has no matching ground-truth rebound within tolerance",
+          "error_id": "err_0021"
+        },
+        {
+          "error_type": "unmatched_prediction",
+          "stat": "reb",
+          "pred_id": "reb_shot_vietnam-tonga_0157_044730",
+          "gt_id": null,
+          "time_s": 447.3,
+          "details": "Predicted rebound has no matching ground-truth rebound within tolerance",
+          "error_id": "err_0022"
+        },
+        {
+          "error_type": "unmatched_ground_truth",
+          "stat": "reb",
+          "pred_id": null,
+          "gt_id": "reb_batch1_001",
+          "time_s": 304.5,
+          "details": "Ground-truth rebound was not detected by recognition pipeline",
+          "error_id": "err_0023"
+        },
+        {
+          "error_type": "unmatched_ground_truth",
+          "stat": "reb",
+          "pred_id": null,
+          "gt_id": "reb_batch1_003",
+          "time_s": 326.5,
+          "details": "Ground-truth rebound was not detected by recognition pipeline",
+          "error_id": "err_0024"
+        }
+      ]
+    },
+    "ast": {
+      "stat": "ast",
+      "status": "no_predictions",
+      "n_gt": 1,
+      "n_pred": 0,
+      "detection": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1,
+        "precision": null,
+        "recall": 0.0,
+        "f1": null,
+        "reason": "zero_predictions"
+      },
+      "strict": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 1,
+        "precision": null,
+        "recall": 0.0,
+        "f1": null,
+        "reason": "zero_predictions"
+      },
+      "attribution": {
+        "tp_team": 0,
+        "tp_passer": 0,
+        "tp_scorer": 0,
+        "tp_parent_shot": 0,
+        "tp_strict_all": 0,
+        "team_accuracy": null,
+        "passer_accuracy": null,
+        "scorer_accuracy": null,
+        "parent_shot_accuracy": null,
+        "strict_all_accuracy": null
+      },
+      "matched_pairs": [],
+      "unmatched_predictions": [],
+      "unmatched_gt": [
+        {
+          "stat": "ast",
+          "gt_id": "ast_batch1_003",
+          "time_s": 139.8,
+          "team_id": "team_b",
+          "passer_id": "b_11",
+          "scorer_id": "b_01"
+        }
+      ],
+      "errors": [
+        {
+          "error_type": "unmatched_ground_truth",
+          "stat": "ast",
+          "pred_id": null,
+          "gt_id": "ast_batch1_003",
+          "time_s": 139.8,
+          "details": "Ground-truth eligible assist was not detected by recognition pipeline",
+          "error_id": "err_0025"
+        }
+      ]
+    }
+  },
+  "matched_pairs": [],
+  "unmatched_predictions": [
+    {
+      "stat": "reb",
+      "pred_id": "reb_shot_vietnam-tonga_0019_014236",
+      "time_s": 142.367,
+      "team_id": "team_b",
+      "actor_id": null
+    },
+    {
+      "stat": "reb",
+      "pred_id": "reb_shot_vietnam-tonga_0030_016276",
+      "time_s": 162.767,
+      "team_id": "team_a",
+      "actor_id": null
+    },
+    {
+      "stat": "reb",
+      "pred_id": "reb_shot_vietnam-tonga_0060_024096",
+      "time_s": 240.967,
+      "team_id": "team_a",
+      "actor_id": null
+    },
+    {
+      "stat": "reb",
+      "pred_id": "reb_shot_vietnam-tonga_0078_027103",
+      "time_s": 271.033,
+      "team_id": "team_a",
+      "actor_id": null
+    },
+    {
+      "stat": "reb",
+      "pred_id": "reb_shot_vietnam-tonga_0079_027473",
+      "time_s": 274.733,
+      "team_id": "team_b",
+      "actor_id": null
+    },
+    {
+      "stat": "reb",
+      "pred_id": "reb_shot_vietnam-tonga_0088_029513",
+      "time_s": 295.133,
+      "team_id": "team_a",
+      "actor_id": null
+    },
+    {
+      "stat": "reb",
+      "pred_id": "reb_shot_vietnam-tonga_0091_030273",
+      "time_s": 302.733,
+      "team_id": "team_b",
+      "actor_id": null
+    },
+    {
+      "stat": "reb",
+      "pred_id": "reb_shot_vietnam-tonga_0157_044730",
+      "time_s": 447.3,
+      "team_id": "team_b",
+      "actor_id": null
+    }
+  ],
+  "unmatched_gt": [
+    {
+      "stat": "pts",
+      "gt_id": "play_001",
+      "time_s": 141.8,
+      "team_id": "team_b",
+      "player_id": "b_01"
+    },
+    {
+      "stat": "pts",
+      "gt_id": "play_002",
+      "time_s": 151.9667,
+      "team_id": "team_a",
+      "player_id": "unresolved"
+    },
+    {
+      "stat": "pts",
+      "gt_id": "play_003",
+      "time_s": 165.8333,
+      "team_id": "team_a",
+      "player_id": "a_nguyen_huynh_phu_vinh"
+    },
+    {
+      "stat": "pts",
+      "gt_id": "play_004",
+      "time_s": 172.9667,
+      "team_id": "team_b",
+      "player_id": "b_01"
+    },
+    {
+      "stat": "pts",
+      "gt_id": "play_005",
+      "time_s": 181.7667,
+      "team_id": "team_a",
+      "player_id": "unresolved"
+    },
+    {
+      "stat": "pts",
+      "gt_id": "play_006",
+      "time_s": 205.5333,
+      "team_id": "team_a",
+      "player_id": "a_nguyen_anh_kiet"
+    },
+    {
+      "stat": "pts",
+      "gt_id": "play_007",
+      "time_s": 258.0333,
+      "team_id": "team_a",
+      "player_id": "a_nguyen_anh_kiet"
+    },
+    {
+      "stat": "pts",
+      "gt_id": "play_008",
+      "time_s": 290.8,
+      "team_id": "team_a",
+      "player_id": "a_nguyen_huynh_phu_vinh"
+    },
+    {
+      "stat": "pts",
+      "gt_id": "play_015",
+      "time_s": 521.3667,
+      "team_id": "team_b",
+      "player_id": "b_01"
+    },
+    {
+      "stat": "pts",
+      "gt_id": "play_021",
+      "time_s": 730.5,
+      "team_id": "team_a",
+      "player_id": "a_nguyen_huynh_phu_vinh"
+    },
+    {
+      "stat": "pts",
+      "gt_id": "play_023",
+      "time_s": 864.2333,
+      "team_id": "team_a",
+      "player_id": "a_nguyen_anh_kiet"
+    },
+    {
+      "stat": "pts",
+      "gt_id": "play_027",
+      "time_s": 987.2333,
+      "team_id": "team_b",
+      "player_id": "b_18"
+    },
+    {
+      "stat": "pts",
+      "gt_id": "play_028",
+      "time_s": 995.3,
+      "team_id": "team_a",
+      "player_id": "a_nguyen_huynh_phu_vinh"
+    },
+    {
+      "stat": "pts",
+      "gt_id": "shot_vt_dev_002",
+      "time_s": 310.1333,
+      "team_id": "team_b",
+      "player_id": "b_11"
+    },
+    {
+      "stat": "reb",
+      "gt_id": "reb_batch1_001",
+      "time_s": 304.5,
+      "team_id": "team_a",
+      "actor_id": "a_nguyen_huynh_phu_vinh"
+    },
+    {
+      "stat": "reb",
+      "gt_id": "reb_batch1_003",
+      "time_s": 326.5,
+      "team_id": "team_b",
+      "actor_id": "b_18"
+    },
+    {
+      "stat": "ast",
+      "gt_id": "ast_batch1_003",
+      "time_s": 139.8,
+      "team_id": "team_b",
+      "passer_id": "b_11",
+      "scorer_id": "b_01"
+    }
+  ],
+  "error_index": [
+    {
+      "error_type": "unmatched_ground_truth",
+      "stat": "pts",
+      "pred_id": null,
+      "gt_id": "play_001",
+      "time_s": 141.8,
+      "details": "Ground-truth made shot was not detected by recognition pipeline",
+      "error_id": "err_0001"
+    },
+    {
+      "error_type": "unmatched_ground_truth",
+      "stat": "pts",
+      "pred_id": null,
+      "gt_id": "play_002",
+      "time_s": 151.9667,
+      "details": "Ground-truth made shot was not detected by recognition pipeline",
+      "error_id": "err_0002"
+    },
+    {
+      "error_type": "unmatched_ground_truth",
+      "stat": "pts",
+      "pred_id": null,
+      "gt_id": "play_003",
+      "time_s": 165.8333,
+      "details": "Ground-truth made shot was not detected by recognition pipeline",
+      "error_id": "err_0003"
+    },
+    {
+      "error_type": "unmatched_ground_truth",
+      "stat": "pts",
+      "pred_id": null,
+      "gt_id": "play_004",
+      "time_s": 172.9667,
+      "details": "Ground-truth made shot was not detected by recognition pipeline",
+      "error_id": "err_0004"
+    },
+    {
+      "error_type": "unmatched_ground_truth",
+      "stat": "pts",
+      "pred_id": null,
+      "gt_id": "play_005",
+      "time_s": 181.7667,
+      "details": "Ground-truth made shot was not detected by recognition pipeline",
+      "error_id": "err_0005"
+    },
+    {
+      "error_type": "unmatched_ground_truth",
+      "stat": "pts",
+      "pred_id": null,
+      "gt_id": "play_006",
+      "time_s": 205.5333,
+      "details": "Ground-truth made shot was not detected by recognition pipeline",
+      "error_id": "err_0006"
+    },
+    {
+      "error_type": "unmatched_ground_truth",
+      "stat": "pts",
+      "pred_id": null,
+      "gt_id": "play_007",
+      "time_s": 258.0333,
+      "details": "Ground-truth made shot was not detected by recognition pipeline",
+      "error_id": "err_0007"
+    },
+    {
+      "error_type": "unmatched_ground_truth",
+      "stat": "pts",
+      "pred_id": null,
+      "gt_id": "play_008",
+      "time_s": 290.8,
+      "details": "Ground-truth made shot was not detected by recognition pipeline",
+      "error_id": "err_0008"
+    },
+    {
+      "error_type": "unmatched_ground_truth",
+      "stat": "pts",
+      "pred_id": null,
+      "gt_id": "play_015",
+      "time_s": 521.3667,
+      "details": "Ground-truth made shot was not detected by recognition pipeline",
+      "error_id": "err_0009"
+    },
+    {
+      "error_type": "unmatched_ground_truth",
+      "stat": "pts",
+      "pred_id": null,
+      "gt_id": "play_021",
+      "time_s": 730.5,
+      "details": "Ground-truth made shot was not detected by recognition pipeline",
+      "error_id": "err_0010"
+    },
+    {
+      "error_type": "unmatched_ground_truth",
+      "stat": "pts",
+      "pred_id": null,
+      "gt_id": "play_023",
+      "time_s": 864.2333,
+      "details": "Ground-truth made shot was not detected by recognition pipeline",
+      "error_id": "err_0011"
+    },
+    {
+      "error_type": "unmatched_ground_truth",
+      "stat": "pts",
+      "pred_id": null,
+      "gt_id": "play_027",
+      "time_s": 987.2333,
+      "details": "Ground-truth made shot was not detected by recognition pipeline",
+      "error_id": "err_0012"
+    },
+    {
+      "error_type": "unmatched_ground_truth",
+      "stat": "pts",
+      "pred_id": null,
+      "gt_id": "play_028",
+      "time_s": 995.3,
+      "details": "Ground-truth made shot was not detected by recognition pipeline",
+      "error_id": "err_0013"
+    },
+    {
+      "error_type": "unmatched_ground_truth",
+      "stat": "pts",
+      "pred_id": null,
+      "gt_id": "shot_vt_dev_002",
+      "time_s": 310.1333,
+      "details": "Ground-truth made shot was not detected by recognition pipeline",
+      "error_id": "err_0014"
+    },
+    {
+      "error_type": "unmatched_prediction",
+      "stat": "reb",
+      "pred_id": "reb_shot_vietnam-tonga_0019_014236",
+      "gt_id": null,
+      "time_s": 142.367,
+      "details": "Predicted rebound has no matching ground-truth rebound within tolerance",
+      "error_id": "err_0015"
+    },
+    {
+      "error_type": "unmatched_prediction",
+      "stat": "reb",
+      "pred_id": "reb_shot_vietnam-tonga_0030_016276",
+      "gt_id": null,
+      "time_s": 162.767,
+      "details": "Predicted rebound has no matching ground-truth rebound within tolerance",
+      "error_id": "err_0016"
+    },
+    {
+      "error_type": "unmatched_prediction",
+      "stat": "reb",
+      "pred_id": "reb_shot_vietnam-tonga_0060_024096",
+      "gt_id": null,
+      "time_s": 240.967,
+      "details": "Predicted rebound has no matching ground-truth rebound within tolerance",
+      "error_id": "err_0017"
+    },
+    {
+      "error_type": "unmatched_prediction",
+      "stat": "reb",
+      "pred_id": "reb_shot_vietnam-tonga_0078_027103",
+      "gt_id": null,
+      "time_s": 271.033,
+      "details": "Predicted rebound has no matching ground-truth rebound within tolerance",
+      "error_id": "err_0018"
+    },
+    {
+      "error_type": "unmatched_prediction",
+      "stat": "reb",
+      "pred_id": "reb_shot_vietnam-tonga_0079_027473",
+      "gt_id": null,
+      "time_s": 274.733,
+      "details": "Predicted rebound has no matching ground-truth rebound within tolerance",
+      "error_id": "err_0019"
+    },
+    {
+      "error_type": "unmatched_prediction",
+      "stat": "reb",
+      "pred_id": "reb_shot_vietnam-tonga_0088_029513",
+      "gt_id": null,
+      "time_s": 295.133,
+      "details": "Predicted rebound has no matching ground-truth rebound within tolerance",
+      "error_id": "err_0020"
+    },
+    {
+      "error_type": "unmatched_prediction",
+      "stat": "reb",
+      "pred_id": "reb_shot_vietnam-tonga_0091_030273",
+      "gt_id": null,
+      "time_s": 302.733,
+      "details": "Predicted rebound has no matching ground-truth rebound within tolerance",
+      "error_id": "err_0021"
+    },
+    {
+      "error_type": "unmatched_prediction",
+      "stat": "reb",
+      "pred_id": "reb_shot_vietnam-tonga_0157_044730",
+      "gt_id": null,
+      "time_s": 447.3,
+      "details": "Predicted rebound has no matching ground-truth rebound within tolerance",
+      "error_id": "err_0022"
+    },
+    {
+      "error_type": "unmatched_ground_truth",
+      "stat": "reb",
+      "pred_id": null,
+      "gt_id": "reb_batch1_001",
+      "time_s": 304.5,
+      "details": "Ground-truth rebound was not detected by recognition pipeline",
+      "error_id": "err_0023"
+    },
+    {
+      "error_type": "unmatched_ground_truth",
+      "stat": "reb",
+      "pred_id": null,
+      "gt_id": "reb_batch1_003",
+      "time_s": 326.5,
+      "details": "Ground-truth rebound was not detected by recognition pipeline",
+      "error_id": "err_0024"
+    },
+    {
+      "error_type": "unmatched_ground_truth",
+      "stat": "ast",
+      "pred_id": null,
+      "gt_id": "ast_batch1_003",
+      "time_s": 139.8,
+      "details": "Ground-truth eligible assist was not detected by recognition pipeline",
+      "error_id": "err_0025"
+    }
+  ]
+}

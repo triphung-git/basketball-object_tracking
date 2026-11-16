@@ -1,0 +1,22 @@
+.venv/
+.venv-train/
+data/finetune/
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+data/raw/*
+!data/raw/.gitkeep
+# Publish only the verified QA demo; keep all experimental runs local.
+outputs/*
+!outputs/demo-completion-20261116/
+outputs/demo-completion-20261116/*
+!outputs/demo-completion-20261116/demo-bundle-qa-v2/
+*.pt
+*.onnx
+*.engine
+assets_test/
+.tools/
+.uv-cache/
+.model-cache/

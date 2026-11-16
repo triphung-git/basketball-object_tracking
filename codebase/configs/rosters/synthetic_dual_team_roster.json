@@ -1,0 +1,70 @@
+{
+  "is_synthetic": true,
+  "team_a_id": "team_red",
+  "team_b_id": "team_blue",
+  "team_a_name": "Red Dragons",
+  "team_b_name": "Blue Sharks",
+  "team_a_color_rgb": [
+    220,
+    30,
+    30
+  ],
+  "team_b_color_rgb": [
+    30,
+    60,
+    220
+  ],
+  "session_id": "session_3x3_pilot_01",
+  "provenance_status": "draft",
+  "players": [
+    {
+      "player_id": "player_red_07",
+      "team_id": "team_red",
+      "jersey_number": "7",
+      "name": "Nguyen Van A",
+      "is_active": true,
+      "aliases": []
+    },
+    {
+      "player_id": "player_red_10",
+      "team_id": "team_red",
+      "jersey_number": "10",
+      "name": "Tran Van B",
+      "is_active": true,
+      "aliases": []
+    },
+    {
+      "player_id": "player_red_23",
+      "team_id": "team_red",
+      "jersey_number": "23",
+      "name": "Le Van C",
+      "is_active": true,
+      "aliases": []
+    },
+    {
+      "player_id": "player_blue_07",
+      "team_id": "team_blue",
+      "jersey_number": "7",
+      "name": "Pham Van D",
+      "is_active": true,
+      "aliases": []
+    },
+    {
+      "player_id": "player_blue_15",
+      "team_id": "team_blue",
+      "jersey_number": "15",
+      "name": "Hoang Van E",
+      "is_active": true,
+      "aliases": []
+    },
+    {
+      "player_id": "player_blue_30",
+      "team_id": "team_blue",
+      "jersey_number": "30",
+      "name": "Vu Van F",
+      "is_active": true,
+      "aliases": []
+    }
+  ]
+}
+

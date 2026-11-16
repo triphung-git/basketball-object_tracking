@@ -1,0 +1,15 @@
+# Local environments, caches and credentials at any depth.
+.venv/
+.venv-train/
+.pytest_cache/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+.tools/
+.uv-cache/
+.model-cache/
+.publish-check/
+.DS_Store
+Thumbs.db

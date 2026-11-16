@@ -1,0 +1,2 @@
+# Preserve original bytes, including manifest-bound demo artifacts and data locks.
+* -text

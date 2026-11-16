@@ -1,0 +1,22 @@
+{
+  "review_status": "approved",
+  "approved_by": "user",
+  "approval_record": "User approved protocol/thresholds in conversation 2026-11-04; GT review deferred",
+  "protocol_version": "task07-vietnam-tonga-20261104",
+  "source_group": "vietnam_tonga_same_match_2025",
+  "parent_sha256": "1443c1d263c8037a5684f3dbc0ef9216beb5097d9a47c4c1c9b94d1363e26865",
+  "allowed_video_sha256": [
+    "8fd370b0668860a5c70d56bf256c76e3783bc1fe6598b529944ad00ca0616b45",
+    "88b6f9ce44feed84cb2a2b1fcc6b98d1a88fe38c1b16a6212682f5fa96c41544"
+  ],
+  "minimum_visible_ball_samples": 60,
+  "minimum_completed_pass_gt": 5,
+  "ball_iou_threshold": 0.3,
+  "pass_tolerance_s": 0.25,
+  "ball_recall_min": 0.9,
+  "control_accuracy_min": 0.9,
+  "pass_precision_min": 0.95,
+  "pass_recall_min": 0.9,
+  "max_pts_error_s": 2e-06,
+  "scope": "same_match_pilot; insufficient samples never count as PASS"
+}

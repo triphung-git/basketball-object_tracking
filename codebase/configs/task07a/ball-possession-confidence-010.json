@@ -1,0 +1,28 @@
+{
+  "schema_version": "2.1.0",
+  "ball": {
+    "min_confidence": 0.1,
+    "ambiguity_margin": 0.08,
+    "prediction_horizon_s": 0.15,
+    "max_gap_s": 0.3,
+    "base_gate_diagonal": 0.025,
+    "max_speed_diagonal_s": 1.2,
+    "velocity_smoothing": 0.5,
+    "max_diameter_diagonal": 0.025,
+    "human_context_weight": 0.5,
+    "max_initial_body_distance": 0.2
+  },
+  "control": {
+    "confirmation_samples": 3,
+    "confirmation_s": 0.1,
+    "max_gap_s": 0.25,
+    "dribble_hold_s": 0.45,
+    "max_flight_s": 2.0,
+    "min_flight_samples": 2,
+    "ambiguity_margin": 0.12,
+    "max_relative_speed_heights_s": 6.0,
+    "dribble_confirmation_samples": 2,
+    "dribble_relative_speed_widths_s": 3.0,
+    "max_unobserved_gap_s": 0.1
+  }
+}

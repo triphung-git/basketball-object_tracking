@@ -1,0 +1,3 @@
+# Direct dependency intent; requirements.txt records the installed environment.
+# CPU baseline first; GPU installation requires a separate reviewed decision.
+inference-models[onnx-cpu]==0.39.7
