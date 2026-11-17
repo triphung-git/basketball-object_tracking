@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Root CLI entrypoint for Automatic Basketball Stats Demo (Task 15 / D10)."""
+"""Root CLI entrypoint for the basketball spatial-analysis demo."""
 from __future__ import annotations
 
 import os

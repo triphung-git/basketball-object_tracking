@@ -291,7 +291,7 @@ class PlayerTracker:
             if track.status == "tentative" and track.hits >= self.min_hits_to_activate:
                 track.status = "active"
             elif track.status == "lost":
-                track.status = "active"
+                track.status = "active" if track.hits >= self.min_hits_to_activate else "tentative"
 
             # Determine role and footpoint
             orig_wh = self.original_wh

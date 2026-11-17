@@ -2,6 +2,7 @@
 """Track local G03 observations; optional video crops supply real team color evidence."""
 from __future__ import annotations
 import argparse
+from collections import Counter
 from contextlib import ExitStack
 import json
 from pathlib import Path
@@ -26,7 +27,7 @@ from basketball_scoreboard.identity import (
     JerseyEvidenceRecord,
 )
 from basketball_scoreboard.players import PlayerTracker
-from basketball_scoreboard.spatial_io import load_spatial_input,new_output,file_hash,write_json,emit_observations,runtime_snapshot
+from basketball_scoreboard.spatial_io import load_spatial_input,new_output,file_hash,write_json,runtime_snapshot
 from basketball_scoreboard.video import VideoReader
 from basketball_scoreboard.tracking_policy import load_tracking_policy,in_image_roi,interval_flags
 from basketball_scoreboard.identity_crops import load_identity_crop_policy,IdentityCropGuard,jersey_region
@@ -37,7 +38,8 @@ def track_players_pipeline(detections_jsonl_path,output_dir,court_config_path=No
                            enable_ocr=False,ocr_provider='easyocr',ocr_weights_dir=None,
                            ocr_sampling_cadence=5,min_ocr_crop_height=24,development_authorization=None,
                            tracking_policy=None,ocr_upscale=1,jersey_evidence_ttl_s=None,
-                           color_method='median',jersey_evidence_cache=None,identity_crop_policy=None,team_crop_region='legacy',reset_on_team_conflict=False):
+                           color_method='median',jersey_evidence_cache=None,identity_crop_policy=None,team_crop_region='legacy',reset_on_team_conflict=False,
+                           progress_callback=None):
     output = None
     started = perf_counter()
     try:
@@ -107,10 +109,13 @@ def track_players_pipeline(detections_jsonl_path,output_dir,court_config_path=No
                                 camera_id=court.camera_id if court else 'unknown',court_model=model,
                                 min_hits_to_activate=min_hits,max_age_s=max_age_s,
                                 original_wh=(run['video_metadata']['width'],run['video_metadata']['height']))
-        observations,evidence,jersey_evidence_records = [],[],[]
+        evidence,jersey_evidence_records = [],[]
+        observation_count = 0
+        role_counts, sample_counts = Counter(), Counter()
         crop_audit=[]
         prior_ledgers=[];previous_time=-1.;excluded_frames=0
         with ExitStack() as stack:
+            observation_file = stack.enter_context((output/'tracked_observations.jsonl').open('x', encoding='utf-8'))
             decoded = iter(stack.enter_context(VideoReader(video_path)).frames()) if video_path else None
             current = None
             for record in frames:
@@ -194,29 +199,39 @@ def track_players_pipeline(detections_jsonl_path,output_dir,court_config_path=No
                                     jersey_evidence_records.append(r.to_dict())
                         resolver.update_track_mapping(obs.track_id,time,set(tracker.tracks))
                     enrich_observations_with_identity(frame_obs,resolver)
-                observations.extend(frame_obs)
+                for obs in frame_obs:
+                    observation_file.write(obs.to_json()+'\n')
+                    role_counts[obs.role] += 1
+                    sample_counts[obs.sample_type] += 1
+                observation_count += len(frame_obs)
+                if progress_callback and index % 20 == 0:
+                    progress_callback({
+                        'stage': 'tracking',
+                        'frame_index': index,
+                        'source_time_s': time,
+                        'observations': observation_count,
+                    })
                 if enable_ocr and index % 100 == 0:
                     stats=getattr(ocr_engine,'stats',{})
                     progress=dict(status='running',frame_index=index,source_time_s=time,
-                                  observations=len(observations),ocr_provider_stats=stats)
+                                  observations=observation_count,ocr_provider_stats=stats)
                     write_json(output/'progress.json',progress)
                     print(f"Tracking frame {index}/{len(frames)}; OCR attempts={stats.get('attempts',0)}",flush=True)
-        emit_observations(output/'tracked_observations.jsonl',observations)
         ledger=prior_ledgers+(resolver.mapping_ledger if resolver else [])
         write_json(output/'identity_mappings.json',[m.to_dict() for m in ledger])
         write_json(output/'team_evidence.json',evidence)
         write_json(output/'jersey_evidence.json',jersey_evidence_records)
         if crop_guard:write_json(output/'identity_crop_audit.json',crop_audit)
-        roles={name:sum(o.role==name for o in observations) for name in ('player','non_player','unknown')}
+        roles={name:role_counts[name] for name in ('player','non_player','unknown')}
         has_resolved_player = any(m.player_id for m in ledger)
         summary=dict(status='completed',runtime=runtime,acceptance_scope='diagnostic' if allow_uncalibrated else 'technical',
                      video_id=run['video_id'],source_run_id=run['run_id'],source_fingerprint_sha256=run['source_fingerprint_sha256'],
                      input_detections_sha256=file_hash(detections_jsonl_path),source_run_json_sha256=file_hash(run_json_path),
                      court_config=court.to_dict() if court else None,roster_config=roster_data,
-                     total_frames_processed=len(frames),total_observations_generated=len(observations),
+                     total_frames_processed=len(frames),total_observations_generated=observation_count,
                      total_tracks_initiated=tracker._next_track_number-1,active_tracks_at_end=len(tracker.tracks),
                      retired_tracks_count=len(tracker.retired_tracks),roles=roles,
-                     sample_types={name:sum(o.sample_type==name for o in observations) for name in ('observed','predicted')},
+                     sample_types={name:sample_counts[name] for name in ('observed','predicted')},
                      team_ids=[roster.team_a_id,roster.team_b_id] if roster else ['team_a','team_b'],
                      team_color_evidence_count=len(evidence),
                      ocr_status=ocr_status,
@@ -246,7 +261,7 @@ def track_players_pipeline(detections_jsonl_path,output_dir,court_config_path=No
             summary['development_authorization'] = json.loads(Path(development_authorization).read_text(encoding='utf-8'))
         write_json(output/'tracking_summary.json',summary)
         write_json(output/'run.json',summary)
-        print(f"Completed: {len(frames)} frames, {len(observations)} observations; OCR {ocr_status}")
+        print(f"Completed: {len(frames)} frames, {observation_count} observations; OCR {ocr_status}")
         return 0
     except Exception as error:
         if output:

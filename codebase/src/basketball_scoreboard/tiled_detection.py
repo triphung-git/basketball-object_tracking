@@ -3,7 +3,7 @@ import math
 
 import cv2
 
-from .ball import center, iou
+from .players import compute_iou as iou
 from .contracts import DetectionRecord
 from .detector import ObjectDetector
 
@@ -74,7 +74,8 @@ class TiledBallDetector:
                 mapped.validate_bounds((width,height));balls.append(mapped)
         selected=[]
         for record in sorted(balls,key=lambda r:(-r.confidence,r.xyxy)):
-            x,y=center(record.xyxy)
+            a,b,c,d=record.xyxy
+            x,y=(a+c)/2,(b+d)/2
             if any(a<=x/width<=c and b<=y/height<=d for a,b,c,d in self.excluded_boxes):continue
             if not any(iou(record.xyxy,old.xyxy)>=.35 for old in selected):selected.append(record)
         return others+selected,elapsed

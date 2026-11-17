@@ -127,7 +127,7 @@ Trong quá trình thực thi trên Windows 11 cục bộ, hai vấn đề kỹ t
 - **Lý do**:
   - Run smoke này hoàn thành đủ 18 samples, không cần GPU stack; không suy ra độ ổn định 100% trên mọi video.
   - Không phát sinh chi phí hoặc rủi ro bảo mật từ các API đám mây.
-  - Độ trễ model-call khoảng 490 ms cho phép thử xử lý video chậm hơn thời gian thực; chưa kiểm chứng logic ghi điểm. Inference local không đồng nghĩa không cần mạng để xác thực/truy xuất metadata.
+  - Độ trễ model-call khoảng 490 ms cho phép thử xử lý video chậm hơn thời gian thực; chưa kiểm chứng tracking accuracy. Inference local không đồng nghĩa không cần mạng để xác thực/truy xuất metadata.
 - **Phương án tối ưu hóa tương lai (sau khi hoàn thành logic lõi)**:
   - Khi triển khai pipeline hoàn chỉnh, áp dụng cơ chế suy luận cách frame (skip frames, ví dụ: detect mỗi 3–5 frames và dùng optical flow / tracker nội suy ở các frame xen kẽ).
   - Có thể mở rộng sang DirectML hoặc TensorRT khi có yêu cầu chuyên biệt về FPS thời gian thực.

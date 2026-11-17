@@ -5,7 +5,7 @@ import json
 import math
 from pathlib import Path
 import numpy as np
-from .ball import iou
+from .players import compute_iou as iou
 from .identity import extract_jersey_rgb
 
 

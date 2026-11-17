@@ -361,7 +361,10 @@ class HeatmapAccumulator:
                         self.metadata.invalid_interval_seconds += max(0.,following.source_time_s-current.source_time_s)
                         self._processed_interval_keys.add(invalid_key)
                     continue
-                status = current.timestamp_status if following.timestamp_status == "valid" else following.timestamp_status
+                # Both endpoints must satisfy the clock policy. In particular,
+                # a repaired end must never hide an estimated start timestamp.
+                statuses = {current.timestamp_status, following.timestamp_status}
+                status = next((s for s in ("estimated", "irregular", "repaired") if s in statuses), "valid")
                 self.add_trajectory_interval(
                     f"{key}:{current.observation_id}->{following.observation_id}",
                     current.projected_court_xy, current.source_time_s, following.source_time_s,

@@ -19,8 +19,10 @@ def generate_heatmap_pipeline(court_config_path,detections_jsonl_path,output_dir
     try:
         runtime=runtime_snapshot(__file__)
         config=CourtConfig.from_json_file(court_config_path)
-        first=next(line for line in Path(detections_jsonl_path).read_text(encoding='utf-8').splitlines() if line.strip())
-        tracked='observation_id' in json.loads(first)
+        with Path(detections_jsonl_path).open(encoding='utf-8') as handle:
+            first=next((line for line in handle if line.strip()), None)
+        tracked=('observation_id' in json.loads(first) if first else
+                 (Path(detections_jsonl_path).parent/'tracking_summary.json').is_file())
         run,records=load_spatial_input(detections_jsonl_path,run_json_path,config,tracked,allow_uncalibrated)
         model=CourtModel(config)
         model.calibrate(allow_uncalibrated=allow_uncalibrated)
@@ -33,7 +35,7 @@ def generate_heatmap_pipeline(court_config_path,detections_jsonl_path,output_dir
                 obs.calibration_version=model.calibration_version
                 obs.court_units=config.court_coordinate_system.units
                 geometry_status=obs.validity_status in {'valid','outside_roi','outside_court_bounds','degenerate_projection'}
-                if model.is_in_court_roi(obs.footpoint_image):
+                if geometry_status and model.is_in_court_roi(obs.footpoint_image):
                     point=model.project_image_to_court(obs.footpoint_image)
                     if point is not None and model.is_in_court_bounds(point):
                         obs.projected_court_xy=point

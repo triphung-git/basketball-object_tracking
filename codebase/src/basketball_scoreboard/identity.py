@@ -283,9 +283,9 @@ class LocalEasyOCRProvider(OCRProvider):
             crop = cv2.resize(crop,None,fx=self.crop_upscale,fy=self.crop_upscale,interpolation=cv2.INTER_CUBIC)
         try:
             results = self.reader.readtext(crop, allowlist='0123456789',min_size=8)
-        except Exception:
+        except Exception as exc:
             self.stats['runtime_errors'] += 1
-            return []
+            raise RuntimeError(f"Local jersey OCR inference failed: {type(exc).__name__}") from exc
         # Duplicate text regions of one number are one observation, not extra votes.
         best = {}
         for _,text,prob in results:

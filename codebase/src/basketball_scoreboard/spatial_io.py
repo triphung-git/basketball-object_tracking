@@ -19,12 +19,29 @@ def file_hash(path):
     return digest.hexdigest()
 
 
+class JsonlRecords:
+    """Re-iterable, validated JSONL input without retaining a match in memory."""
+
+    def __init__(self, path):
+        self.path = Path(path)
+        self.count = 0
+
+    def __iter__(self):
+        with self.path.open(encoding='utf-8') as handle:
+            for line in handle:
+                if line.strip():
+                    yield json.loads(line)
+
+    def __len__(self):
+        return self.count
+
+
 def load_spatial_input(input_path, run_path, court=None, tracked=False, diagnostic=False, development_authorization=None):
     if run_path is None:
         raise ValueError('Source run metadata required')
     run = json.loads(Path(run_path).read_text(encoding='utf-8'))
-    if run.get('status') != 'completed':
-        raise ValueError('Only completed source runs may be consumed')
+    if run.get('status') not in {'completed', 'partial'}:
+        raise ValueError('Only completed source runs or explicit prefixes may be consumed')
     if run.get('is_synthetic'):
         if not diagnostic:
             raise ValueError('Synthetic source runs require diagnostic mode')
@@ -42,11 +59,10 @@ def load_spatial_input(input_path, run_path, court=None, tracked=False, diagnost
             raise ValueError('Calibration dimensions mismatch')
         if court.source_video_hash and court.source_video_hash != sha:
             raise ValueError('Calibration source fingerprint mismatch')
-    records = [json.loads(line) for line in Path(input_path).read_text(encoding='utf-8').splitlines() if line.strip()]
-    if not records:
-        raise ValueError('Empty spatial input')
+    records = JsonlRecords(input_path)
     prior_time, prior_index, seen = -1., -1, set()
     for row in records:
+        records.count += 1
         index, time = row['frame_index'],row['source_time_s']
         if not isinstance(index,int) or index < 0 or not math.isfinite(time) or time < 0:
             raise ValueError('Invalid frame index/time')
@@ -82,6 +98,8 @@ def load_spatial_input(input_path, run_path, court=None, tracked=False, diagnost
                         or not 0 <= box[1] < box[3] <= wh[1]):
                     raise ValueError('Invalid detection coordinates/confidence')
             prior_time,prior_index = time,index
+    if not records.count and not tracked:
+        raise ValueError('Empty spatial input')
     return run,records
 
 

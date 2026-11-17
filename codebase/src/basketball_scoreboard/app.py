@@ -54,7 +54,8 @@ def assert_development_video_allowed(video_sha, root=ROOT, authorization_path=No
                     raise ValueError("Reserved footage cannot be used by the development pipeline")
 
 
-def run_pipeline(video_path, output_dir, config=None, export_video=True, quiet=False, development_authorization=None, detector_factory=None):
+def run_pipeline(video_path, output_dir, config=None, export_video=True, quiet=False, development_authorization=None, detector_factory=None,
+                 progress_callback=None):
     cfg = config or PipelineConfig.default()
     cfg.validate()  # Revalidate dataclasses after CLI/programmatic overrides.
     input_path = Path(video_path).resolve()
@@ -89,7 +90,7 @@ def run_pipeline(video_path, output_dir, config=None, export_video=True, quiet=F
         runtime = detector.get_runtime_info()
         stage = "processing"
         with ExitStack() as stack:
-            reader = stack.enter_context(VideoReader(input_path, cfg.video.pts_policy, cfg.video.max_frames))
+            reader = stack.enter_context(VideoReader(input_path, cfg.video.pts_policy, cfg.video.max_frames, metadata=metadata))
             writer = stack.enter_context(VideoWriter(
                 out_dir / cfg.export.video_filename, metadata.width, metadata.height, metadata.fps,
                 codec=cfg.export.codec, pix_fmt=cfg.export.pixel_format, preset=cfg.export.encoder_preset)) if export_video else None
@@ -119,6 +120,13 @@ def run_pipeline(video_path, output_dir, config=None, export_video=True, quiet=F
                     timings["write_total_s"] += time.perf_counter() - begin
                     written += 1
                 frame_count += 1
+                if progress_callback and frame_count % 20 == 0:
+                    progress_callback({
+                        "stage": "detection",
+                        "frame_index": frame.frame_index,
+                        "source_time_s": frame.source_time_s,
+                        "frames_processed": frame_count,
+                    })
                 if not quiet and frame_count % 50 == 0:
                     logger.info("Processed %d frames | elapsed %.1fs", frame_count, time.perf_counter() - started)
                 previous = time.perf_counter()

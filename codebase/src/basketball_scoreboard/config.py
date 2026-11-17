@@ -1,4 +1,4 @@
-"""Configuration parsing, validation, and defaults for the scoreboard pipeline."""
+"""Configuration parsing, validation, and defaults for video detection."""
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass, field
@@ -52,7 +52,7 @@ class VideoConfig:
             raise ValueError(
                 f"pts_policy '{self.pts_policy}' invalid; must be one of {VALID_PTS_POLICIES}"
             )
-        if self.max_frames is not None and self.max_frames <= 0:
+        if self.max_frames is not None and (isinstance(self.max_frames, bool) or not isinstance(self.max_frames, int) or self.max_frames <= 0):
             raise ValueError(f"max_frames must be positive if specified: {self.max_frames}")
 
 

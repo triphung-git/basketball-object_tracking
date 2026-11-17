@@ -92,6 +92,7 @@ class VideoReader:
         pts_policy: str = "repair_with_audit",
         max_frames: Optional[int] = None,
         start_time_s: Optional[float] = None,
+        metadata: Optional[VideoMetadata] = None,
     ) -> None:
         self.video_path = Path(video_path).resolve()
         if not self.video_path.is_file():
@@ -101,7 +102,7 @@ class VideoReader:
             raise ValueError("Unknown PTS policy")
         self.max_frames = max_frames
         self.start_time_s = start_time_s
-        self.metadata = probe_video(self.video_path)
+        self.metadata = metadata if metadata is not None else probe_video(self.video_path)
         self.container: Optional[av.container.InputContainer] = None
         self._is_closed = False
 

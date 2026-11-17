@@ -1,6 +1,6 @@
 # Nghiệm thu task03 — pipeline video/PTS/detection
 
-Ngày 2026-11-02. **G03 PASS / Task03 DONE** cho nền MP4 offline. Không phải nghiệm thu tracking, heatmap hoặc automatic PRA.
+Ngày 2026-11-02. **G03 PASS / Task03 DONE** cho nền MP4 offline. Không phải nghiệm thu tracking, heatmap hoặc spatial accuracy.
 
 ## Bằng chứng mới sau review
 
@@ -64,6 +64,6 @@ outputs/task03-clip02-full giữ nguyên: 1089 frames, 3045 detections, 241.01s 
 
 outputs/acceptance-20261102/g03-clip02-final đã chạy đủ frame nhưng FAIL audit do timestamp trùng sau lượng tử hóa; giữ nguyên để đối chiếu, được thay bằng g03-clip02-verified sau sửa reader/writer và thêm regression. outputs/acceptance-20261102/g03-clip02 là lần chạy chậm đã ngắt, không dùng nghiệm thu; process bị dừng trên Windows có thể không ghi run.json. g03-thread-check là prefix 5 frame, status partial. Không ghi đè/xóa các output này để che lịch sử.
 
-Chưa đạt real-time 60FPS. Bóng có thể bị miss; tracking sau này cần đánh giá riêng, không đảm bảo Kalman sẽ sửa mọi miss. Chưa đo detection mAP hoặc PRA accuracy. File bị kill/native crash có thể thiếu cleanup/metadata; chỉ run completed và readback pass được coi là evidence đầy đủ.
+Chưa đạt real-time 60FPS. Detection/tracking accuracy chưa được đo trên ground truth độc lập. File bị kill/native crash có thể thiếu cleanup/metadata; chỉ run completed và readback pass được coi là evidence đầy đủ.
 
-Bàn giao: [task03→04](../handoffs/task03-to-task04.md), [contracts v2.0.1](../specs/contracts-v2.md), [task04→05/06](../handoffs/task04-to-task05-06.md). G04 vẫn chờ dữ liệu/rules.
+Tiếp tục theo [kế hoạch spatial-only](../../PLAN.md), [court calibration guide](../guides/court-calibration.md) và [spatial contract](../specs/court-heatmap-v2.md).

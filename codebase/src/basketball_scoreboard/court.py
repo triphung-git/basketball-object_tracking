@@ -395,9 +395,9 @@ def solve_homography(
         raise DegenerateGeometryError("Duplicate point coordinates detected in correspondences.")
 
     # Check collinearity of fit points
-    if len(fit_pts) >= 4 and not check_non_collinear([tuple(pt) for pt in img_pts[:4]]):  # type: ignore
+    if len(fit_pts) == 4 and not check_non_collinear([tuple(pt) for pt in img_pts]):  # type: ignore
         raise DegenerateGeometryError("First 4 fit points in image space are collinear or near-collinear.")
-    if len(fit_pts) >= 4 and not check_non_collinear([tuple(pt) for pt in court_pts[:4]]):  # type: ignore
+    if len(fit_pts) == 4 and not check_non_collinear([tuple(pt) for pt in court_pts]):  # type: ignore
         raise DegenerateGeometryError("First 4 fit points in court space are collinear or near-collinear.")
 
     # Calculate homography image -> court
@@ -595,12 +595,12 @@ class CourtModel:
         validity_status = foot_status
         validity_reason = foot_reason
 
-        if not in_roi:
+        if foot_status == "valid" and not in_roi:
             validity_status = "outside_roi"
             validity_reason = "Footpoint is outside designated court ROI polygon"
 
         projected_xy: Optional[Tuple[float, float]] = None
-        if self._is_calibrated and in_roi:
+        if foot_status == "valid" and self._is_calibrated and in_roi:
             proj = self.project_image_to_court(footpoint)
             if proj is None:
                 validity_status = "degenerate_projection"

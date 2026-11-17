@@ -1,7 +1,3 @@
-"""Basketball Scoreboard - Heatmap & Automatic Stats v2.
-
-Core package for video processing, detection, court calibration,
-and event recognition pipelines.
-"""
+"""Basketball video detection, human tracking, court mapping, and heatmaps."""
 
 __version__ = "0.2.0"

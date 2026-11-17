@@ -35,5 +35,5 @@ Residual trên4 fit points có thể gần0 dù geometry sai. Báo fit residual,
 
 Fixture hiện có check residual190px, vượt threshold10px; không được phê duyệt geometry thật từ fixture này. Orientation và points phải đối chiếu ảnh gốc, không chỉ thấy PNG heatmap đẹp. Không clip projected points ngoài sân vào biên để làm số liệu có vẻ hợp lệ.
 
-Khi đổi calibration, giữ raw bbox/image footpoints để recompute ra run/version mới. Xem [G05 report](../reports/task05-court-heatmap.md), [nghiệm thu chung](../reports/task05-task06-acceptance.md).
+Khi đổi calibration, giữ raw bbox/image footpoints để recompute ra run/version mới. Xem [G05 report](../reports/task05-court-heatmap.md) và [court/heatmap contract](../specs/court-heatmap-v2.md).
 

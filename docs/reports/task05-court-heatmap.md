@@ -47,5 +47,5 @@ Checkpoint G05 bàn giao contracts/API/fixtures cho task06, không giả G05-G P
 
 outputs/task05-court-heatmap và task05-06-integrated cũ được giữ làm lịch sử. Mass12.1500/20.1667 cũ không dùng nghiệm thu do trackless/prediction/continuity defects.
 
-[Handoff checkpoint](../handoffs/task05-to-task06-08-12.md) · [Contracts](../specs/court-heatmap-v2.md) · [Nghiệm thu chung](task05-task06-acceptance.md).
+[Court calibration guide](../guides/court-calibration.md) · [Spatial contract](../specs/court-heatmap-v2.md).
 

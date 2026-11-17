@@ -1,9 +1,0 @@
-{
-  "protocol_version": "pra-basket-primary-user-revision-20261116",
-  "shot_release_tolerance_s": 0.5,
-  "shot_basket_tolerance_s": 0.5,
-  "rebound_time_tolerance_s": 1.0,
-  "assist_time_tolerance_s": 1.0,
-  "require_both_release_and_basket": false,
-  "greedy_trap_resolution": "maximum_cardinality_min_cost"
-}
