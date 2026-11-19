@@ -1,0 +1,117 @@
+{
+  "schema_version": "demo-bundle-manifest-v1",
+  "total_files": 22,
+  "total_bytes": 26359941,
+  "files": [
+    {
+      "path": "analysis/automatic_geometry.json",
+      "bytes": 266168,
+      "sha256": "760f4a08f4a56489ffaeb5fb351a601478c141352d29b303199debd5e99538cb"
+    },
+    {
+      "path": "analysis/automatic_team_evidence.json",
+      "bytes": 444,
+      "sha256": "d27f9260aff341c3369f490e9cce29b562dd41b2a89b56097a9df441b95d1d9c"
+    },
+    {
+      "path": "analysis/detection/detections.jsonl",
+      "bytes": 1493703,
+      "sha256": "d73c60a44cea2d273d8c23dc9e9363fc359c7b5903b8a4aaf4d541bab7a62666"
+    },
+    {
+      "path": "analysis/detection/run.json",
+      "bytes": 3068,
+      "sha256": "7d95d0d2b22dbc4a54b5a5484f82d4196b32b1ceff023d0ccacac536f6fed27b"
+    },
+    {
+      "path": "analysis/run.json",
+      "bytes": 1822,
+      "sha256": "8320d623ce4b1f002898e2f5272ce0a02ad893703b06f2ec5121447de55ac438"
+    },
+    {
+      "path": "analysis/spatial_config.json",
+      "bytes": 595,
+      "sha256": "0a316a83ab2704bffa9cf6b0605e174e270e855790b14399d9d2c43d002166d7"
+    },
+    {
+      "path": "analysis/spatial_map.json",
+      "bytes": 520563,
+      "sha256": "3f542ef38dd0e0571fae2225879bad87c53cd36abd03f433f62c496a2bc0cdb2"
+    },
+    {
+      "path": "analysis/spatial_map_status.json",
+      "bytes": 82,
+      "sha256": "645ace7ff8b5cc25ab0eddbb955fbfd4860c22ff505a6ec5e2ff29f502fff083"
+    },
+    {
+      "path": "analysis/tracking/automatic_jersey_evidence.json",
+      "bytes": 2826,
+      "sha256": "16e9d02b1685fd6cbceca13e9913271748be140c6297e9b378cc68cc22fe8d21"
+    },
+    {
+      "path": "analysis/tracking/identity_mappings.json",
+      "bytes": 207304,
+      "sha256": "a36436447c3794d7bdc27fa3c0b2d6417fcfba8450ad57c26f1e2b136955d014"
+    },
+    {
+      "path": "analysis/tracking/jersey_evidence.json",
+      "bytes": 4,
+      "sha256": "a5338d955b09046ec0b16f3a9625b7955c763aae07dc722e474e6078745f932f"
+    },
+    {
+      "path": "analysis/tracking/run.json",
+      "bytes": 6238,
+      "sha256": "cd6f34165f41be67cb029517fdcac83b8b752495bbf6444694eb9cd475121286"
+    },
+    {
+      "path": "analysis/tracking/team_evidence.json",
+      "bytes": 2121161,
+      "sha256": "aaf051cb7298c90f958fd91414f9572455f1ee0d796d8c22c1f16727b5218d6c"
+    },
+    {
+      "path": "analysis/tracking/tracked_observations.jsonl",
+      "bytes": 7636214,
+      "sha256": "fab07b8f5e2783f4e6ab7b98c6eac148156cad1315c09ac6185e4f04c8e1d1e5"
+    },
+    {
+      "path": "analysis/tracking/tracking_summary.json",
+      "bytes": 6238,
+      "sha256": "cd6f34165f41be67cb029517fdcac83b8b752495bbf6444694eb9cd475121286"
+    },
+    {
+      "path": "analysis/web_overlay.json",
+      "bytes": 102589,
+      "sha256": "a78473cd64b91bc04d2acb78c6add92ee099294b8eae0a2db5c5cdb406b65fda"
+    },
+    {
+      "path": "input.mp4",
+      "bytes": 13451784,
+      "sha256": "b0c5f9e24f6fee9652be01d8a6ace0450e41593ecbc5d9873af026eb7a818bb4"
+    },
+    {
+      "path": "job.json",
+      "bytes": 401,
+      "sha256": "a1b006066686987d0cadd82497d97c98e67ccc8d7e6e38d68aef677d0a6ebbee"
+    },
+    {
+      "path": "match_config.json",
+      "bytes": 1714,
+      "sha256": "f1c08eabe9b3859ac62478ca1fb43b7d5668c12344efee600eb1c06436e725c3"
+    },
+    {
+      "path": "roster.json",
+      "bytes": 1406,
+      "sha256": "744b2e94cb3e507edea154cc55045b3053b0b1c9de63954bab6ecae08289cd05"
+    },
+    {
+      "path": "spatial_map.json",
+      "bytes": 535535,
+      "sha256": "acc5dffb416c370e9986426133064844d1870dc2b38c26f9ca1c73adf67822d7"
+    },
+    {
+      "path": "spatial_map_status.json",
+      "bytes": 82,
+      "sha256": "e3de2ce27ac51e85a80fb7601fe72768de8c1bb5446b733b8409b579356216c9"
+    }
+  ]
+}

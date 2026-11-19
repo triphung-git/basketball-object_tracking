@@ -1,15 +1,38 @@
-# Local environments, caches and credentials at any depth.
+# Local Python virtual environments
 .venv/
 .venv-train/
-.pytest_cache/
+venv/
+ENV/
+env/
+
+# Python bytecode and caches
 __pycache__/
 *.py[cod]
-.env
-.env.*
-!.env.example
+*$py.class
+*.pyd
+
+# Testing, coverage, and analysis caches
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Tooling and package manager caches
 .tools/
 .uv-cache/
 .model-cache/
 .publish-check/
+
+# Environment configurations and secret credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# OS metadata
 .DS_Store
 Thumbs.db
+desktop.ini
+
+# Temporary files used when restoring bundled model weights.
+codebase/models/**/.restore-*/

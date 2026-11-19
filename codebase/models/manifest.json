@@ -1,0 +1,51 @@
+{
+  "schema_version": "local-model-manifest-v1",
+  "total_files": 5,
+  "total_bytes": 137148047,
+  "files": [
+    {
+      "relative_path": "detector/weights.onnx",
+      "task": "object-detection",
+      "architecture": "yolo26",
+      "format": "onnx",
+      "model_id": "phung-van-tri/basketball-xil7x-y8g6u-1-yolo26s-t1",
+      "size_bytes": 38851269,
+      "sha256": "07044f5d08f37848f7d61f49d16b03407daad025919d63f0dfe195cd30f56b33",
+      "classes": [
+        "ball",
+        "human",
+        "rim"
+      ]
+    },
+    {
+      "relative_path": "detector/class_names.txt",
+      "task": "metadata",
+      "size_bytes": 14,
+      "sha256": "303310da36a5d5b6de50571526a2fc9cdfce98e9ebb1c266ee38edff1cab70f2"
+    },
+    {
+      "relative_path": "detector/inference_config.json",
+      "task": "metadata",
+      "size_bytes": 437,
+      "sha256": "d66a00e179c7d30a7162ad8f7b11299c74448c68bae8d3c180c360fa25929f2c"
+    },
+    {
+      "relative_path": "ocr/craft_mlt_25k.pth",
+      "task": "text-detection",
+      "architecture": "CRAFT",
+      "format": "pytorch",
+      "size_bytes": 83152330,
+      "sha256": "4a5efbfb48b4081100544e75e1e2b57f8de3d84f213004b14b85fd4b3748db17",
+      "source_url": "https://github.com/JaidedAI/EasyOCR/releases/download/pre-v1.1.6/craft_mlt_25k.zip"
+    },
+    {
+      "relative_path": "ocr/english_g2.pth",
+      "task": "text-recognition",
+      "architecture": "CRNN",
+      "format": "pytorch",
+      "size_bytes": 15143997,
+      "sha256": "e2272681d9d67a04e2dff396b6e95077bc19001f8f6d3593c307b9852e1c29e8",
+      "source_url": "https://github.com/JaidedAI/EasyOCR/releases/download/v1.3/english_g2.zip"
+    }
+  ]
+}

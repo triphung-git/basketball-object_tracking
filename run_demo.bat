@@ -12,7 +12,7 @@ set "DEMO_SCRIPT=%ROOT_DIR%\codebase\scripts\run_demo.py"
 if not exist "%PYTHON_EXE%" (
     echo [ERROR] Virtual environment Python not found at:
     echo   "%PYTHON_EXE%"
-    echo Please make sure the virtual environment codebase\.venv is installed.
+    echo Please run setup.bat first: .\setup.bat
     exit /b 1
 )
 

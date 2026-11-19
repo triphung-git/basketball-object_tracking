@@ -172,6 +172,7 @@
         gap: 22px;
         align-items: start;
       }
+      .grid > div { display: contents; }
       .panel {
         background: var(--surface);
         border: 1px solid var(--line);
@@ -332,8 +333,20 @@
       .court-views canvas { display: block; width: 100%; height: auto; background: #f4ede0; border-radius: 5px; }
       .court-views h3 { font-size: 14px; margin: 4px 0 10px; }
       #matchStatus { display: block; margin-top: 10px; }
+      .calibration-editor { border-top: 1px solid var(--line); margin-top: 24px; padding-top: 6px; }
+      #calibrationImage { width: 100%; height: auto; display: block; background: #172c40; cursor: crosshair; border-radius: 5px; touch-action: manipulation; }
+      .calibration-layout { display: grid; grid-template-columns: minmax(0, 2fr) minmax(220px, 1fr); gap: 16px; align-items: start; }
+      .calibration-layout > * { min-width:0; }
+      .calibration-list { max-height: 240px; overflow: auto; font-size: 13px; }
+      .calibration-list p { display:flex; align-items:center; gap:8px; margin: 6px 0; }
+      .calibration-list button { padding: 4px 8px; min-height: 32px; }
+      .heat-legend { display:flex; align-items:center; flex-wrap:wrap; gap:8px; font-size:12px; color:var(--muted); margin-top:8px; }
+      .heat-ramp { width:100px; height:10px; background:linear-gradient(90deg,#f4ede0,#b42c15); border:1px solid var(--line); }
+      #spatialQuality { margin:0 18px 12px; }
+      button:focus-visible, select:focus-visible, input:focus-visible { outline:3px solid #2776b9; outline-offset:2px; }
       .match-heading { margin: 20px 0 8px; font-size: 16px; }
       @media(max-width:700px) { .setup-columns, .court-views { grid-template-columns: 1fr; } .match-content { padding: 0 14px 14px; } }
+      @media(max-width:800px) { .calibration-layout { grid-template-columns:1fr; } }
     </style>
   </head>
   <body>
@@ -389,12 +402,12 @@
       </div>
       <div id="errorMessage" class="message" role="alert" hidden></div>
       <details id="matchSetup" class="panel match-setup" hidden>
-        <summary>Thiết lập đội, cầu thủ và sân</summary>
+        <summary>Thông tin đội và danh tính cầu thủ</summary>
         <div class="match-content">
-          <p class="match-note">Có thể nhập đội hình và gán mã theo dõi cho cầu thủ. Các gán nhãn chỉ hỗ trợ lọc và màu sắc trên bản đồ.</p>
+          <p class="match-note">Nhập tên đội và hai màu áo, lưu rồi bấm Phân tích. Hệ thống tự phát hiện người, theo dõi, phân đội và dựng bản đồ sân. Danh tính cầu thủ và loại người ngoài sân có thể bổ sung sau.</p>
           <div class="match-tools">
-            <label>Thể thức <select id="matchFormat"><option value="3x3">3 × 3</option><option value="5x5">5 × 5</option></select></label>
-            <label><input id="classifyTeams" type="checkbox"> Nhận đội từ màu áo</label>
+            <label>Thể thức <select id="matchFormat"><option value="3x3">3 × 3</option><option value="5x5">5 × 5 (chưa tự dựng sân)</option></select></label>
+            <label hidden><input id="classifyTeams" type="checkbox" disabled> Tự nhận đội từ màu áo</label>
           </div>
           <div class="setup-columns">
             <div class="setup-team">
@@ -408,19 +421,23 @@
               <label class="field">Cầu thủ đội B (mỗi dòng: số áo, tên)<textarea id="rosterB" placeholder="4, Trần Văn C&#10;9, Trần Văn D"></textarea></label>
             </div>
           </div>
-          <p class="match-note">Màu áo chỉ dùng để gợi ý nhóm đội; mã chưa rõ giữ màu trung tính.</p>
+          <p class="match-note">Đội được nhận theo màu áo qua nhiều khung hình. Khi có đội hình, hệ thống đọc số áo để đối chiếu tên; người chưa đủ bằng chứng giữ tên đội hoặc mã theo dõi. Có thể bổ sung danh tính bên dưới.</p>
           <h3 class="match-heading">Gán danh tính và loại người ngoài sân</h3>
           <div class="match-tools">
             <button id="pickTrack" type="button">Chọn box ở khung hình đang dừng</button>
             <output id="selectedTrackNote" class="match-note">Chưa chọn mã theo dõi.</output>
             <select id="assignmentTrack" hidden aria-hidden="true" tabindex="-1"><option value="">Chưa có tracking</option></select>
             <label>Gán cho <select id="assignmentPlayer"></select></label>
-            <button id="addAssignment" type="button" disabled>Áp dụng cho toàn mã</button>
+            <label>Phạm vi <select id="assignmentScope"><option value="window">Khoảng thời gian</option><option value="track">Toàn mã theo dõi</option></select></label>
+            <label id="assignmentStartLabel">Từ giây <input id="assignmentStart" type="number" min="0" step="0.001" value="0"></label>
+            <label id="assignmentEndLabel">Đến giây <input id="assignmentEnd" type="number" min="0" step="0.001" value="1"></label>
+            <button id="addAssignment" type="button" disabled>Áp dụng khoảng gán</button>
           </div>
           <div id="assignmentList" class="match-list"></div>
+
           <div class="match-tools">
             <button id="saveMatch" class="primary" type="button">Lưu thiết lập</button>
-            <button id="rebuildMatch" type="button">Cập nhật bản đồ sân</button>
+            <button id="rebuildMatch" type="button" hidden>Thử cập nhật lại</button>
           </div>
           <span id="matchStatus" class="match-note" role="status" aria-live="polite"></span>
         </div>
@@ -451,16 +468,18 @@
           <section id="spatialPanel" class="panel" hidden>
             <div class="panel-top"><h2>Sân và di chuyển</h2><span id="spatialTime" class="muted">00:00</span></div>
             <div class="match-tools" style="padding:0 18px">
-              <label>Hiển thị <select id="spatialFilter"><option value="all">Tất cả</option></select></label>
+              <label>Hiển thị <select id="spatialFilter"><option value="all">Cầu thủ đã xác nhận</option></select></label>
               <label>Từ giây <input id="heatStart" type="number" min="0" value="0" step="0.1"></label>
               <label>Đến giây <input id="heatEnd" type="number" min="0" step="0.1"></label>
               <label><input id="showTrails" type="checkbox" checked> Quỹ đạo 3 giây</label>
+              <label>Heatmap <select id="heatScale"><option value="absolute">Thời gian tuyệt đối</option><option value="percent">Phần trăm phân bố</option></select></label>
             </div>
             <div class="court-views">
               <div><h3>Vị trí theo video</h3><canvas id="courtCanvas" width="600" height="500" role="img" aria-label="Vị trí cầu thủ và bóng trên sân 2D"></canvas></div>
-              <div><h3>Heatmap thời gian hiện diện</h3><canvas id="matchHeatmap" width="600" height="500" role="img" aria-label="Heatmap theo đội hoặc cầu thủ"></canvas></div>
+              <div><h3>Heatmap thời gian hiện diện</h3><canvas id="matchHeatmap" width="600" height="500" role="img" aria-label="Heatmap theo đội hoặc cầu thủ"></canvas><div class="heat-legend"><span>0</span><span class="heat-ramp" aria-hidden="true"></span><span id="heatLegendMax">0 người·giây/ô</span></div><p id="heatmapTotals" class="match-note" aria-live="polite"></p></div>
             </div>
             <p id="spatialNote" class="match-note" style="padding:0 18px 12px" role="status"></p>
+            <p id="spatialQuality" class="match-note" role="status"></p>
           </section>
           <section id="heatmapPanel" class="panel heatmap" hidden>
             <div class="panel-top"><h2>Bản đồ di chuyển</h2></div>
@@ -475,6 +494,7 @@
         </div>
       </div>
     </main>
+    <script src="/overlay-playback.js"></script>
     <script>
       const $ = (id) => document.getElementById(id),
         video = $("gameVideo"),
@@ -571,8 +591,8 @@
             }
           }
         }
-        $("heatmapPanel").hidden = heatmap.status !== "generated";
-        if (heatmap.status === "generated") {
+        $("heatmapPanel").hidden = heatmap.status !== "generated" || status.spatial_mode==='automatic';
+        if (heatmap.status === "generated" && status.spatial_mode!=='automatic') {
           const grid = await api("/api/heatmap/grid", {}, id);
           if (generation !== token) return;
           renderHeatmap(grid);
@@ -669,6 +689,16 @@
           previewUrl = null;
         }
         try {
+          const startup = await api('/api/startup', {}, null);
+          const demo = startup.explicit ? {job:startup.job_id ? await api('/api/job',{},startup.job_id) : null}
+            : await api('/api/demo-job', {}, null);
+          if (generation !== token) return;
+          if (demo.job) {
+            jobId = demo.job.id; sessionStorage.setItem('basketballJob', jobId);
+            $('fileName').textContent = demo.job.name;
+            video.src = endpoint('/api/video', jobId); $('videoEmpty').hidden = true;
+            setStatus(demo.job.status, demo.job.progress); await showResults(jobId, token); return;
+          }
           const status = await api("/api/status", {}, null);
           if (generation !== token) return;
           $("fileName").textContent = "Video mẫu";
@@ -832,11 +862,21 @@
         drop.classList.remove("dragging");
         selectFile(e.dataTransfer.files[0]);
       };
+      const frameSync = OverlayPlayback.frameSync(video, (mediaTime) => {
+        drawOverlay(mediaTime);
+        window.MatchUI?.draw(mediaTime);
+      });
+      video.addEventListener("play", frameSync.start);
+      video.addEventListener("pause", frameSync.stop);
+      video.addEventListener("ended", frameSync.stop);
+      video.addEventListener("emptied", frameSync.stop);
+      video.addEventListener("loadstart", frameSync.stop);
       video.onloadedmetadata = () => {
         $("videoEmpty").hidden = true;
         $("videoInfo").textContent =
           `${video.videoWidth} × ${video.videoHeight} · ${time(video.duration)}`;
         drawOverlay();
+        frameSync.start();
       };
       video.onerror = () => {
         if (video.getAttribute("src"))
@@ -850,7 +890,7 @@
         window.MatchUI?.draw();
       };
       video.onseeked = () => { drawOverlay(); window.MatchUI?.draw(); };
-      function drawOverlay() {
+      function drawOverlay(mediaTime) {
         const width = drop.clientWidth,
           height = drop.clientHeight,
           dpr = window.devicePixelRatio || 1;
@@ -859,7 +899,7 @@
         const ctx = canvas.getContext("2d");
         ctx.scale(dpr, dpr);
         if (!overlays.length || !video.videoWidth) return;
-        const t = video.currentTime;
+        const t = typeof mediaTime === "number" ? mediaTime : video.currentTime;
         let lo = 0,
           hi = overlays.length - 1,
           index = -1;
@@ -870,7 +910,10 @@
             lo = mid + 1;
           } else hi = mid - 1;
         }
-        if (index < 0 || t - overlays[index].time > 0.3) return;
+        if (index < 0 || t - overlays[index].time > 0.35) return;
+
+        const interpolatedBoxes = OverlayPlayback.boxesAt(overlays, t);
+
         const scale = Math.min(
             width / video.videoWidth,
             height / video.videoHeight,
@@ -879,10 +922,11 @@
           dy = (height - video.videoHeight * scale) / 2;
         ctx.lineWidth = 2;
         ctx.font = '12px "Segoe UI", sans-serif';
-        for (const item of overlays[index].boxes) {
-          if (item.id && window.MatchUI?.visible?.(item.id) === false) continue;
+        for (const item of interpolatedBoxes) {
+          if (item.id && window.MatchUI?.visible?.(item.id, t, item) === false) continue;
           const [x1, y1, x2, y2] = item.box.map(Number);
-          const teamColor = item.id && window.MatchUI?.color(item.id);
+          const teamColor = (item.id && window.MatchUI?.color(item.id, t, item))
+            || (item.role === "referee" ? "#94a3b8" : null);
           ctx.strokeStyle = teamColor || "#52ddd1";
           ctx.strokeRect(
             dx + x1 * scale,
@@ -895,7 +939,7 @@
               ? "Bóng"
               : item.kind === "rim"
                 ? "Rổ"
-                : window.MatchUI?.label(item.id) || "Mã " + trackLabels.get(item.id);
+                : (window.MatchUI?.label(item.id, t, item) || (item.role === "referee" ? "Trọng tài" : (trackLabels.has(item.id) ? "Mã " + trackLabels.get(item.id) : (item.id ? "Mã " + item.id : "Chưa rõ"))));
           const x = dx + x1 * scale,
             y = Math.max(16, dy + y1 * scale);
           ctx.fillStyle = teamColor || "#086b83";
@@ -920,10 +964,20 @@
         setStatus("idle");
         try {
           const urlJob = new URLSearchParams(window.location.search).get("job");
-          const saved = urlJob || sessionStorage.getItem("basketballJob");
+          const startup = await api('/api/startup', {}, null);
+          if (!urlJob && startup.explicit && !startup.job_id) {
+            if (generation !== token) return;
+            jobId = null;
+            video.src = '/api/video';
+            $('fileName').textContent = (await api('/api/status',{},null)).video_name || 'Video';
+            setStatus(startup.has_video ? 'completed' : 'idle');
+            if (startup.has_video) await showResults(null,token);
+            return;
+          }
+          const saved = urlJob || (startup.explicit && startup.job_id) || sessionStorage.getItem("basketballJob");
           const job = saved
             ? await api("/api/job", {}, saved)
-            : (await api("/api/active-job")).job;
+            : (await api("/api/active-job")).job || (await api('/api/demo-job', {}, null)).job;
           if (generation !== token || !job) return;
           jobId = job.id;
           sessionStorage.setItem("basketballJob", jobId);
@@ -943,6 +997,8 @@
       }
       restoreSession();
     </script>
+    <script src="/spatial-playback.js"></script>
+
     <script src="/match-dashboard.js"></script>
   </body>
 </html>

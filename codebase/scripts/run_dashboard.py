@@ -6,6 +6,9 @@ import argparse
 import json
 from pathlib import Path
 import sys
+import webbrowser
+import urllib.request
+import urllib.error
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT / "src") not in sys.path:
@@ -22,7 +25,21 @@ def main() -> None:
     parser.add_argument("--run-dir", help="Path to a spatial-analysis run directory")
     parser.add_argument("--video", help="Path to a video file")
     parser.add_argument("--roster", help="Optional roster JSON for manual player assignment")
+    parser.add_argument('--open-browser', action=argparse.BooleanOptionalAction, default=False,
+                        help='Open the local dashboard after the server binds')
     args = parser.parse_args()
+
+    if args.open_browser and args.port and not any([args.run_dir, args.video, args.roster]):
+        dashboard_url = f'http://{args.host}:{args.port}'
+        try:
+            with urllib.request.urlopen(dashboard_url+'/api/health', timeout=1) as response:
+                existing = json.load(response)
+            if existing.get('application') == 'basketball-spatial-dashboard':
+                print(f'Dashboard is already running: {dashboard_url}')
+                webbrowser.open(dashboard_url)
+                return
+        except (OSError, ValueError):
+            pass
 
     run_state = {}
     heatmap_data = {}
@@ -37,24 +54,42 @@ def main() -> None:
                 run_path = run_dir / "summary.json"
             raw_run = json.loads(run_path.read_text(encoding="utf-8")) if run_path.is_file() else {}
             configured_video = raw_run.get("video_path")
-            if configured_video and Path(configured_video).is_file():
-                video_path = Path(configured_video).resolve()
+            if configured_video:
+                cand = Path(configured_video)
+                if not cand.is_file() and not cand.is_absolute():
+                    cand = (run_dir / configured_video).resolve()
+                if not cand.is_file() and (run_dir.parent / "input.mp4").is_file():
+                    cand = (run_dir.parent / "input.mp4").resolve()
+                if not cand.is_file() and (run_dir / "input.mp4").is_file():
+                    cand = (run_dir / "input.mp4").resolve()
+                if cand.is_file():
+                    video_path = cand
+            elif (run_dir.parent / "input.mp4").is_file():
+                video_path = (run_dir.parent / "input.mp4").resolve()
+            elif (run_dir / "input.mp4").is_file():
+                video_path = (run_dir / "input.mp4").resolve()
 
     roster = None
     if args.roster:
         roster_data = json.loads(Path(args.roster).read_text(encoding="utf-8"))
         roster = RosterConfig.from_dict(roster_data)
-    server = make_dashboard_server(
-        host=args.host,
-        port=args.port,
-        video_path=video_path,
-        roster=roster,
-        run_state=run_state,
-        heatmap_data=heatmap_data,
-        run_dir=run_dir,
-    )
+    try:
+        server = make_dashboard_server(
+            host=args.host,
+            port=args.port,
+            video_path=video_path,
+            roster=roster,
+            run_state=run_state,
+            heatmap_data=heatmap_data,
+            run_dir=run_dir,
+            explicit_context=bool(args.run_dir or args.video or args.roster),
+        )
+    except OSError as exc:
+        parser.error(f'Cannot start dashboard on {args.host}:{args.port}: {exc}. Choose another --port.')
 
     print("============================================================")
+    if args.open_browser:
+        webbrowser.open(f'http://{args.host}:{server.server_port}')
     print("  BASKETBALL VIDEO AND SPATIAL DASHBOARD")
     print(f"  URL: http://{args.host}:{server.server_port}")
     print(f"  Video: {video_path} (exists={video_path.is_file() if video_path else False})")

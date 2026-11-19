@@ -8,14 +8,16 @@ __pycache__/
 !.env.example
 data/raw/*
 !data/raw/.gitkeep
-# Publish only the verified QA demo; keep all experimental runs local.
-outputs/*
-!outputs/demo-completion-20261116/
-outputs/demo-completion-20261116/*
-!outputs/demo-completion-20261116/demo-bundle-qa-v2/
+# Demo assets are shipped in demo/. Runtime jobs and experiments stay local.
+outputs/
 *.pt
 *.onnx
 *.engine
+!models/detector/weights.onnx
+models/ocr/*
+!models/ocr/craft_mlt_25k.pth
+!models/ocr/english_g2.pth
+models/checkpoints/
 assets_test/
 .tools/
 .uv-cache/

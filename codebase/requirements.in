@@ -1,3 +1,11 @@
-# Direct dependency intent; requirements.txt records the installed environment.
-# CPU baseline first; GPU installation requires a separate reviewed decision.
-inference-models[onnx-cpu]==0.39.7
+# Direct runtime dependencies for local video analysis and dashboard
+av>=19.0.0
+easyocr>=1.7.0
+matplotlib>=3.10.0
+numpy>=2.0.0
+onnxruntime>=1.20.0
+opencv-python>=4.10.0
+PyYAML>=6.0.0
+scipy>=1.15.0
+torch>=2.0.0
+torchvision>=0.20.0

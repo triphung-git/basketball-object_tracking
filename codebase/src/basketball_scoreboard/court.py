@@ -307,6 +307,28 @@ class TrajectoryObservation:
         return json.dumps(self.to_dict(), ensure_ascii=False)
 
 
+def court_markings(bounds):
+    """Metric polylines shared by map, preview and PNG for supported FIBA layouts."""
+    x0, x1, y0, y1 = (bounds[k] for k in ('x_min', 'x_max', 'y_min', 'y_max'))
+    lines = [[[x0,y0],[x1,y0],[x1,y1],[x0,y1],[x0,y0]]]
+    if not (abs(x0+7.5)<1e-6 and abs(x1-7.5)<1e-6 and y0==0 and y1 in {11,28}):
+        return lines
+    join = math.sqrt(6.75**2-6.6**2)
+    angle = math.asin(join/6.75)
+    for flip in ([False, True] if y1==28 else [False]):
+        transform = lambda values: [[float(x),float(y1-y if flip else y)] for x,y in values]
+        lines.append(transform([[-2.45,0],[-2.45,5.8],[2.45,5.8],[2.45,0]]))
+        lines.append(transform([[6.6,0],[6.6,1.575+join]]))
+        lines.append(transform([[-6.6,0],[-6.6,1.575+join]]))
+        lines.append(transform([[6.75*math.cos(a),1.575+6.75*math.sin(a)] for a in np.linspace(angle,math.pi-angle,100)]))
+        lines.append(transform([[1.8*math.cos(a),5.8+1.8*math.sin(a)] for a in np.linspace(0,math.pi,50)]))
+        lines.append(transform([[.23*math.cos(a),1.575+.23*math.sin(a)] for a in np.linspace(0,2*math.pi,30)]))
+    if y1==28:
+        lines.append([[-7.5,14],[7.5,14]])
+        lines.append([[float(1.8*math.cos(a)),float(14+1.8*math.sin(a))] for a in np.linspace(0,2*math.pi,80)])
+    return lines
+
+
 def estimate_footpoint(
     bbox: List[float],
     original_wh: Tuple[int, int],

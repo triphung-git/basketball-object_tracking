@@ -55,7 +55,7 @@ def assert_development_video_allowed(video_sha, root=ROOT, authorization_path=No
 
 
 def run_pipeline(video_path, output_dir, config=None, export_video=True, quiet=False, development_authorization=None, detector_factory=None,
-                 progress_callback=None):
+                 progress_callback=None, frame_callback=None):
     cfg = config or PipelineConfig.default()
     cfg.validate()  # Revalidate dataclasses after CLI/programmatic overrides.
     input_path = Path(video_path).resolve()
@@ -111,6 +111,8 @@ def run_pipeline(video_path, output_dir, config=None, export_video=True, quiet=F
                     time_base=frame.time_base, timestamp_status=frame.timestamp_status,
                     timestamp_policy=frame.timestamp_policy, model_call_ms=model_ms)
                 handle.write(record.to_jsonl() + "\n")
+                if frame_callback:
+                    frame_callback(frame, image, [d.to_dict() for d in detections])
                 if writer is not None:
                     begin = time.perf_counter()
                     annotated = draw_detections_overlay(image, detections, frame) if cfg.video.draw_overlay else image

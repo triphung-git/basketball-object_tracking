@@ -1,9 +1,0 @@
-team_id,player_id,jersey_number,name,is_active
-team_a,a_nguyen_huynh_phu_vinh,1,Nguyễn Huỳnh Phú Vinh,true
-team_a,a_nguyen_phuc_vinh,6,Nguyễn Phúc Vinh,true
-team_a,a_nguyen_anh_kiet,13,Nguyễn Anh Kiệt,true
-team_a,a_huynh_thanh_tam,2,Huỳnh Thanh Tâm,true
-team_b,b_01,1,Marcus Christian Alipate,true
-team_b,b_09,9,Luke Sinisa,true
-team_b,b_11,11,Jonah Palelei,true
-team_b,b_18,18,Viliami Foketi,true

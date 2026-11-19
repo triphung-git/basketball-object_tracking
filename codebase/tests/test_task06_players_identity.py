@@ -386,6 +386,38 @@ class Task06OCRProviderTests(unittest.TestCase):
         mapping_1 = resolver.update_track_mapping("trk_01", 0.167)
         self.assertEqual(mapping_1.player_id, "p_red_23")
 
+    def test_referee_detection_and_resolution(self) -> None:
+        """Test referee classification and resolution based on attire."""
+        clf = TeamColorClassifier(
+            team_a_id="team_red",
+            team_b_id="team_blue",
+            team_a_color_rgb=(220, 20, 20),
+            team_b_color_rgb=(20, 40, 220),
+            allow_referee_heuristic=True,
+        )
+        # Low-saturation dark shirt (referee attire)
+        team, conf, role, reason = clf.classify_entity((45.0, 45.0, 48.0))
+        self.assertIsNone(team)
+        self.assertEqual(role, "referee")
+        self.assertGreater(conf, 0.6)
+
+        roster = RosterConfig(
+            team_a_id="team_red",
+            team_b_id="team_blue",
+            team_a_name="Team Red",
+            team_b_name="Team Blue",
+            team_a_color_rgb=(220, 20, 20),
+            team_b_color_rgb=(20, 40, 220),
+        )
+        resolver = IdentityResolver(roster)
+        resolver.add_referee_observation("ref_trk", 0.8, 0.0)
+        resolver.add_referee_observation("ref_trk", 0.85, 0.15)
+        resolver.add_referee_observation("ref_trk", 0.85, 0.3)
+        mapping = resolver.update_track_mapping("ref_trk", 0.3)
+        self.assertEqual(mapping.role, "referee")
+        self.assertIsNone(mapping.team_id)
+        self.assertIsNone(mapping.player_id)
+
 
 if __name__ == "__main__":
     unittest.main()

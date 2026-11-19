@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass, field
 import json
+import hashlib
 import math
 import os
 from typing import Any, Dict, List, Optional, Set, Tuple, Union
@@ -12,7 +13,8 @@ matplotlib.use("Agg")  # Non-interactive headless backend
 import matplotlib.pyplot as plt
 import numpy as np
 
-from .court import TrajectoryObservation
+from .court import TrajectoryObservation, court_markings
+from .spatial_intervals import OccupancyInterval, continuity_reason, resolve_identity_overlaps, source_scope
 
 
 class HeatmapError(Exception):
@@ -58,6 +60,8 @@ class HeatmapMetadata:
     repaired_player_seconds: float = 0.0
     cut_discarded_seconds: float = 0.0
     invalid_interval_seconds: float = 0.0
+    speed_outlier_seconds: float = 0.0
+    identity_overlap_seconds: float = 0.0
     total_intervals_processed: int = 0
     total_observations_seen: int = 0
     max_gap_s: float = 1.0
@@ -351,6 +355,7 @@ class HeatmapAccumulator:
             return (role_ok and obs.validity_status == "valid" and obs.projected_court_xy is not None
                     and obs.sample_type == "observed")
 
+        candidates = []
         for key, stream in streams.items():
             stream.sort(key=lambda obs: (obs.source_time_s, obs.frame_index))
             pairs = list(zip(stream, stream[1:]))
@@ -365,17 +370,50 @@ class HeatmapAccumulator:
                 # a repaired end must never hide an estimated start timestamp.
                 statuses = {current.timestamp_status, following.timestamp_status}
                 status = next((s for s in ("estimated", "irregular", "repaired") if s in statuses), "valid")
-                self.add_trajectory_interval(
-                    f"{key}:{current.observation_id}->{following.observation_id}",
-                    current.projected_court_xy, current.source_time_s, following.source_time_s,
-                    current.team_id, current.player_id, status, current.sample_type)
+                def sample(obs):
+                    return dict(t=obs.source_time_s, xy=obs.projected_court_xy, track_id=obs.track_id,
+                                player_id=obs.player_id, team_id=obs.team_id, role=obs.role,
+                                scope=source_scope(obs.to_dict()), confidence=obs.confidence,
+                                observation_id=obs.observation_id)
+                a, b = sample(current), sample(following)
+                reason = continuity_reason(a, b, self.max_gap_s,
+                                           12. if self.units == 'meters' else None, self.allow_unknown_role)
+                if reason:
+                    if invalid_key not in self._processed_interval_keys:
+                        seconds = max(0., b['t']-a['t'])
+                        if reason == 'long_gap':
+                            self.metadata.stale_gap_discarded_seconds += seconds
+                        elif reason == 'speed_outlier':
+                            self.metadata.speed_outlier_seconds += seconds
+                        else:
+                            self.metadata.invalid_interval_seconds += seconds
+                        self._processed_interval_keys.add(invalid_key)
+                    continue
+                allowed = {'valid'}
+                if self.timestamp_policy != 'strict_valid':
+                    allowed.add('repaired')
+                if self.timestamp_policy == 'allow_irregular':
+                    allowed.add('irregular')
+                if status in allowed:
+                    candidates.append(OccupancyInterval(a['t'], b['t'], a, status))
             if stream and final_time_s is not None:
                 last = stream[-1]
                 if eligible(last) and 0 < final_time_s - last.source_time_s <= self.max_gap_s:
-                    self.add_trajectory_interval(
-                        f"{key}:{last.observation_id}->final:{final_time_s:.6f}",
-                        last.projected_court_xy, last.source_time_s, final_time_s,
-                        last.team_id, last.player_id, last.timestamp_status, last.sample_type)
+                    a = dict(t=last.source_time_s, xy=last.projected_court_xy, track_id=last.track_id,
+                             player_id=last.player_id, team_id=last.team_id, role=last.role,
+                             scope=source_scope(last.to_dict()), confidence=last.confidence,
+                             observation_id=last.observation_id)
+                    candidates.append(OccupancyInterval(last.source_time_s, final_time_s, a, last.timestamp_status))
+        resolved = resolve_identity_overlaps(candidates)
+        replay_key = 'overlaps:' + hashlib.sha256(repr(sorted(signatures)).encode()).hexdigest()
+        if replay_key not in self._processed_interval_keys:
+            self.metadata.identity_overlap_seconds += max(0., sum(i.end-i.start for i in candidates)-sum(i.end-i.start for i in resolved))
+            self._processed_interval_keys.add(replay_key)
+        for item in resolved:
+            s = item.sample
+            self.add_trajectory_interval(
+                f"{s['scope']}:{s['track_id']}:{s['observation_id']}:{item.start:.9f}:{item.end:.9f}",
+                s['xy'], item.start, item.end, s['team_id'], s['player_id'], item.timestamp_status)
 
     def verify_mass_conservation(self, tolerance: float = 1e-6) -> Tuple[bool, float, float]:
         """
@@ -503,7 +541,7 @@ class HeatmapAccumulator:
             extent=extent,
             origin="lower",
             cmap=colormap,
-            aspect="auto",
+            aspect="equal",
             interpolation="gaussian",
         )
 
@@ -512,6 +550,10 @@ class HeatmapAccumulator:
 
         # Draw court outline rectangle
         ax.plot([x_min, x_max, x_max, x_min, x_min], [y_min, y_min, y_max, y_max, y_min], "w--", linewidth=1.2, alpha=0.8, label="Court Bounds")
+        if self.units == 'meters':
+            for line in court_markings(self.court_bounds):
+                points = np.asarray(line)
+                ax.plot(points[:,0],points[:,1],color='white',linewidth=.8,alpha=.7)
 
         ax.set_title(sub_title, fontsize=12, pad=10)
         ax.set_xlabel(f"Court X ({self.units})", fontsize=10)

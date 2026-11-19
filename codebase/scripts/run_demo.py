@@ -13,7 +13,7 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from basketball_scoreboard.dashboard import load_run_bundle, make_dashboard_server
-from basketball_scoreboard.demo_bundle import verify_bundle_manifest
+from basketball_scoreboard.demo_bundle import install_dashboard_demo, verify_bundle_manifest, verify_dashboard_demo
 from basketball_scoreboard.identity import RosterConfig, RosterPlayer
 from run_spatial_pipeline import run_spatial_pipeline
 
@@ -54,12 +54,16 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--open-browser", action="store_true")
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args(argv)
+    # Root launchers inject --preset default. That is the shared demo, whereas
+    # user-supplied video/bundle arguments deliberately select a saved run.
+    explicit_context = bool(args.bundle or args.video or args.roster or
+                            args.mode == 'video-analysis' or args.preset == 'vietnam-tonga')
     if not 0 <= args.port <= 65535:
         parser.error("--port must be between 0 and 65535")
     if args.max_frames is not None and args.max_frames <= 0:
         parser.error("--max-frames must be positive")
 
-    if args.preset:
+    if args.preset == "vietnam-tonga":
         args.video = args.video or str(ROOT / "assets_test" / "vietnam-tonga.mp4")
         args.roster = args.roster or str(ROOT / "configs" / "rosters" / "vietnam_tonga.json")
         args.court = args.court or str(ROOT / "configs" / "courts" / "vt_development_court.json")
@@ -92,12 +96,12 @@ def main(argv: list[str] | None = None) -> int:
         if not args.serve and not args.open_browser:
             return 0
         video_path = video
-    else:
+    elif args.bundle or args.preset == "vietnam-tonga":
         qa_bundle = ROOT / "outputs" / "demo-completion-20261116" / "demo-bundle-qa-v2"
         default_bundle = qa_bundle if qa_bundle.is_dir() else ROOT / "outputs" / "demo-completion-20261116" / "demo-bundle"
         bundle = Path(args.bundle or default_bundle).resolve()
         if not bundle.is_dir():
-            parser.error(f"Demo bundle directory not found: {bundle}")
+            parser.error(f"Saved run not found: {bundle}. Use --bundle to select an existing run.")
         manifest = verify_bundle_manifest(bundle)
         run_state, heatmap = load_run_bundle(bundle)
         video_path = Path(args.video).resolve() if args.video else None
@@ -109,16 +113,36 @@ def main(argv: list[str] | None = None) -> int:
             files = manifest.get("total_files", 0) if manifest else "unmanifested"
             print(f"Spatial bundle ready: {bundle.name} ({files} files)")
             return 0
+    else:
+        bundle = None
+        run_state, heatmap = {}, {}
+        video_path = Path(args.video).resolve() if args.video else None
+        roster = parse_roster(Path(args.roster).resolve()) if args.roster else None
+        if video_path and not video_path.is_file():
+            parser.error(f"Source video file not found: {video_path}")
+        if not explicit_context:
+            try:
+                if args.check:
+                    manifest = verify_dashboard_demo(ROOT / "demo")
+                    print(f"Spatial demo ready ({manifest['total_files']} files)")
+                    return 0
+                install_dashboard_demo(ROOT / "demo", ROOT / "outputs/web-uploads")
+            except (OSError, ValueError, KeyError) as exc:
+                parser.error(f"Cannot prepare the dashboard demo: {exc}")
 
-    server = make_dashboard_server(
-        host=args.host,
-        port=args.port,
-        video_path=video_path,
-        roster=roster,
-        run_dir=bundle,
-        run_state=run_state,
-        heatmap_data=heatmap,
-    )
+    try:
+        server = make_dashboard_server(
+            host=args.host,
+            port=args.port,
+            video_path=video_path,
+            roster=roster,
+            run_dir=bundle,
+            run_state=run_state,
+            heatmap_data=heatmap,
+            explicit_context=explicit_context,
+        )
+    except OSError as exc:
+        parser.error(f"Cannot start dashboard on {args.host}:{args.port}: {exc}. Choose another --port.")
     query = "?" + urllib.parse.urlencode({"job": args.job}) if args.job else ""
     url = f"http://{args.host}:{server.server_port}/{query}"
     print(f"Spatial dashboard: {url}")

@@ -9,12 +9,13 @@ ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'src'))
 from basketball_scoreboard.court import CourtConfig,CourtModel,TrajectoryObservation
 from basketball_scoreboard.heatmap import HeatmapAccumulator,ExclusionInterval
+from basketball_scoreboard.spatial_intervals import grid_shape_for_bounds
 from basketball_scoreboard.spatial_io import load_spatial_input,new_output,file_hash,write_json,emit_observations,runtime_snapshot
 
 
 def generate_heatmap_pipeline(court_config_path,detections_jsonl_path,output_dir,run_json_path=None,
-                              allow_uncalibrated=False,max_gap_s=1.,timestamp_policy='allow_repaired_with_warning',
-                              grid_shape=(50,50),verify_replay=False,exclusions_path=None,team_a_id=None,team_b_id=None):
+                              allow_uncalibrated=False,max_gap_s=.3,timestamp_policy='allow_repaired_with_warning',
+                              grid_shape=None,verify_replay=False,exclusions_path=None,team_a_id=None,team_b_id=None):
     output=None
     try:
         runtime=runtime_snapshot(__file__)
@@ -59,7 +60,10 @@ def generate_heatmap_pipeline(court_config_path,detections_jsonl_path,output_dir
         tracking_summary=Path(detections_jsonl_path).parent/'tracking_summary.json'
         sidecar=json.loads(tracking_summary.read_text(encoding='utf-8')) if tracked and tracking_summary.is_file() else {}
         teams=sidecar.get('team_ids',['team_a','team_b'])
-        accumulator=HeatmapAccumulator(config.court_coordinate_system.court_bounds,grid_shape,config.court_coordinate_system.units,
+        bounds=config.court_coordinate_system.court_bounds
+        if grid_shape is None:
+            grid_shape=grid_shape_for_bounds(bounds)
+        accumulator=HeatmapAccumulator(bounds,grid_shape,config.court_coordinate_system.units,
                                        team_a_id or teams[0],team_b_id or teams[1],max_gap_s,timestamp_policy,exclusions,
                                        allow_unknown_role=allow_uncalibrated)
         accumulator.process_observations_batch(observations)
@@ -110,7 +114,7 @@ def main():
     parser.add_argument('--output-dir',required=True)
     parser.add_argument('--run-json',required=True)
     parser.add_argument('--allow-uncalibrated',action='store_true')
-    parser.add_argument('--max-gap-s',type=float,default=1.)
+    parser.add_argument('--max-gap-s',type=float,default=.3)
     parser.add_argument('--policy',default='allow_repaired_with_warning',choices=['strict_valid','allow_repaired_with_warning','allow_irregular'])
     parser.add_argument('--verify-replay',action='store_true')
     parser.add_argument('--exclusions',help='Operational exclusion JSON list (start_s,end_s,reason); no GT lookup')

@@ -179,10 +179,12 @@ def test_lost_tentative_track_still_requires_minimum_hits():
     detection = dict(class_name='human', xyxy=[10, 20, 40, 80])
     first = tracker.update_frame(0, 0, 'valid', [detection])[0]
     tracker.update_frame(1, .1, 'valid', [])
-    tracker.update_frame(2, .2, 'valid', [detection])
-    assert tracker.tracks[first.track_id].status == 'tentative'
+    recovered = tracker.update_frame(2, .2, 'valid', [detection])[0]
+    assert first.track_id not in tracker.tracks
+    assert tracker.tracks[recovered.track_id].status == 'tentative'
     tracker.update_frame(3, .3, 'valid', [detection])
-    assert tracker.tracks[first.track_id].status == 'active'
+    tracker.update_frame(4, .4, 'valid', [detection])
+    assert tracker.tracks[recovered.track_id].status == 'active'
 
 
 def test_scene_filter_recovers_on_stable_new_scene():

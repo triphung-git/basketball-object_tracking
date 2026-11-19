@@ -216,21 +216,28 @@ class LocalEasyOCRProvider(OCRProvider):
         gpu: bool = False,
         confidence_threshold: float = 0.5,
         crop_upscale: int = 1,
+        min_number_height_fraction: float = 0.,
     ) -> None:
         if model_storage_directory:
             self.storage_dir = Path(model_storage_directory).expanduser().resolve()
         else:
-            default_home = (Path.home() / ".EasyOCR" / "model").resolve()
-            repo_cache = (Path(__file__).resolve().parents[2] / ".model-cache" / "easyocr").resolve()
-            if not (default_home / "craft_mlt_25k.pth").is_file() and (repo_cache / "craft_mlt_25k.pth").is_file():
+            project_root = Path(__file__).resolve().parents[2]
+            managed_ocr = (project_root / "models" / "ocr").resolve()
+            repo_cache = (project_root / ".model-cache" / "easyocr").resolve()
+            if (managed_ocr / "craft_mlt_25k.pth").is_file() and (managed_ocr / "english_g2.pth").is_file():
+                self.storage_dir = managed_ocr
+            elif (repo_cache / "craft_mlt_25k.pth").is_file() and (repo_cache / "english_g2.pth").is_file():
                 self.storage_dir = repo_cache
             else:
-                self.storage_dir = default_home
+                self.storage_dir = managed_ocr
         self.gpu = bool(gpu)
         self.confidence_threshold = float(confidence_threshold)
         if isinstance(crop_upscale, bool) or not isinstance(crop_upscale,int) or not 1 <= crop_upscale <= 4:
             raise ValueError("OCR crop upscale must be an integer 1-4")
         self.crop_upscale = crop_upscale
+        if not 0 <= min_number_height_fraction <= 1:
+            raise ValueError('Invalid minimum number height fraction')
+        self.min_number_height_fraction = min_number_height_fraction
         self.stats = dict(attempts=0,rejected_crops=0,runtime_errors=0)
         self._validate_weights_exist()
         self._reader = None
@@ -288,7 +295,18 @@ class LocalEasyOCRProvider(OCRProvider):
             raise RuntimeError(f"Local jersey OCR inference failed: {type(exc).__name__}") from exc
         # Duplicate text regions of one number are one observation, not extra votes.
         best = {}
-        for _,text,prob in results:
+        for polygon,text,prob in results:
+            if self.min_number_height_fraction:
+                coordinates = np.asarray(polygon,dtype=float)
+                if coordinates.shape != (4,2) or not np.isfinite(coordinates).all():
+                    continue
+                left,top=coordinates.min(axis=0);right,bottom=coordinates.max(axis=0)
+                # Tiny chest/sponsor lettering and partial digits cannot vote
+                # as a jersey number merely because OCR returned a digit.
+                if (bottom-top < self.min_number_height_fraction*crop.shape[0]
+                        or (top+bottom)/2 < .28*crop.shape[0]
+                        or left<=0 or right>=crop.shape[1]-1 or top<=0 or bottom>=crop.shape[0]-1):
+                    continue
             cleaned=str(text).strip()
             if cleaned.isdigit() and 1 <= len(cleaned) <= 2 and math.isfinite(float(prob)) and self.confidence_threshold <= float(prob) <= 1:
                 best[cleaned]=max(best.get(cleaned,0.),float(prob))
@@ -377,6 +395,7 @@ class TrackIdentityMapping:
     confidence: float = 1.0
     evidence_summary: Dict[str, Any] = field(default_factory=dict)
     conflict_status: str = "none"  # "none", "duplicate_active_player", "ambiguous_team"
+    role: str = "unknown"  # "player", "referee", "non_player", "unknown"
 
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -385,6 +404,7 @@ class TrackIdentityMapping:
             "end_time_s": round(self.end_time_s, 6),
             "team_id": self.team_id,
             "player_id": self.player_id,
+            "role": self.role,
             "revision_id": self.revision_id,
             "confidence": round(self.confidence, 4),
             "conflict_status": self.conflict_status,
@@ -407,6 +427,7 @@ class TeamColorClassifier:
         team_b_color_rgb: Tuple[int, int, int],
         ambiguity_margin: float = 30.0,
         max_color_distance: float = 120.0,
+        allow_referee_heuristic: bool = False,
     ) -> None:
         self.team_a_id = team_a_id
         self.team_b_id = team_b_id
@@ -414,6 +435,7 @@ class TeamColorClassifier:
         self.team_b_rgb = np.array(team_b_color_rgb, dtype=np.float64)
         self.ambiguity_margin = float(ambiguity_margin)
         self.max_color_distance = float(max_color_distance)
+        self.allow_referee_heuristic = allow_referee_heuristic
 
     def classify_rgb(self, observed_rgb: Tuple[float, float, float]) -> Tuple[Optional[str], float, str]:
         """
@@ -440,6 +462,33 @@ class TeamColorClassifier:
         else:
             conf = min(1.0, max(0.5, 1.0 - (dist_b / 255.0)))
             return (self.team_b_id, conf, f"Matched {self.team_b_id} (dist={dist_b:.1f})")
+
+    def classify_entity(self, observed_rgb: Tuple[float, float, float]) -> Tuple[Optional[str], float, str, str]:
+        """
+        Classify an observed crop color into (team_id, confidence, role, reason).
+        role can be: 'player', 'referee', or 'unknown'.
+        """
+        team_id, conf, reason = self.classify_rgb(observed_rgb)
+        if team_id is not None:
+            return (team_id, conf, "player", reason)
+
+        # Check for referee attire: neutral gray/black/dark shirt with low saturation
+        obs = np.array(observed_rgb, dtype=np.float64)
+        max_c = float(np.max(obs))
+        min_c = float(np.min(obs))
+        saturation = (max_c - min_c) / max(max_c, 1.0)
+        dist_a = float(np.linalg.norm(obs - self.team_a_rgb))
+        dist_b = float(np.linalg.norm(obs - self.team_b_rgb))
+
+        # Referee uniform in basketball: low saturation (gray/black) and far from both teams
+        team_saturations = [(float(np.max(c)) - float(np.min(c))) / max(float(np.max(c)), 1.0)
+                            for c in (self.team_a_rgb, self.team_b_rgb)]
+        if (self.allow_referee_heuristic and min(team_saturations) > 0.28
+                and saturation < 0.28 and min(dist_a, dist_b) > 75.0):
+            ref_conf = min(0.95, max(0.60, 1.0 - saturation))
+            return (None, ref_conf, "referee", f"Referee attire detected: neutral shirt (sat={saturation:.2f}, dist_A={dist_a:.1f}, dist_B={dist_b:.1f})")
+
+        return (None, conf, "unknown", reason)
 
 
 def extract_jersey_rgb(bgr_crop, prototypes, valid_mask=None):
@@ -522,11 +571,25 @@ class IdentityResolver:
         self.jersey_evidence: Dict[str, List[JerseyEvidenceRecord]] = {}
         # track_id -> list of team classifications (team_id, conf, source_time_s)
         self.team_evidence: Dict[str, List[Tuple[Optional[str], float, Optional[float]]]] = {}
+        # track_id -> list of referee attire classifications (conf, source_time_s)
+        self.referee_evidence: Dict[str, List[Tuple[float, Optional[float]]]] = {}
         # Active track mappings: track_id -> TrackIdentityMapping
         self.current_mappings: Dict[str, TrackIdentityMapping] = {}
         # History revisions
         self.mapping_ledger: List[TrackIdentityMapping] = []
         self._revision_counter = 1
+
+    def add_referee_observation(self, track_id: str, confidence: float, source_time_s: Optional[float] = None) -> None:
+        """Register a referee attire observation for a track."""
+        if not str(track_id or '').strip():
+            raise ValueError("Invalid track_id for referee observation")
+        if not math.isfinite(confidence) or not 0 <= confidence <= 1:
+            raise ValueError("Invalid referee confidence")
+        if source_time_s is not None and (not math.isfinite(source_time_s) or source_time_s < 0):
+            raise ValueError("Invalid referee evidence timestamp")
+        if track_id not in self.referee_evidence:
+            self.referee_evidence[track_id] = []
+        self.referee_evidence[track_id].append((float(confidence), source_time_s))
 
     def add_team_observation(self, track_id: str, team_id: Optional[str], confidence: float, source_time_s=None) -> None:
         """Register a team classification observation for a track."""
@@ -578,6 +641,24 @@ class IdentityResolver:
             return (self.roster.team_a_id, score_a / total)
         else:
             return (self.roster.team_b_id, score_b / total)
+
+    def resolve_role(self, track_id: str) -> Tuple[str, float]:
+        """Resolve role between 'player', 'referee', and 'unknown'."""
+        team_id, team_conf = self.resolve_team(track_id)
+        if team_id is not None:
+            return ("player", team_conf)
+
+        # Check referee evidence
+        ref_obs = self.referee_evidence.get(track_id, [])
+        if ref_obs:
+            total_ref_conf = sum(conf for conf, _ in ref_obs)
+            stamps = [t for _, t in ref_obs if t is not None]
+            total_votes = sum(conf for _, conf, _ in self.team_evidence.get(track_id, []))
+            if (total_ref_conf >= 2.0 and len(ref_obs) >= 3 and len(stamps) >= 3
+                    and max(stamps) - min(stamps) >= .25
+                    and total_ref_conf >= .8 * total_votes):
+                return ("referee", min(0.95, total_ref_conf / (total_ref_conf + 1.0)))
+        return ("unknown", 0.0)
 
     def resolve_player(
         self,
@@ -654,8 +735,21 @@ class IdentityResolver:
         jersey_cutoff = current_time_s - self.jersey_evidence_ttl_s
         self.jersey_evidence[track_id] = [e for e in self.jersey_evidence.get(track_id,[])
                                           if jersey_cutoff <= e.source_time_s <= current_time_s]
+        ref_cutoff = current_time_s - self.evidence_ttl_s
+        self.referee_evidence[track_id] = [
+            (conf, current_time_s if stamp is None else stamp)
+            for conf, stamp in self.referee_evidence.get(track_id, [])
+            if stamp is None or ref_cutoff <= stamp <= current_time_s
+        ]
         team_id, team_conf = self.resolve_team(track_id)
-        player_id, player_conf, reason = self.resolve_player(track_id, team_id)
+        role, role_conf = self.resolve_role(track_id)
+        if role == "referee":
+            team_id = None
+            player_id = None
+            player_conf = 0.0
+            reason = "Referee attire: low-saturation neutral shirt on court"
+        else:
+            player_id, player_conf, reason = self.resolve_player(track_id, team_id)
 
         conflict_status = "none"
 
@@ -685,12 +779,14 @@ class IdentityResolver:
 
         team_stamps = [stamp for team,conf,stamp in self.team_evidence.get(track_id,[]) if team == team_id]
         valid_until = max(team_stamps,default=current_time_s) + self.evidence_ttl_s
+        if role == "referee":
+            valid_until = max(stamp for _, stamp in self.referee_evidence[track_id]) + self.evidence_ttl_s
         if player_id:
             jersey = next(player.jersey_number for player in self.roster.players if player.player_id == player_id)
             jersey_stamps = [e.source_time_s for e in self.jersey_evidence.get(track_id,[]) if e.is_valid and e.detected_number == jersey]
             valid_until = min(valid_until,max(jersey_stamps,default=current_time_s) + self.jersey_evidence_ttl_s)
         existing = self.current_mappings.get(track_id)
-        if existing and existing.team_id == team_id and existing.player_id == player_id and existing.conflict_status == conflict_status:
+        if existing and existing.team_id == team_id and existing.player_id == player_id and existing.role == role and existing.conflict_status == conflict_status:
             # Extend end time
             updated = replace(existing,end_time_s=current_time_s,evidence_summary={**existing.evidence_summary,"valid_until_s":valid_until})
             self.current_mappings[track_id] = updated
@@ -706,7 +802,7 @@ class IdentityResolver:
 
         start_t = current_time_s
         if existing:
-            expiry = existing.evidence_summary.get("valid_until_s",current_time_s) if existing.team_id else current_time_s
+            expiry = existing.evidence_summary.get("valid_until_s",current_time_s) if (existing.team_id or existing.role == "referee") else current_time_s
             closed = replace(existing,end_time_s=min(current_time_s,expiry))
             for index in range(len(self.mapping_ledger)-1,-1,-1):
                 if self.mapping_ledger[index].revision_id == existing.revision_id:
@@ -718,11 +814,12 @@ class IdentityResolver:
             end_time_s=current_time_s,
             team_id=team_id,
             player_id=player_id,
+            role=role,
             revision_id=rev_id,
-            confidence=player_conf if player_id else team_conf,
+            confidence=player_conf if player_id else (team_conf if team_id else role_conf),
             conflict_status=conflict_status,
             evidence_summary={"reason": reason, "team_conf": team_conf, "player_conf": player_conf,
-                "valid_until_s": valid_until},
+                "role": role, "valid_until_s": valid_until},
         )
         self.current_mappings[track_id] = new_mapping
         self.mapping_ledger.append(new_mapping)
@@ -734,6 +831,7 @@ class IdentityResolver:
             raise ValueError('Invalid identity invalidation timestamp')
         self.team_evidence[track_id] = []
         self.jersey_evidence[track_id] = []
+        self.referee_evidence[track_id] = []
         mapping = self.update_track_mapping(track_id, source_time_s)
         updated = replace(mapping, evidence_summary={**mapping.evidence_summary, 'invalidation_reason': reason})
         self.current_mappings[track_id] = updated
@@ -745,6 +843,9 @@ class IdentityResolver:
 
     def mapping_at(self, track_id, source_time_s):
         """Lookup a causal mapping at event time, never the final identity of a track."""
+        current = self.current_mappings.get(track_id)
+        if current and current.start_time_s <= source_time_s <= current.end_time_s:
+            return replace(current, evidence_summary=dict(current.evidence_summary))
         matches = [m for m in self.mapping_ledger if m.track_id == track_id and m.start_time_s <= source_time_s <= m.end_time_s]
         selected = max(matches,key=lambda m:(m.start_time_s,m.revision_id)) if matches else None
         return replace(selected,evidence_summary=dict(selected.evidence_summary)) if selected else None
@@ -755,11 +856,11 @@ def enrich_observations_with_identity(
     resolver: IdentityResolver,
 ) -> None:
     """
-    In-place update of TrajectoryObservation records with resolved team and player IDs.
+    In-place update of TrajectoryObservation records with resolved team, player IDs, and roles.
     
     Enforces that non-player / predicted observations remain excluded from confirmed identities.
     If an entity is within the court ROI and has confirmed team or player evidence, its role
-    is updated from 'unknown' to 'player'.
+    is updated from 'unknown' to 'player'. If confirmed as referee, its role is set to 'referee'.
     """
     for obs in observations:
         obs.team_id = None
@@ -767,8 +868,11 @@ def enrich_observations_with_identity(
         if obs.track_id and obs.sample_type == "observed":
             mapping = resolver.mapping_at(obs.track_id, obs.source_time_s)
             if mapping:
-                # Do not assign team/player to non-player entities outside court ROI
-                if obs.role == "player" or obs.role == "unknown":
+                if mapping.role == "referee" and obs.role != "non_player":
+                    obs.role = "referee"
+                    obs.team_id = None
+                    obs.player_id = None
+                elif obs.role == "player" or obs.role == "unknown":
                     obs.team_id = mapping.team_id
                     obs.player_id = mapping.player_id
                     if (mapping.player_id or mapping.team_id) and obs.role == "unknown":

@@ -1,11 +1,13 @@
 import json
 
 import run_spatial_pipeline as runner
+from test_spatial_pipeline_regressions import _court
 
 
 def test_pipeline_runs_detection_tracking_and_optional_heatmap_without_stats(tmp_path, monkeypatch):
     video = tmp_path / "source.mp4"
     video.write_bytes(b"video")
+    (tmp_path / 'court.json').write_text(json.dumps(_court(video)), encoding='utf-8')
     output = tmp_path / "run"
     calls = {}
 

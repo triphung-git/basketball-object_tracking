@@ -26,11 +26,11 @@ from basketball_scoreboard.identity import (
     extract_jersey_rgb,
     JerseyEvidenceRecord,
 )
-from basketball_scoreboard.players import PlayerTracker
+from basketball_scoreboard.players import PlayerTracker,compute_iou
 from basketball_scoreboard.spatial_io import load_spatial_input,new_output,file_hash,write_json,runtime_snapshot
 from basketball_scoreboard.video import VideoReader
 from basketball_scoreboard.tracking_policy import load_tracking_policy,in_image_roi,interval_flags
-from basketball_scoreboard.identity_crops import load_identity_crop_policy,IdentityCropGuard,jersey_region
+from basketball_scoreboard.identity_crops import load_identity_crop_policy,IdentityCropGuard,jersey_region,overlap_fraction
 
 
 def track_players_pipeline(detections_jsonl_path,output_dir,court_config_path=None,roster_config_path=None,
@@ -38,8 +38,9 @@ def track_players_pipeline(detections_jsonl_path,output_dir,court_config_path=No
                            enable_ocr=False,ocr_provider='easyocr',ocr_weights_dir=None,
                            ocr_sampling_cadence=5,min_ocr_crop_height=24,development_authorization=None,
                            tracking_policy=None,ocr_upscale=1,jersey_evidence_ttl_s=None,
-                           color_method='median',jersey_evidence_cache=None,identity_crop_policy=None,team_crop_region='legacy',reset_on_team_conflict=False,
-                           progress_callback=None):
+                           color_method='masked',jersey_evidence_cache=None,identity_crop_policy=None,team_crop_region='legacy',reset_on_team_conflict=False,
+                           progress_callback=None,auto_scene_cut=False,referee_color_heuristic=False,
+                           automatic_geometry_path=None,team_aware_association=False):
     output = None
     started = perf_counter()
     try:
@@ -47,6 +48,12 @@ def track_players_pipeline(detections_jsonl_path,output_dir,court_config_path=No
         court = CourtConfig.from_json_file(court_config_path) if court_config_path else None
         run,frames = load_spatial_input(detections_jsonl_path,run_json_path,court,diagnostic=allow_uncalibrated,
                                        development_authorization=development_authorization)
+        automatic = None
+        if automatic_geometry_path:
+            from basketball_scoreboard.automatic_court import AutomaticProjector, load_automatic_geometry
+            metadata = run['video_metadata']
+            automatic = AutomaticProjector(load_automatic_geometry(automatic_geometry_path,
+                run['source_fingerprint_sha256'], metadata['width'], metadata['height']))
         policy=load_tracking_policy(tracking_policy,run['source_fingerprint_sha256'])
         model = CourtModel(court) if court else None
         if model:
@@ -63,6 +70,8 @@ def track_players_pipeline(detections_jsonl_path,output_dir,court_config_path=No
             raise ValueError('Isolated team region trial requires video/roster and no crop guard')
         if reset_on_team_conflict and (not video_path or not roster):raise ValueError('Team conflict reset requires source video and roster')
         classifier = TeamColorClassifier(roster.team_a_id,roster.team_b_id,roster.team_a_color_rgb,roster.team_b_color_rgb) if roster else None
+        if classifier:
+            classifier.allow_referee_heuristic = referee_color_heuristic
         resolver = IdentityResolver(roster,classifier,jersey_evidence_ttl_s=jersey_evidence_ttl_s) if roster else None
         if color_method not in {'median','masked'}:raise ValueError('Unknown color method')
         cached_jerseys={};cached_boxes={};cache_meta=None
@@ -108,12 +117,15 @@ def track_players_pipeline(detections_jsonl_path,output_dir,court_config_path=No
         tracker = PlayerTracker(run['video_id'],segment_id=court.segment_id if court else 'default',
                                 camera_id=court.camera_id if court else 'unknown',court_model=model,
                                 min_hits_to_activate=min_hits,max_age_s=max_age_s,
-                                original_wh=(run['video_metadata']['width'],run['video_metadata']['height']))
+                                original_wh=(run['video_metadata']['width'],run['video_metadata']['height']),
+                                auto_scene_cut=auto_scene_cut)
         evidence,jersey_evidence_records = [],[]
         observation_count = 0
         role_counts, sample_counts = Counter(), Counter()
+        ambiguous_team_crops = 0
+        phases = dict(decode_s=0.0,association_s=0.0,identity_s=0.0,observation_export_s=0.0)
         crop_audit=[]
-        prior_ledgers=[];previous_time=-1.;excluded_frames=0
+        prior_ledgers=[];previous_time=-1.;excluded_frames=0;previous_shot=None
         with ExitStack() as stack:
             observation_file = stack.enter_context((output/'tracked_observations.jsonl').open('x', encoding='utf-8'))
             decoded = iter(stack.enter_context(VideoReader(video_path)).frames()) if video_path else None
@@ -122,13 +134,24 @@ def track_players_pipeline(detections_jsonl_path,output_dir,court_config_path=No
                 index,time = record['frame_index'],record['source_time_s']
                 image = None
                 if decoded:
+                    phase_start = perf_counter()
                     while current is None or current[0].frame_index < index:
                         current = next(decoded)
                     if current[0].frame_index != index or abs(current[0].source_time_s-time) > 1e-6:
                         raise ValueError('Decoded video does not match source frame clock')
                     image = current[1]
+                    phases['decode_s'] += perf_counter()-phase_start
                 excluded,boundary=interval_flags(policy,previous_time,time)
                 previous_time=time
+                geometry_row = automatic.row_at(time) if automatic else None
+                if geometry_row and geometry_row['frame_index'] != index:
+                    raise ValueError('Automatic geometry frame index mismatch')
+                if geometry_row:
+                    shot = geometry_row['shot_id']
+                    boundary = boundary or (previous_shot is not None and shot != previous_shot)
+                    if previous_shot is None or boundary:
+                        tracker.reset(new_segment_id=shot)
+                    previous_shot = shot
                 if boundary or excluded:
                     tracker.reset()
                     if crop_guard:crop_guard.reset()
@@ -138,8 +161,40 @@ def track_players_pipeline(detections_jsonl_path,output_dir,court_config_path=No
                 if excluded:
                     excluded_frames+=1
                     continue
-                frame_obs = tracker.update_frame(index,time,record['timestamp_status'],record.get('detections',[]),
+                detections = record.get('detections', [])
+                if team_aware_association and image is not None and roster:
+                    detections = [dict(d) for d in detections]
+                    for detection in detections:
+                        if detection.get('class_name') != 'human':
+                            continue
+                        box = detection['xyxy']
+                        x1,y1,x2,y2 = jersey_region(box,image.shape[1],image.shape[0])
+                        region = [x1,y1,x2,y2]
+                        if any(d.get('class_name') == 'human' and d is not detection
+                               and overlap_fraction(region,d['xyxy']) > .2 for d in detections):
+                            continue
+                        crop = image[y1:y2,x1:x2]
+                        if not crop.size:
+                            continue
+                        rgb, quality = extract_jersey_rgb(crop,[roster.team_a_color_rgb,roster.team_b_color_rgb])
+                        fractions = quality.get('fractions', [])
+                        if rgb is not None and fractions and max(fractions)/max(sum(fractions),1e-8) >= .85:
+                            detection['appearance_team_id'] = [roster.team_a_id,roster.team_b_id][int(np.argmax(fractions))]
+                phase_start = perf_counter()
+                frame_obs = tracker.update_frame(index,time,record['timestamp_status'],detections,
                                                 run['source_fingerprint_sha256'],run['run_id'])
+                phases['association_s'] += perf_counter()-phase_start
+                phase_start = perf_counter()
+                if automatic and geometry_row and geometry_row['image_to_court'] is not None:
+                    for obs in frame_obs:
+                        if obs.validity_status != 'valid' or obs.sample_type != 'observed':
+                            continue
+                        xy, _ = automatic.project(obs.footpoint_image,time)
+                        if xy is None:
+                            obs.role = 'non_player'
+                        else:
+                            obs.projected_court_xy = tuple(xy)
+                            obs.calibration_version = 'automatic_v1'
                 if policy:
                     for obs in frame_obs:
                         if not in_image_roi(policy,obs.footpoint_image,tracker.original_wh):obs.role='non_player'
@@ -162,6 +217,16 @@ def track_players_pipeline(detections_jsonl_path,output_dir,court_config_path=No
                             if team_crop_region=='jersey':
                                 ca,cb,cc,cd=jersey_region(obs.bbox,image.shape[1],image.shape[0]);crop=image[cb:cd,ca:cc]
                             if crop_guard and crop_policy.team_region=='jersey':crop=guarded_crop
+                            # Pixels belonging to an overlapping person must not
+                            # vote for this track's team, even without OCR/guard.
+                            region = ([x1+.2*width, y1+.15*height, x2-.2*width, y1+.6*height]
+                                      if team_crop_region == 'legacy' else jersey_region(obs.bbox,image.shape[1],image.shape[0]))
+                            if not crop_guard and any(
+                                    d.get('class_name') == 'human' and compute_iou(obs.bbox,d['xyxy']) < .95
+                                    and overlap_fraction(region,d['xyxy']) > .35 for d in record.get('detections', [])):
+                                ambiguous_team_crops += 1
+                                resolver.invalidate_track_evidence(obs.track_id,time,'ambiguous_torso_overlap')
+                                continue
                             if crop.size:
                                 quality={}
                                 if crop_guard and crop_policy.team_region=='jersey':
@@ -169,7 +234,18 @@ def track_players_pipeline(detections_jsonl_path,output_dir,court_config_path=No
                                 elif color_method=='masked':
                                     rgb,quality=extract_jersey_rgb(crop,[roster.team_a_color_rgb,roster.team_b_color_rgb])
                                 else:rgb=tuple(float(v) for v in np.median(crop.reshape(-1,3),axis=0)[::-1])
-                                team,score,reason=classifier.classify_rgb(rgb) if rgb is not None else (None,0.,quality['reason'])
+                                if rgb is not None and color_method == 'masked' and quality.get('fractions'):
+                                    winner = int(np.argmax(quality['fractions']))
+                                    team = [roster.team_a_id, roster.team_b_id][winner]
+                                    score = max(quality['fractions']) / max(sum(quality['fractions']), 1e-8)
+                                    entity_role, reason = 'player', 'prototype_mask_hue_consensus'
+                                elif classifier.allow_referee_heuristic and rgb is None and not crop_guard:
+                                    neutral_rgb = tuple(float(v) for v in np.median(crop.reshape(-1,3),axis=0)[::-1])
+                                    team, score, entity_role, reason = classifier.classify_entity(neutral_rgb)
+                                else:
+                                    team, score, entity_role, reason = classifier.classify_entity(rgb) if rgb is not None else (None, 0., 'unknown', quality.get('reason', ''))
+                                if entity_role == 'referee' and score >= 0.6:
+                                    resolver.add_referee_observation(obs.track_id, score, time)
                                 existing=resolver.current_mappings.get(obs.track_id)
                                 if (((crop_policy and crop_policy.suspend_team_conflict) or reset_on_team_conflict) and existing and existing.team_id and
                                         team and team!=existing.team_id and score>=.75):
@@ -199,11 +275,14 @@ def track_players_pipeline(detections_jsonl_path,output_dir,court_config_path=No
                                     jersey_evidence_records.append(r.to_dict())
                         resolver.update_track_mapping(obs.track_id,time,set(tracker.tracks))
                     enrich_observations_with_identity(frame_obs,resolver)
+                phases['identity_s'] += perf_counter()-phase_start
+                phase_start = perf_counter()
                 for obs in frame_obs:
                     observation_file.write(obs.to_json()+'\n')
                     role_counts[obs.role] += 1
                     sample_counts[obs.sample_type] += 1
                 observation_count += len(frame_obs)
+                phases['observation_export_s'] += perf_counter()-phase_start
                 if progress_callback and index % 20 == 0:
                     progress_callback({
                         'stage': 'tracking',
@@ -222,7 +301,7 @@ def track_players_pipeline(detections_jsonl_path,output_dir,court_config_path=No
         write_json(output/'team_evidence.json',evidence)
         write_json(output/'jersey_evidence.json',jersey_evidence_records)
         if crop_guard:write_json(output/'identity_crop_audit.json',crop_audit)
-        roles={name:role_counts[name] for name in ('player','non_player','unknown')}
+        roles={name:role_counts[name] for name in ('player','non_player','unknown','referee')}
         has_resolved_player = any(m.player_id for m in ledger)
         summary=dict(status='completed',runtime=runtime,acceptance_scope='diagnostic' if allow_uncalibrated else 'technical',
                      video_id=run['video_id'],source_run_id=run['run_id'],source_fingerprint_sha256=run['source_fingerprint_sha256'],
@@ -234,6 +313,7 @@ def track_players_pipeline(detections_jsonl_path,output_dir,court_config_path=No
                      sample_types={name:sample_counts[name] for name in ('observed','predicted')},
                      team_ids=[roster.team_a_id,roster.team_b_id] if roster else ['team_a','team_b'],
                      team_color_evidence_count=len(evidence),
+                     ambiguous_team_crops=ambiguous_team_crops,
                      ocr_status=ocr_status,
                      ocr_provider=ocr_provider if enable_ocr else 'disabled',
                      ocr_sampling_cadence=ocr_sampling_cadence if enable_ocr else None,
@@ -250,11 +330,17 @@ def track_players_pipeline(detections_jsonl_path,output_dir,court_config_path=No
                      ocr_evidence_replay=dict(source_run_sha256=file_hash(Path(jersey_evidence_cache)/'run.json'),
                          source_jersey_sha256=file_hash(Path(jersey_evidence_cache)/'jersey_evidence.json'),fresh_ocr_calls=0,
                          source_provider_stats=cache_meta.get('ocr_provider_stats'),crop_boxes_verified=True) if cache_meta else None,
-                     timings=dict(tracking_total_s=perf_counter()-started,scope='validation, decode, tracking, OCR and exports; detector excluded'),
+                     timings=dict(tracking_total_s=perf_counter()-started,**phases,scope='validation, decode, tracking, OCR and exports; detector excluded'),
                      player_identity_status='resolved_with_consensus' if has_resolved_player else 'unresolved_without_jersey_evidence',
                      role_policy='ROI_alone_is_unknown',
                      metrics=dict(team_accuracy=None,player_accuracy=None,reason='No independently reviewed GT'),
+                     scene_cuts=tracker.scene_cuts,
+                     automatic_geometry_path=str(automatic_geometry_path) if automatic_geometry_path else None,
+                     team_aware_association=team_aware_association,
                      runtime_config=dict(max_age_s=max_age_s,min_hits=min_hits,ocr_upscale=ocr_upscale,
+                                         auto_scene_cut=auto_scene_cut,referee_color_heuristic=referee_color_heuristic,
+                                         tracker='kinematic_two_stage',high_det_thresh=tracker.high_det_thresh,low_det_thresh=tracker.low_det_thresh,
+                                         court_scope_ended=tracker._requires_court_rebind,
                                          jersey_evidence_ttl_s=resolver.jersey_evidence_ttl_s if resolver else None,
                                          team_evidence_ttl_s=resolver.evidence_ttl_s if resolver else None))
         if development_authorization:
@@ -290,7 +376,9 @@ def main():
     parser.add_argument('--tracking-policy')
     parser.add_argument('--ocr-upscale',type=int,default=1)
     parser.add_argument('--jersey-evidence-ttl-s',type=float)
-    parser.add_argument('--color-method',choices=['median','masked'],default='median')
+    parser.add_argument('--color-method',choices=['median','masked'],default='masked')
+    parser.add_argument('--auto-scene-cut',action='store_true',help='Opt in to detection-count cut heuristic; a cut ends static calibration scope')
+    parser.add_argument('--referee-color-heuristic',action='store_true',help='Opt in to uncertain neutral-shirt referee suggestions')
     parser.add_argument('--jersey-evidence-cache')
     parser.add_argument('--identity-crop-policy')
     parser.add_argument('--team-crop-region',choices=['legacy','jersey'],default='legacy')
@@ -306,7 +394,8 @@ def main():
                                   jersey_evidence_ttl_s=args.jersey_evidence_ttl_s,
                                   color_method=args.color_method,jersey_evidence_cache=args.jersey_evidence_cache,
                                   identity_crop_policy=args.identity_crop_policy,team_crop_region=args.team_crop_region,
-                                  reset_on_team_conflict=args.reset_on_team_conflict)
+                                  reset_on_team_conflict=args.reset_on_team_conflict,
+                                  auto_scene_cut=args.auto_scene_cut,referee_color_heuristic=args.referee_color_heuristic)
 
 
 if __name__=='__main__':

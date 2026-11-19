@@ -1,0 +1,65 @@
+{
+  "status": "completed",
+  "video_path": "../input.mp4",
+  "video_id": "input",
+  "source_fingerprint_sha256": "b0c5f9e24f6fee9652be01d8a6ace0450e41593ecbc5d9873af026eb7a818bb4",
+  "video_metadata": {
+    "video_id": "input",
+    "relative_path": "../input.mp4",
+    "width": 1920,
+    "height": 1080,
+    "fps": 60.0,
+    "nb_frames": 840,
+    "duration_s": 14.0,
+    "time_base": "1/15360",
+    "is_vfr": false,
+    "sha256": "b0c5f9e24f6fee9652be01d8a6ace0450e41593ecbc5d9873af026eb7a818bb4",
+    "codec": "h264"
+  },
+  "counts": {
+    "total_frames_read": 840,
+    "total_frames_written": 0,
+    "total_detections": 11364,
+    "detections_by_class": {
+      "human": 8865,
+      "rim": 1085,
+      "ball": 1414
+    },
+    "timestamp_status": {
+      "valid": 840
+    }
+  },
+  "timings": {
+    "decode_s": 8.9892,
+    "detection_total_s": 338.5276,
+    "draw_total_s": 0.0,
+    "write_total_s": 0.0,
+    "total_pipeline_s": 507.6544987999996,
+    "init_s": 42.2675,
+    "model_call_median_ms": 388.4037000002536,
+    "model_call_mean_ms": 400.34345345239194,
+    "pipeline_fps": 1.6546686811317601,
+    "detection_pipeline_s": 475.6112
+  },
+  "spatial": {
+    "tracking_status": "completed",
+    "tracks": 31,
+    "observations": 9783,
+    "heatmap_status": "generated",
+    "geometry_mode": "automatic"
+  },
+  "outputs": {
+    "detections": "detection/detections.jsonl",
+    "tracking": "tracking/tracked_observations.jsonl",
+    "heatmap": "spatial_map.json",
+    "spatial_map": "spatial_map.json",
+    "automatic_geometry": "automatic_geometry.json"
+  },
+  "postprocess_revision": {
+    "reason": "bidirectional floor motion with independent endpoint agreement",
+    "elapsed_s": 24.99542659999952,
+    "detection_rerun": false,
+    "final_consistency_check_s": 3.7119961000007606,
+    "cli_web_equal": true
+  }
+}

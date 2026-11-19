@@ -1,0 +1,133 @@
+{
+  "schema_version": "2.0.0",
+  "camera_id": "cam_main",
+  "segment_id": "default",
+  "source_video_hash": "ae83eb316347e0925263c93ca00d8a145ebbc961857415904ffd7fd049c1d99e",
+  "original_image_wh": [
+    1920,
+    1080
+  ],
+  "status": "validated",
+  "is_synthetic": false,
+  "court_coordinate_system": {
+    "origin": "basket_center_floor",
+    "axes": {
+      "x_positive": "right",
+      "y_positive": "up"
+    },
+    "units": "meters",
+    "court_bounds": {
+      "x_min": -7.5,
+      "x_max": 7.5,
+      "y_min": 0.0,
+      "y_max": 11.0
+    },
+    "scale_factor": 1.0,
+    "scale_status": "verified_meters"
+  },
+  "point_correspondences": [
+    {
+      "point_id": "pt_1",
+      "name": "lane_baseline_left",
+      "image_xy": [
+        575.0,
+        597.0
+      ],
+      "court_xy": [
+        -2.45,
+        0.0
+      ],
+      "usage": "fit",
+      "is_coplanar": true
+    },
+    {
+      "point_id": "pt_2",
+      "name": "lane_baseline_right",
+      "image_xy": [
+        981.0,
+        522.0
+      ],
+      "court_xy": [
+        2.45,
+        0.0
+      ],
+      "usage": "fit",
+      "is_coplanar": true
+    },
+    {
+      "point_id": "pt_3",
+      "name": "ft_line_left",
+      "image_xy": [
+        927.0,
+        789.0
+      ],
+      "court_xy": [
+        -2.45,
+        5.8
+      ],
+      "usage": "fit",
+      "is_coplanar": true
+    },
+    {
+      "point_id": "pt_4",
+      "name": "ft_line_right",
+      "image_xy": [
+        1383.0,
+        647.0
+      ],
+      "court_xy": [
+        2.45,
+        5.8
+      ],
+      "usage": "fit",
+      "is_coplanar": true
+    },
+    {
+      "point_id": "pt_5",
+      "name": "ft_line_center",
+      "image_xy": [
+        1184.0,
+        709.0
+      ],
+      "court_xy": [
+        0.0,
+        5.8
+      ],
+      "usage": "check",
+      "is_coplanar": true
+    }
+  ],
+  "court_roi_image": [
+    [
+      200.0,
+      550.0
+    ],
+    [
+      1250.0,
+      450.0
+    ],
+    [
+      1900.0,
+      650.0
+    ],
+    [
+      1900.0,
+      1050.0
+    ],
+    [
+      400.0,
+      1050.0
+    ],
+    [
+      100.0,
+      750.0
+    ]
+  ],
+  "provenance": {
+    "review_status": "approved",
+    "reviewed_by": "senior_engineer"
+  },
+  "thresholds": {
+    "max_reprojection_error_px": 15.0
+  }
+}

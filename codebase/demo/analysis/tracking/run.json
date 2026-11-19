@@ -1,0 +1,139 @@
+{
+  "status": "completed",
+  "runtime": {
+    "implementation_revision": "task56-acceptance-20261103",
+    "source_sha256": {
+      "scripts/track_players.py": "9368168a7c6fa9a5735a299abe090bcc3cea4e62f241a78e4635fd48eb21b696",
+      "src/basketball_scoreboard/app.py": "5b736c2a832baba7b2bcfb745f1fd184270abe8495afd33a91fbca2727168db3",
+      "src/basketball_scoreboard/automatic_court.py": "3b473ea51c66c78d308616089c3d0558a7a5578bcdbef94656910f7e92d370f3",
+      "src/basketball_scoreboard/calibration_scope.py": "c27aa30edee477683dc789bd43e4336d7f59c01cac0ebe2838cf6e059ccfc2bb",
+      "src/basketball_scoreboard/config.py": "cf8465b47c0d6b231629f6e2a5346688b220a3f8ce8c78e64c20d81be331c575",
+      "src/basketball_scoreboard/contracts.py": "e6f38cea3c85ff8ce7b4232cf59a1aee2bf857cdf60076627e8c5bb9199ada89",
+      "src/basketball_scoreboard/court.py": "2c948220c7ec777b3649563f21d9e9a0aed310d7ca0cd40b7eff94252abb0028",
+      "src/basketball_scoreboard/dashboard.py": "9bd433c90198f1b98f72bf77780d9a7f4e71430dd972020350682c313685516f",
+      "src/basketball_scoreboard/demo_bundle.py": "b51492167b055cde02c5faafa0fdd41dc140d44d52b5f967c979dcf4480b4e9b",
+      "src/basketball_scoreboard/detector.py": "19bf008e46c1672330dfe2dc05627160585e2101c8cb9a0997dd3517c3f9ff9c",
+      "src/basketball_scoreboard/heatmap.py": "a90a9b41473ab830fa625076eb0cd5d739fcb1c1e8c29925feb31353720b84ac",
+      "src/basketball_scoreboard/identity.py": "057d33e19d1dccdfe6caaa860fbc0128a512aa62cb86dee9a30f2601e6a6f124",
+      "src/basketball_scoreboard/identity_crops.py": "d98cdc11354d62dbda27575634551e9770822eda6a37ea87d94fde0de1f77b5e",
+      "src/basketball_scoreboard/overlay.py": "37fce638ce832bbf3f19877aa7a4ebdb5097a214969d93abda7c75cd6cb3e47d",
+      "src/basketball_scoreboard/players.py": "a90e9e2efe47128a52805183155c5dce27f941a2007ab5abbf702bad985935c7",
+      "src/basketball_scoreboard/preprocessing_diagnostics.py": "53dd51ac130f6155130975c2cac36caae06216883a882204329dbc86d886bab2",
+      "src/basketball_scoreboard/scene_filter.py": "401247e2ad0984e29e746fbf568674841143eefdec5afa2882bfcb76444b619c",
+      "src/basketball_scoreboard/shared_jobs.py": "4e92314e6fbf21b74479c4ff98edf6b4a8a02a53abaaf984f29728745900609f",
+      "src/basketball_scoreboard/spatial_analysis.py": "a80eb79dad5d54eb7c23465a598dfe371af1577897e60b9facfbca46e9ae92c1",
+      "src/basketball_scoreboard/spatial_intervals.py": "24b6a2a69547b470db296ae9237f789867556b6054a6cb47bcc7f112935c1039",
+      "src/basketball_scoreboard/spatial_io.py": "b41d7a2f1097bd656826fde4b0519f9abde844651f93ebd517a6bc015e247094",
+      "src/basketball_scoreboard/tiled_detection.py": "8dc5aa2042bd0178087695672cb1a2f6b8c5244bedd515f22c960b95bb693468",
+      "src/basketball_scoreboard/tracking_policy.py": "d94b862f03246fd6a80635f3b72d8995100619c241989d1813bd17760a6a606f",
+      "src/basketball_scoreboard/video.py": "a3da9b87723e0eaf67a26b6a7c0cf17f13ea4af071302348754d31dbfd91ea71",
+      "src/basketball_scoreboard/web_jobs.py": "a1700c743c99a0d83785b44d0ef5f0a7e75e429371e6d476dce3b84f90f53c80",
+      "src/basketball_scoreboard/web_worker.py": "c1f4c67cae2ccec66e025e46710df6cf7438aaec8131b03cc355c0836eeb3ae5",
+      "src/basketball_scoreboard/__init__.py": "79d3dbf96842fa0266d38982eac9ad98c67175805a4415737e84175d0d323cc8"
+    },
+    "packages": {
+      "numpy": "2.5.4",
+      "av": "19.0.2",
+      "scipy": "1.18.1",
+      "matplotlib": "3.11.2",
+      "opencv-python": "5.0.0.93"
+    }
+  },
+  "acceptance_scope": "diagnostic",
+  "video_id": "input",
+  "source_run_id": "detection",
+  "source_fingerprint_sha256": "b0c5f9e24f6fee9652be01d8a6ace0450e41593ecbc5d9873af026eb7a818bb4",
+  "input_detections_sha256": "d73c60a44cea2d273d8c23dc9e9363fc359c7b5903b8a4aaf4d541bab7a62666",
+  "source_run_json_sha256": "7d95d0d2b22dbc4a54b5a5484f82d4196b32b1ceff023d0ccacac536f6fed27b",
+  "court_config": null,
+  "roster_config": {
+    "team_a_id": "team_a",
+    "team_b_id": "team_b",
+    "team_a_name": "UB",
+    "team_b_name": "Ulaanbaatar MMC Energy",
+    "team_a_color_rgb": [
+      200,
+      25,
+      35
+    ],
+    "team_b_color_rgb": [
+      235,
+      210,
+      30
+    ],
+    "players": [],
+    "provenance_status": "user_configured",
+    "team_assignment_enabled": true
+  },
+  "total_frames_processed": 840,
+  "total_observations_generated": 9783,
+  "total_tracks_initiated": 31,
+  "active_tracks_at_end": 12,
+  "retired_tracks_count": 19,
+  "roles": {
+    "player": 3527,
+    "non_player": 1862,
+    "unknown": 4394,
+    "referee": 0
+  },
+  "sample_types": {
+    "observed": 7711,
+    "predicted": 2072
+  },
+  "team_ids": [
+    "team_a",
+    "team_b"
+  ],
+  "team_color_evidence_count": 4258,
+  "ambiguous_team_crops": 1591,
+  "ocr_status": "not_enabled_pending_model_decision",
+  "ocr_provider": "disabled",
+  "ocr_sampling_cadence": null,
+  "total_jersey_evidence_count": 0,
+  "ocr_provider_stats": null,
+  "tracking_policy": null,
+  "excluded_frames": 0,
+  "tracking_policy_sha256": null,
+  "color_method": "masked",
+  "team_crop_region": "legacy",
+  "reset_on_team_conflict": false,
+  "identity_crop_policy_sha256": null,
+  "identity_crop_guard": {
+    "enabled": false,
+    "observations_audited": 0,
+    "allowed": 0,
+    "blocked": 0
+  },
+  "ocr_evidence_replay": null,
+  "timings": {
+    "tracking_total_s": 23.648019000000204,
+    "decode_s": 8.574993699992774,
+    "association_s": 0.9141918999976042,
+    "identity_s": 6.747959500012257,
+    "observation_export_s": 0.5411532000043735,
+    "scope": "validation, decode, tracking, OCR and exports; detector excluded"
+  },
+  "player_identity_status": "unresolved_without_jersey_evidence",
+  "role_policy": "ROI_alone_is_unknown",
+  "metrics": {
+    "team_accuracy": null,
+    "player_accuracy": null,
+    "reason": "No independently reviewed GT"
+  },
+  "scene_cuts": [],
+  "automatic_geometry_path": "../automatic_geometry.json",
+  "team_aware_association": true,
+  "runtime_config": {
+    "max_age_s": 1.0,
+    "min_hits": 3,
+    "ocr_upscale": 1,
+    "auto_scene_cut": false,
+    "referee_color_heuristic": false,
+    "tracker": "kinematic_two_stage",
+    "high_det_thresh": 0.5,
+    "low_det_thresh": 0.2,
+    "court_scope_ended": false,
+    "jersey_evidence_ttl_s": 2.0,
+    "team_evidence_ttl_s": 2.0
+  }
+}
