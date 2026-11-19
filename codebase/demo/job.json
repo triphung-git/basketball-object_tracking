@@ -1,1 +1,16 @@
-{"id": "b52fce0225dd4a9c9e3b7e6a61407d50", "name": "Demo tự động — UB × Ulaanbaatar (14 giây, inference mới)", "status": "completed", "progress": 100, "frames_processed": 840, "duration_s": 14.0, "fps": 60.0, "width": 1920, "height": 1080, "source_sha256": "b0c5f9e24f6fee9652be01d8a6ace0450e41593ecbc5d9873af026eb7a818bb4", "roster_matched": true, "roster_configured": true, "error": null}
+{
+  "id": "9b441192d32c5495946707131ca103d3",
+  "name": "HCM1 vs HN1 — demo 3×3 (48 giây)",
+  "status": "completed",
+  "progress": 100,
+  "frames_processed": 1210,
+  "duration_s": 48.07,
+  "fps": 25.17162471395881,
+  "width": 1038,
+  "height": 480,
+  "source_sha256": "da95d00d3a7efb72dee77eb86e14cb7f748a9006c8fa3a0038a1ed96c7ebb4b9",
+  "roster_matched": true,
+  "roster_configured": true,
+  "error": null,
+  "verified_player_overlay": true
+}

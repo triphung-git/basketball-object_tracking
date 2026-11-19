@@ -27,16 +27,13 @@ Mọi tệp trọng số (weights) được phân phối kèm repository hoặc 
 
 ## 2. Dữ liệu Trận đấu & Bộ Demo (Datasets & Demos)
 
-### 2.1. Demo Chuẩn 14 giây Đóng gói (`codebase/demo/`)
-- **Nguồn:** Trận tứ kết FIBA 3x3 World Tour Zaisan (UB vs Ulaanbaatar MMC Energy).
-- **Video:** `input.mp4` (13.451.784 bytes), 840 frame, 60 FPS, độ phân giải 1920 × 1080.
-- **Mã băm SHA-256:** `b0c5f9e24f6fee9652be01d8a6ace0450e41593ecbc5d9873af026eb7a818bb4`.
-- **Thống kê xử lý:**
-  - 840 khung hình phát hiện đối tượng liên tục.
-  - 31 track cầu thủ duy nhất được khởi tạo.
-  - 743 khung hình có hỗ trợ hình học tự động (88,5%).
-  - 4.587 quan sát chiếu thành công lên mặt sân 3×3 (tỷ lệ chiếu 59,5%).
-  - 0 giây trùng lặp danh tính (`identity_overlap_seconds: 0.0`).
+### 2.1. Demo đóng gói HCM1–HN1 (`codebase/demo/`)
+
+- Clip bóng rổ 3×3 dài 48,07 giây, gồm 1.210 khung hình gốc ở độ phân giải 1038 × 480. Tệp `input.mp4` có dung lượng 7.679.483 byte.
+- SHA-256 của video là `da95d00d3a7efb72dee77eb86e14cb7f748a9006c8fa3a0038a1ed96c7ebb4b9`.
+- Detector xử lý đủ 1.210 khung hình. Phép chiếu sân tự động có dữ liệu ở 783 khung hình (64,7%) và chiếu được 4.143 quan sát. Các khung hình thiếu bằng chứng đường sân không được chiếu lên bản đồ.
+- Roster do người dùng cung cấp gồm 4 cầu thủ HCM1 áo trắng và 4 cầu thủ HN1 áo xanh đậm. Sáu cầu thủ có nhãn trong 36 khoảng đã đối chiếu theo số áo. Mặc định video chỉ hiện khung người khớp các khoảng này.
+- Clip được chuyển từ tập kiểm thử sang tập demo. Các kết quả trên clip mô tả lần xử lý này và không phải phép đo độ chính xác độc lập.
 
 ### 2.2. Dữ liệu Toàn trận 23 phút 18 giây (`D:\new\video demo.mp4`)
 - **Tập tin nguồn:** `D:\new\video demo.mp4` (858.151.732 bytes).

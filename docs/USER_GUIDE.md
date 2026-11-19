@@ -39,14 +39,15 @@ Bạn có thể truyền thêm các tham số khi chạy `start_dashboard.bat`:
 
 ## 2. Demo đóng gói và demo toàn trận
 
-Kho mã nguồn đi kèm demo 14 giây. Demo toàn trận dùng dữ liệu phân tích đã lưu trên máy.
+Kho mã nguồn đi kèm clip HCM1–HN1 dài 48,07 giây. Demo toàn trận UB–Ulaanbaatar dùng dữ liệu phân tích đã lưu trên máy.
 
-### A. Demo Đóng gói 14 giây (Packaged Slice)
+### A. Demo đóng gói HCM1–HN1 (48 giây)
 - **Mục đích:** Kiểm tra nhanh toàn bộ tính năng và giao diện sau khi cài đặt.
-- **Dữ liệu:** Clip trận FIBA 3x3 UB × Ulaanbaatar MMC Energy (840 frame, 60 FPS).
-- **Cách mở:** Bấm nút **Xem mẫu** màu xanh trên thanh điều hướng trên cùng, hoặc truy cập trực tiếp:
+- **Dữ liệu:** Clip bóng rổ 3×3 HCM1–HN1 gồm 1.210 khung hình và roster 8 cầu thủ. HCM1 mặc áo trắng, HN1 mặc áo xanh đậm.
+- Trên video mẫu, **Chỉ hiện cầu thủ đã xác minh** được bật sẵn. Khung cầu thủ hiện tên đội, số áo và tên. Bỏ chọn mục này để xem các mã theo dõi chưa gắn tên khi đối chiếu.
+- **Cách mở:** Chạy `run_demo.bat`, bấm **Xem mẫu** trên thanh điều hướng hoặc truy cập:
   ```
-  http://127.0.0.1:8081/?job=b52fce0225dd4a9c9e3b7e6a61407d50
+  http://127.0.0.1:8081/?job=9b441192d32c5495946707131ca103d3
   ```
 
 ### B. Demo Toàn trận 23 phút 18 giây (Full Match)

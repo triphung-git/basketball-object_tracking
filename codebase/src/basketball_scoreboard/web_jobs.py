@@ -18,7 +18,7 @@ PUBLIC_JOB_FIELDS = {
     'id', 'name', 'status', 'progress', 'frames_processed', 'duration_s',
     'fps', 'width', 'height', 'source_sha256', 'roster_matched',
     'roster_configured', 'tracks', 'error', 'stage', 'count', 'total',
-    'source_time_s', 'frame_index', 'estimated_remaining',
+    'source_time_s', 'frame_index', 'estimated_remaining', 'verified_player_overlay',
 }
 
 

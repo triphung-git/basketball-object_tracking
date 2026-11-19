@@ -25,7 +25,7 @@ Hệ thống phân tích thị giác máy tính và bản đồ sân 2D cho vide
 ```
                      ┌───────────────────────────────────┐
                      │          Video Nguồn MP4          │
-                     │       (H.264, 1080p, 60 FPS)      │
+                     │          (MP4 / H.264)           │
                      └─────────────────┬─────────────────┘
                                        │
                                        ▼
@@ -66,14 +66,14 @@ Hệ thống phân tích thị giác máy tính và bản đồ sân 2D cho vide
 
 ## Trải nghiệm Demo
 
-Kho mã nguồn đi kèm demo 14 giây. Demo toàn trận dùng dữ liệu phân tích đã lưu trên máy.
+Kho mã nguồn đi kèm clip HCM1–HN1 dài 48,07 giây. Demo toàn trận UB–Ulaanbaatar dùng dữ liệu phân tích đã lưu trên máy.
 
-### 1. Demo đóng gói 14 giây (Packaged Slice)
-- **Tập tin:** `codebase/demo/` (840 frame, 60 FPS, độ phân giải 1920 × 1080).
-- **Đặc điểm:** Tích hợp pipeline tự động (Automatic Geometry 3×3), 31 track, 4.587 quan sát chiếu sân, sẵn sàng chạy ngay sau khi cài đặt.
-- **Cách mở:** Bấm nút **Xem mẫu** trên giao diện dashboard hoặc truy cập:
+### 1. Demo đóng gói HCM1–HN1 (48 giây)
+- **Tệp:** `codebase/demo/` (1.210 khung hình, 1038 × 480).
+- **Nội dung:** Video, khung bao, roster hai đội, bản đồ sân 3×3 và heatmap cho các đoạn có hiệu chuẩn phù hợp.
+- **Cách mở:** Chạy `run_demo.bat`, bấm **Xem mẫu** trên dashboard hoặc truy cập:
   ```
-  http://127.0.0.1:8081/?job=b52fce0225dd4a9c9e3b7e6a61407d50
+  http://127.0.0.1:8081/?job=9b441192d32c5495946707131ca103d3
   ```
 
 ### 2. Demo toàn bộ trận đấu 23 phút 18 giây (Full Match)

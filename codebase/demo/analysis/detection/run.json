@@ -3,18 +3,18 @@
   "status": "completed",
   "video_path": "../../input.mp4",
   "video_id": "input",
-  "source_fingerprint_sha256": "b0c5f9e24f6fee9652be01d8a6ace0450e41593ecbc5d9873af026eb7a818bb4",
+  "source_fingerprint_sha256": "da95d00d3a7efb72dee77eb86e14cb7f748a9006c8fa3a0038a1ed96c7ebb4b9",
   "video_metadata": {
     "video_id": "input",
     "relative_path": "../../input.mp4",
-    "width": 1920,
-    "height": 1080,
-    "fps": 60.0,
-    "nb_frames": 840,
-    "duration_s": 14.0,
-    "time_base": "1/15360",
-    "is_vfr": false,
-    "sha256": "b0c5f9e24f6fee9652be01d8a6ace0450e41593ecbc5d9873af026eb7a818bb4",
+    "width": 1038,
+    "height": 480,
+    "fps": 25.17162471395881,
+    "nb_frames": 1210,
+    "duration_s": 48.07,
+    "time_base": "1/600",
+    "is_vfr": true,
+    "sha256": "da95d00d3a7efb72dee77eb86e14cb7f748a9006c8fa3a0038a1ed96c7ebb4b9",
     "codec": "h264"
   },
   "config": {
@@ -46,7 +46,9 @@
   },
   "runtime": {
     "model_id": "phung-van-tri/basketball-xil7x-y8g6u-1-yolo26s-t1",
-    "implementation_sha256": "19bf008e46c1672330dfe2dc05627160585e2101c8cb9a0997dd3517c3f9ff9c",
+    "weights_path": "weights.onnx",
+    "weights_sha256": "07044f5d08f37848f7d61f49d16b03407daad025919d63f0dfe195cd30f56b33",
+    "implementation_sha256": "e229afca33c46758b9a8f050a98da6254c26ed1a5cf4a9de8c7644429ff50f5d",
     "runtime_class": "YOLO26ForObjectDetectionOnnx",
     "backend": "onnx",
     "device": "cpu",
@@ -55,15 +57,14 @@
       "1": "human",
       "2": "rim"
     },
-    "init_s": 42.2675,
+    "init_s": 0.2376,
     "warmup_ms": [
-      504.42,
-      431.23
+      443.54,
+      343.24
     ],
     "versions": {
-      "inference-models": "0.39.7",
-      "opencv-python": "5.0.0.93",
       "onnxruntime": "1.22.1",
+      "opencv-python": "5.0.0.93",
       "torch": "2.15.0"
     }
   },
@@ -73,40 +74,40 @@
     "2": "rim"
   },
   "counts": {
-    "total_frames_read": 840,
+    "total_frames_read": 1210,
     "total_frames_written": 0,
-    "total_detections": 11364,
+    "total_detections": 11598,
     "detections_by_class": {
-      "human": 8865,
-      "rim": 1085,
-      "ball": 1414
+      "human": 10001,
+      "rim": 1019,
+      "ball": 578
     },
     "timestamp_status": {
-      "valid": 840
+      "valid": 1210
     }
   },
   "timings": {
-    "decode_s": 8.9892,
-    "detection_total_s": 338.5276,
+    "decode_s": 3.3779,
+    "detection_total_s": 403.7245,
     "draw_total_s": 0.0,
     "write_total_s": 0.0,
-    "total_pipeline_s": 475.6112,
-    "init_s": 42.2675,
-    "model_call_median_ms": 388.4037000002536,
-    "model_call_mean_ms": 400.34345345239194,
-    "pipeline_fps": 1.76614847539596
+    "total_pipeline_s": 460.4549,
+    "init_s": 0.2376,
+    "model_call_median_ms": 322.449150007742,
+    "model_call_mean_ms": 328.09860280992496,
+    "pipeline_fps": 2.6278361040600413
   },
   "timing_scope": "Model call includes runtime pre/postprocessing. Pipeline includes probe, model init/warmup, decode, resize, drawing, JSONL, encoding and encoder flush.",
   "export": {
     "video_output_path": null,
     "detections_jsonl_path": "detections.jsonl",
     "run_json_path": "run.json",
-    "nominal_fps": 60.0,
+    "nominal_fps": 25.17162471395881,
     "timestamp_policy": "explicit_normalized_source_timestamps",
-    "time_base": "1/1000000",
+    "time_base": "1000000",
     "preserved_vfr_mapping": false
   },
-  "created_utc": "2026-11-18T13:08:21.585561+00:00",
-  "completed_utc": "2026-11-18T13:16:17.198161+00:00",
+  "created_utc": "2026-11-19T08:14:26.338848+00:00",
+  "completed_utc": "2026-11-19T08:22:06.794515+00:00",
   "error_message": null
 }

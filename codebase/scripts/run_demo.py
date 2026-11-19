@@ -3,9 +3,11 @@
 from __future__ import annotations
 
 import argparse
+import json
 from pathlib import Path
 import sys
 import urllib.parse
+import urllib.request
 import webbrowser
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -21,8 +23,6 @@ from run_spatial_pipeline import run_spatial_pipeline
 def parse_roster(path: Path) -> RosterConfig:
     if not path.is_file():
         raise FileNotFoundError(f"Roster file not found: {path}")
-    import json
-
     data = json.loads(path.read_text(encoding="utf-8"))
     players = [RosterPlayer(**player) for player in data["players"]]
     return RosterConfig(
@@ -54,6 +54,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--open-browser", action="store_true")
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args(argv)
+    demo_job_id = None
     # Root launchers inject --preset default. That is the shared demo, whereas
     # user-supplied video/bundle arguments deliberately select a saved run.
     explicit_context = bool(args.bundle or args.video or args.roster or
@@ -126,9 +127,27 @@ def main(argv: list[str] | None = None) -> int:
                     manifest = verify_dashboard_demo(ROOT / "demo")
                     print(f"Spatial demo ready ({manifest['total_files']} files)")
                     return 0
-                install_dashboard_demo(ROOT / "demo", ROOT / "outputs/web-uploads")
+                uploads = ROOT / "outputs/web-uploads"
+                install_dashboard_demo(ROOT / "demo", uploads)
+                if args.open_browser:
+                    demo_job_id = json.loads((uploads / "demo.json").read_text(encoding="utf-8"))["job_id"]
             except (OSError, ValueError, KeyError) as exc:
                 parser.error(f"Cannot prepare the dashboard demo: {exc}")
+
+    job_id = args.job or demo_job_id
+    query = "?" + urllib.parse.urlencode({"job": job_id}) if job_id else ""
+    if demo_job_id and args.port:
+        base_url = f"http://{args.host}:{args.port}"
+        try:
+            with urllib.request.urlopen(base_url + "/api/demo-job", timeout=3) as response:
+                existing_job = json.load(response).get("job")
+            if existing_job and existing_job.get("id") == demo_job_id:
+                url = base_url + "/" + query
+                print(f"Spatial dashboard: {url}")
+                webbrowser.open(url)
+                return 0
+        except (OSError, ValueError):
+            pass
 
     try:
         server = make_dashboard_server(
@@ -143,7 +162,6 @@ def main(argv: list[str] | None = None) -> int:
         )
     except OSError as exc:
         parser.error(f"Cannot start dashboard on {args.host}:{args.port}: {exc}. Choose another --port.")
-    query = "?" + urllib.parse.urlencode({"job": args.job}) if args.job else ""
     url = f"http://{args.host}:{server.server_port}/{query}"
     print(f"Spatial dashboard: {url}")
     if args.open_browser:

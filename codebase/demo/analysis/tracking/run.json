@@ -3,31 +3,32 @@
   "runtime": {
     "implementation_revision": "task56-acceptance-20261103",
     "source_sha256": {
-      "scripts/track_players.py": "9368168a7c6fa9a5735a299abe090bcc3cea4e62f241a78e4635fd48eb21b696",
+      "scripts/track_players.py": "f6ad58844d0e6a0f988a52c9ad887e9a2ee7dcbec69f7b412c0b5b8035c83769",
       "src/basketball_scoreboard/app.py": "5b736c2a832baba7b2bcfb745f1fd184270abe8495afd33a91fbca2727168db3",
-      "src/basketball_scoreboard/automatic_court.py": "3b473ea51c66c78d308616089c3d0558a7a5578bcdbef94656910f7e92d370f3",
+      "src/basketball_scoreboard/automatic_court.py": "4f22cb270fbfe7c05976c0c9f2c09929bd1e649b419448429c2a609993400870",
       "src/basketball_scoreboard/calibration_scope.py": "c27aa30edee477683dc789bd43e4336d7f59c01cac0ebe2838cf6e059ccfc2bb",
       "src/basketball_scoreboard/config.py": "cf8465b47c0d6b231629f6e2a5346688b220a3f8ce8c78e64c20d81be331c575",
       "src/basketball_scoreboard/contracts.py": "e6f38cea3c85ff8ce7b4232cf59a1aee2bf857cdf60076627e8c5bb9199ada89",
       "src/basketball_scoreboard/court.py": "2c948220c7ec777b3649563f21d9e9a0aed310d7ca0cd40b7eff94252abb0028",
-      "src/basketball_scoreboard/dashboard.py": "9bd433c90198f1b98f72bf77780d9a7f4e71430dd972020350682c313685516f",
-      "src/basketball_scoreboard/demo_bundle.py": "b51492167b055cde02c5faafa0fdd41dc140d44d52b5f967c979dcf4480b4e9b",
-      "src/basketball_scoreboard/detector.py": "19bf008e46c1672330dfe2dc05627160585e2101c8cb9a0997dd3517c3f9ff9c",
+      "src/basketball_scoreboard/dashboard.py": "b0e1d6f590aaa9ba7f02e98452f7aa864778d299b2c72c5e97ebf5d9a0fcfd1a",
+      "src/basketball_scoreboard/demo_bundle.py": "26d12a195533d074928ef3ec2357f2eca3c932d126e5f832aeb2958fb0199f1b",
+      "src/basketball_scoreboard/detector.py": "e229afca33c46758b9a8f050a98da6254c26ed1a5cf4a9de8c7644429ff50f5d",
       "src/basketball_scoreboard/heatmap.py": "a90a9b41473ab830fa625076eb0cd5d739fcb1c1e8c29925feb31353720b84ac",
-      "src/basketball_scoreboard/identity.py": "057d33e19d1dccdfe6caaa860fbc0128a512aa62cb86dee9a30f2601e6a6f124",
+      "src/basketball_scoreboard/identity.py": "59ed031c0cf7edee5cc73ae939e5348f5d33efe7059c80a57ad1e3502f2f2dcb",
       "src/basketball_scoreboard/identity_crops.py": "d98cdc11354d62dbda27575634551e9770822eda6a37ea87d94fde0de1f77b5e",
+      "src/basketball_scoreboard/jersey_identity.py": "482096e663ee56bf202806ed686ac1adfb71e1b54a011cf835ce4cf011b45cec",
       "src/basketball_scoreboard/overlay.py": "37fce638ce832bbf3f19877aa7a4ebdb5097a214969d93abda7c75cd6cb3e47d",
       "src/basketball_scoreboard/players.py": "a90e9e2efe47128a52805183155c5dce27f941a2007ab5abbf702bad985935c7",
       "src/basketball_scoreboard/preprocessing_diagnostics.py": "53dd51ac130f6155130975c2cac36caae06216883a882204329dbc86d886bab2",
       "src/basketball_scoreboard/scene_filter.py": "401247e2ad0984e29e746fbf568674841143eefdec5afa2882bfcb76444b619c",
       "src/basketball_scoreboard/shared_jobs.py": "4e92314e6fbf21b74479c4ff98edf6b4a8a02a53abaaf984f29728745900609f",
-      "src/basketball_scoreboard/spatial_analysis.py": "a80eb79dad5d54eb7c23465a598dfe371af1577897e60b9facfbca46e9ae92c1",
+      "src/basketball_scoreboard/spatial_analysis.py": "d51d03d360e5a05f1ebfccd89b1eac3cccda9e0e82a92aa8994082908ecc55b0",
       "src/basketball_scoreboard/spatial_intervals.py": "24b6a2a69547b470db296ae9237f789867556b6054a6cb47bcc7f112935c1039",
       "src/basketball_scoreboard/spatial_io.py": "b41d7a2f1097bd656826fde4b0519f9abde844651f93ebd517a6bc015e247094",
       "src/basketball_scoreboard/tiled_detection.py": "8dc5aa2042bd0178087695672cb1a2f6b8c5244bedd515f22c960b95bb693468",
       "src/basketball_scoreboard/tracking_policy.py": "d94b862f03246fd6a80635f3b72d8995100619c241989d1813bd17760a6a606f",
       "src/basketball_scoreboard/video.py": "a3da9b87723e0eaf67a26b6a7c0cf17f13ea4af071302348754d31dbfd91ea71",
-      "src/basketball_scoreboard/web_jobs.py": "a1700c743c99a0d83785b44d0ef5f0a7e75e429371e6d476dce3b84f90f53c80",
+      "src/basketball_scoreboard/web_jobs.py": "99023499bf8f4d2cab6ca7d0b955d21fe71541b755a91a30a9d1f02514c9eb53",
       "src/basketball_scoreboard/web_worker.py": "c1f4c67cae2ccec66e025e46710df6cf7438aaec8131b03cc355c0836eeb3ae5",
       "src/basketball_scoreboard/__init__.py": "79d3dbf96842fa0266d38982eac9ad98c67175805a4415737e84175d0d323cc8"
     },
@@ -42,50 +43,116 @@
   "acceptance_scope": "diagnostic",
   "video_id": "input",
   "source_run_id": "detection",
-  "source_fingerprint_sha256": "b0c5f9e24f6fee9652be01d8a6ace0450e41593ecbc5d9873af026eb7a818bb4",
-  "input_detections_sha256": "d73c60a44cea2d273d8c23dc9e9363fc359c7b5903b8a4aaf4d541bab7a62666",
-  "source_run_json_sha256": "7d95d0d2b22dbc4a54b5a5484f82d4196b32b1ceff023d0ccacac536f6fed27b",
+  "source_fingerprint_sha256": "da95d00d3a7efb72dee77eb86e14cb7f748a9006c8fa3a0038a1ed96c7ebb4b9",
+  "input_detections_sha256": "1a39c9ca865b3ac0f1e8bfbb13ed2fc27bf6bac78285744545ac5428ac41d04b",
+  "source_run_json_sha256": "da2ffb3d3ea0d316e202e43f63535e0896fd7824321f74e083a40312faf019b7",
   "court_config": null,
   "roster_config": {
-    "team_a_id": "team_a",
-    "team_b_id": "team_b",
-    "team_a_name": "UB",
-    "team_b_name": "Ulaanbaatar MMC Energy",
+    "team_a_id": "hcm1",
+    "team_b_id": "hn1",
+    "team_a_name": "HCM1",
+    "team_b_name": "HN1",
     "team_a_color_rgb": [
-      200,
-      25,
-      35
+      205,
+      202,
+      196
     ],
     "team_b_color_rgb": [
-      235,
-      210,
-      30
+      36,
+      61,
+      101
     ],
-    "players": [],
+    "session_id": "hcm1_hn1_clip06",
     "provenance_status": "user_configured",
+    "players": [
+      {
+        "player_id": "hcm1_jersey_3",
+        "team_id": "hcm1",
+        "jersey_number": "3",
+        "name": "Nguyễn Trần Thuận Phát",
+        "is_active": true,
+        "aliases": []
+      },
+      {
+        "player_id": "hcm1_jersey_8",
+        "team_id": "hcm1",
+        "jersey_number": "8",
+        "name": "Tim De Kok",
+        "is_active": true,
+        "aliases": []
+      },
+      {
+        "player_id": "hcm1_jersey_9",
+        "team_id": "hcm1",
+        "jersey_number": "9",
+        "name": "Nguyễn Đăng Khoa",
+        "is_active": true,
+        "aliases": []
+      },
+      {
+        "player_id": "hcm1_jersey_11",
+        "team_id": "hcm1",
+        "jersey_number": "11",
+        "name": "Trịnh Tấn Phát",
+        "is_active": true,
+        "aliases": []
+      },
+      {
+        "player_id": "hn1_jersey_1",
+        "team_id": "hn1",
+        "jersey_number": "1",
+        "name": "Nguyễn Tuấn Khang",
+        "is_active": true,
+        "aliases": []
+      },
+      {
+        "player_id": "hn1_jersey_12",
+        "team_id": "hn1",
+        "jersey_number": "12",
+        "name": "Lee Hà Thành",
+        "is_active": true,
+        "aliases": []
+      },
+      {
+        "player_id": "hn1_jersey_17",
+        "team_id": "hn1",
+        "jersey_number": "17",
+        "name": "Nguyễn Phan Anh",
+        "is_active": true,
+        "aliases": []
+      },
+      {
+        "player_id": "hn1_jersey_19",
+        "team_id": "hn1",
+        "jersey_number": "19",
+        "name": "Phan Trọng Tài",
+        "is_active": true,
+        "aliases": []
+      }
+    ],
     "team_assignment_enabled": true
   },
-  "total_frames_processed": 840,
-  "total_observations_generated": 9783,
-  "total_tracks_initiated": 31,
+  "total_frames_processed": 1210,
+  "total_observations_generated": 10401,
+  "total_tracks_initiated": 137,
   "active_tracks_at_end": 12,
-  "retired_tracks_count": 19,
+  "retired_tracks_count": 125,
   "roles": {
-    "player": 3527,
-    "non_player": 1862,
-    "unknown": 4394,
+    "player": 3712,
+    "non_player": 2137,
+    "unknown": 4552,
     "referee": 0
   },
   "sample_types": {
-    "observed": 7711,
-    "predicted": 2072
+    "observed": 7802,
+    "predicted": 2599
   },
   "team_ids": [
-    "team_a",
-    "team_b"
+    "hcm1",
+    "hn1"
   ],
-  "team_color_evidence_count": 4258,
-  "ambiguous_team_crops": 1591,
+  "team_color_evidence_count": 4341,
+  "ambiguous_team_crops": 1324,
   "ocr_status": "not_enabled_pending_model_decision",
   "ocr_provider": "disabled",
   "ocr_sampling_cadence": null,
@@ -106,11 +173,11 @@
   },
   "ocr_evidence_replay": null,
   "timings": {
-    "tracking_total_s": 23.648019000000204,
-    "decode_s": 8.574993699992774,
-    "association_s": 0.9141918999976042,
-    "identity_s": 6.747959500012257,
-    "observation_export_s": 0.5411532000043735,
+    "tracking_total_s": 6.901731699996162,
+    "decode_s": 2.688238799775718,
+    "association_s": 0.46222070006479044,
+    "identity_s": 1.4855047998862574,
+    "observation_export_s": 0.26309099966601934,
     "scope": "validation, decode, tracking, OCR and exports; detector excluded"
   },
   "player_identity_status": "unresolved_without_jersey_evidence",

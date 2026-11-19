@@ -463,6 +463,10 @@
             <div class="video-footer">
               <span id="videoInfo">Chưa có video</span
               >
+              <label id="verifiedOverlayControl" hidden>
+                <input id="verifiedOverlay" type="checkbox" />
+                Chỉ hiện cầu thủ đã xác minh
+              </label>
             </div>
           </section>
           <section id="spatialPanel" class="panel" hidden>
@@ -568,6 +572,8 @@
         window.MatchUI?.reset();
         lastResult = null;
         overlays = [];
+        $("verifiedOverlayControl").hidden = true;
+        $("verifiedOverlay").checked = false;
         trackLabels = new Map();
         sourceTimeOffset = 0;
         $("videoTime").textContent = "00:00";
@@ -583,6 +589,9 @@
         ]);
         if (generation !== token || jobId !== id) return;
         sourceTimeOffset = status.playback_source_start_s || 0;
+        const verifiedOverlay = status.job?.verified_player_overlay === true;
+        $("verifiedOverlayControl").hidden = !verifiedOverlay;
+        $("verifiedOverlay").checked = verifiedOverlay;
         overlays = overlay.frames || [];
         for (const frame of overlays) {
           for (const item of frame.boxes) {
@@ -890,6 +899,7 @@
         window.MatchUI?.draw();
       };
       video.onseeked = () => { drawOverlay(); window.MatchUI?.draw(); };
+      $("verifiedOverlay").onchange = () => drawOverlay();
       function drawOverlay(mediaTime) {
         const width = drop.clientWidth,
           height = drop.clientHeight,
@@ -924,6 +934,10 @@
         ctx.font = '12px "Segoe UI", sans-serif';
         for (const item of interpolatedBoxes) {
           if (item.id && window.MatchUI?.visible?.(item.id, t, item) === false) continue;
+          const objectLabel = item.kind === "ball" ? "Bóng" : item.kind === "rim" ? "Rổ" : null;
+          const reviewedOnly = $("verifiedOverlay").checked && !objectLabel;
+          const reviewedLabel = reviewedOnly ? window.MatchUI?.reviewedLabel(item.id, t, item) : null;
+          if (reviewedOnly && !reviewedLabel) continue;
           const [x1, y1, x2, y2] = item.box.map(Number);
           const teamColor = (item.id && window.MatchUI?.color(item.id, t, item))
             || (item.role === "referee" ? "#94a3b8" : null);
@@ -934,12 +948,8 @@
             (x2 - x1) * scale,
             (y2 - y1) * scale,
           );
-          const label =
-            item.kind === "ball"
-              ? "Bóng"
-              : item.kind === "rim"
-                ? "Rổ"
-                : (window.MatchUI?.label(item.id, t, item) || (item.role === "referee" ? "Trọng tài" : (trackLabels.has(item.id) ? "Mã " + trackLabels.get(item.id) : (item.id ? "Mã " + item.id : "Chưa rõ"))));
+          const label = objectLabel || reviewedLabel || window.MatchUI?.label(item.id, t, item)
+            || (item.role === "referee" ? "Trọng tài" : (trackLabels.has(item.id) ? "Mã " + trackLabels.get(item.id) : (item.id ? "Mã " + item.id : "Chưa rõ")));
           const x = dx + x1 * scale,
             y = Math.max(16, dy + y1 * scale);
           ctx.fillStyle = teamColor || "#086b83";

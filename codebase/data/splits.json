@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0-locked",
+  "version": "1.0.1-locked",
   "status": "locked",
   "created_at_utc": "2026-11-01T14:05:00Z",
   "locking_conditions": [
@@ -40,7 +40,7 @@
         "clip06",
         "clip07"
       ],
-      "exposure": "Independent holdout test clips added for Task 07 evaluation; completely unexposed during Task 01 and Task 05 calibration"
+      "exposure": "Originally reserved for Task 07 evaluation. Under 1.0.1, clip06 is exposed as a demo; do not describe the entire session as unseen."
     }
   },
   "proposed_split": {
@@ -59,15 +59,15 @@
       "video_ids": [
         "clip04",
         "clip05",
-        "clip06",
         "clip07"
       ],
-      "rationale": "Dedicated independent test holdout set for Task 07 containing 7 verified shot attempts (4 made, 3 miss) from an authentic 3x3 tournament broadcast. Completely disjoint camera, lighting, and session from calibration.",
-      "estimated_shots": {
-        "made": 4,
-        "miss": 3,
-        "uncertain": 0
-      }
+      "rationale": "Remaining reserved clips from the original Task 07 split. Their source session now has a demonstration clip."
+    },
+    "demo": {
+      "video_ids": [
+        "clip06"
+      ],
+      "rationale": "User selected this clip for a full-length HCM1 vs HN1 presentation demo. Excluded from independent evaluation."
     },
     "detection_only_or_excluded": {
       "video_ids": [
@@ -80,7 +80,7 @@
       }
     }
   },
-  "exposure_notes": "Videos clip01, clip02, and clip03 were inspected in Task 01. Videos clip04, clip05, clip06, and clip07 are newly provided holdouts reserved strictly for Task 07 independent evaluation.",
+  "exposure_notes": "Clips 01–03 were inspected in Task 01. Clips 04–07 were originally reserved for Task 07. Clip06 is now a demonstration clip; clips 04, 05 and 07 remain reserved.",
   "integrity_fingerprints": {
     "manifest_sha256": "ee53d74cf88accc715e85899d99d0db7c8b640e996cd6bb8d309d6c8ad1726c8",
     "events_sha256": "69ebe1ed51e4161702d03b38901dcd94a2cdf67b35432b3f3142fb1b0d3d6738",

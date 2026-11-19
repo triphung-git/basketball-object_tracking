@@ -10,8 +10,8 @@ Tài liệu quy định chi tiết cấu trúc, lược đồ (schema) và quy �
 - **Định dạng container:** MPEG-4 (.mp4).
 - **Video Codec:** H.264 / AVC (Advanced Video Coding), tương thích phát trực tiếp trên trình duyệt qua HTML5 Video.
 - **Pixel Format:** YUV420p.
-- **Độ phân giải chuẩn:** 1920 × 1080 (hoặc tối thiểu 1280 × 720).
-- **Tốc độ khung hình:** 30.0 fps hoặc 60.0 fps (Constant Frame Rate - CFR).
+- **Kích thước ảnh:** Hệ thống sử dụng độ phân giải của video nguồn. Demo HCM1–HN1 dùng ảnh 1038 × 480.
+- **Tốc độ khung hình:** Video có thể dùng tốc độ cố định hoặc thay đổi. Pipeline dùng dấu thời gian của nguồn để đồng bộ kết quả.
 
 ### 1.2. Cấu hình Đội hình & Danh tính (`roster.json`)
 Lưu trữ thông tin hai đội bóng, màu áo đồng phục dùng để trích xuất màu sắc và danh sách cầu thủ phục vụ nhận diện số áo OCR.

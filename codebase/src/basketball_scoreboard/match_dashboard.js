@@ -14,6 +14,13 @@
   const color = id => id === config?.roster.team_a_id ? hex(config.roster.team_a_color_rgb) : id === config?.roster.team_b_id ? hex(config.roster.team_b_color_rgb) : "#64748b";
   const assignmentFor = (track, t = video.currentTime) =>
     config?.assignments.find(a => a.track_id === track && a.start_s <= t && t < a.end_s);
+  const reviewedLabel = (track, t, box) => {
+    const mapping = assignmentFor(track, t);
+    if (mapping?.role !== "player" || !mapping.player_id || mapping.player_id !== box.player_id) return null;
+    const p = person(mapping.player_id);
+    if (!p?.is_active || p.team_id !== box.team_id) return null;
+    return `${teamName(p.team_id)} · #${p.jersey_number} ${p.name}`;
+  };
   const shortLabel = (track, t = video.currentTime, snapshot = null) => {
     if (!config) return null;
     const mapping = assignmentFor(track, t);
@@ -449,7 +456,7 @@
   };
   const trackVisible = (track, t = video.currentTime, snapshot = null) =>
     (assignmentFor(track, t) || frameAt(t)?.players.find(p=>p.id===track) || snapshot)?.role !== "non_player";
-  window.MatchUI={load,reset,draw,label:shortLabel,color:teamColor,visible:trackVisible};
+  window.MatchUI={load,reset,draw,label:shortLabel,reviewedLabel,color:teamColor,visible:trackVisible};
   // Handles a fast restored session that finished before this script loaded.
   if(jobId) load(jobId,generation);
 })();

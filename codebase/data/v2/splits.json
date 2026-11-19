@@ -14,10 +14,15 @@
       "video_ids": [
         "2aOboR9Z2NjQ1XP8HgYdKMG7VVzS44zOdTVVjB5s",
         "2aOboR9Z2PhAP5BRB0jPiJxTmMvmZlX2lLLj0SuG",
-        "2aOboR9Z2Sdxv65bHQvRaluGfSsK1apoe3zZe7aS",
         "2aOboR9Z7JQnnFSp8Nsxe48p5I7cLJFjtM9so5se"
       ],
-      "notes": "Preserved test split from v1; strictly isolated from tuning"
+      "notes": "Remaining clips from the v1 holdout. The same source session includes a demo; do not treat that session as unseen."
+    },
+    "demo": {
+      "video_ids": [
+        "2aOboR9Z2Sdxv65bHQvRaluGfSsK1apoe3zZe7aS"
+      ],
+      "notes": "User selected this clip for a full-length HCM1 vs HN1 presentation demo. Excluded from independent evaluation."
     },
     "test": {
       "video_ids": [],
