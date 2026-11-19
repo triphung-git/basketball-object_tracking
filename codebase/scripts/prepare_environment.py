@@ -89,6 +89,20 @@ def verify_demo(uploads_dir: Path) -> bool:
     return True
 
 
+def verify_full_match_demo(uploads_dir: Path) -> bool:
+    from basketball_scoreboard.full_match_demo import install_full_match_demo
+
+    try:
+        release = json.loads((ROOT / "full_match_demo.json").read_text(encoding="utf-8"))
+        job_id = install_full_match_demo(uploads_dir, release)
+    except (OSError, ValueError, KeyError, TypeError, BadZipFile) as exc:
+        print(f"[ERROR] Full match demo installation failed: {exc}")
+        print("        Check your connection and available disk space, then rerun setup.bat.")
+        return False
+    print(f"  [OK] Full match dashboard demo {job_id} verified and ready.")
+    return True
+
+
 def verify_imports() -> bool:
     print("[*] Verifying Python runtime dependencies...")
     packages = [
@@ -155,6 +169,9 @@ def main() -> int:
             return 1
     except (OSError, RuntimeError, ValueError) as exc:
         print(f"[ERROR] Could not initialize the local detector or OCR: {exc}")
+        return 1
+
+    if not verify_full_match_demo(uploads_dir):
         return 1
 
     print("=" * 65)

@@ -386,6 +386,7 @@
         </button>
         <button id="cancelJob" type="button" hidden>Hủy</button>
         <button id="sampleVideo" type="button">Xem mẫu</button>
+        <button id="fullMatchVideo" type="button">Xem demo toàn trận</button>
         <span id="fileName" class="file-name">Chưa chọn video</span>
         <span id="sessionStatus" class="status" role="status" aria-live="polite"
           >Chưa chọn video</span
@@ -561,6 +562,7 @@
         $("chooseVideo").disabled = busy;
         $("videoInput").disabled = busy;
         $("sampleVideo").disabled = busy;
+        $("fullMatchVideo").disabled = busy;
         $("analyzeVideo").disabled = !(jobId && status === "ready");
         $("cancelJob").hidden = !busy;
         $("progressRow").hidden = !busy;
@@ -687,7 +689,7 @@
           ctx.stroke();
         }
       }
-      async function sample() {
+      async function sample(selectedJob = null) {
         const token = ++generation;
         jobId = null;
         sessionStorage.removeItem("basketballJob");
@@ -698,9 +700,12 @@
           previewUrl = null;
         }
         try {
-          const startup = await api('/api/startup', {}, null);
-          const demo = startup.explicit ? {job:startup.job_id ? await api('/api/job',{},startup.job_id) : null}
-            : await api('/api/demo-job', {}, null);
+          let demo = {job: selectedJob};
+          if (!selectedJob) {
+            const startup = await api('/api/startup', {}, null);
+            demo = startup.explicit ? {job:startup.job_id ? await api('/api/job',{},startup.job_id) : null}
+              : await api('/api/demo-job', {}, null);
+          }
           if (generation !== token) return;
           if (demo.job) {
             jobId = demo.job.id; sessionStorage.setItem('basketballJob', jobId);
@@ -825,7 +830,21 @@
         selectFile(e.target.files[0]);
         e.target.value = "";
       };
-      $("sampleVideo").onclick = sample;
+      $("sampleVideo").onclick = () => sample();
+      $("fullMatchVideo").onclick = async () => {
+        const token = generation;
+        try {
+          const demo = await api("/api/full-match-demo", {}, null);
+          if (generation !== token || $("fullMatchVideo").disabled) return;
+          if (!demo.job) {
+            error("Chạy setup.bat để cài demo toàn trận.");
+            return;
+          }
+          await sample(demo.job);
+        } catch (e) {
+          if (generation === token) error(e.message);
+        }
+      };
       $("analyzeVideo").onclick = async () => {
         const token = generation;
         error();

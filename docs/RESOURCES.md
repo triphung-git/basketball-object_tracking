@@ -35,8 +35,8 @@ Mọi tệp trọng số (weights) được phân phối kèm repository hoặc 
 - Roster do người dùng cung cấp gồm 4 cầu thủ HCM1 áo trắng và 4 cầu thủ HN1 áo xanh đậm. Sáu cầu thủ có nhãn trong 36 khoảng đã đối chiếu theo số áo. Mặc định video chỉ hiện khung người khớp các khoảng này.
 - Clip được chuyển từ tập kiểm thử sang tập demo. Các kết quả trên clip mô tả lần xử lý này và không phải phép đo độ chính xác độc lập.
 
-### 2.2. Dữ liệu Toàn trận 23 phút 18 giây (`D:\new\video demo.mp4`)
-- **Tập tin nguồn:** `D:\new\video demo.mp4` (858.151.732 bytes).
+### 2.2. Demo toàn trận UB–Ulaanbaatar (23 phút 18 giây)
+- Tệp `input.mp4` có 858.151.732 byte. Video và các kết quả phân tích được đóng gói trong tệp ZIP của GitHub Release `full-match-demo-v1`.
 - **Codec & Thông số:** H.264 High Profile, 1920 × 1080, 60.0 FPS CFR, thời lượng stream: 1.397,75 giây (83.865 frame).
 - **Mã băm SHA-256:** `ae83eb316347e0925263c93ca00d8a145ebbc961857415904ffd7fd049c1d99e`.
 - **Thống kê pipeline toàn trận:**
@@ -55,6 +55,7 @@ Khi chạy `setup.bat`, script thực hiện các bước kiểm tra tự độn
 1. Tính hàm băm SHA-256 của `weights.onnx` và đối chiếu với manifest. Nếu sai lệch, quá trình dừng với thông báo lỗi rõ ràng.
 2. Kiểm tra bundle demo trong `codebase/demo/` qua `manifest.json`.
 3. Sao chép bản làm việc độc lập của demo vào thư mục `codebase/outputs/web-uploads/` để người dùng có thể tự do gán nhãn, chỉnh sửa khoảng thời gian mà không làm hỏng dữ liệu gốc.
+4. Tải ZIP demo toàn trận nếu job chưa có, đối chiếu SHA-256 trong `codebase/full_match_demo.json` và kiểm tra từng tệp trước khi đưa job vào `codebase/outputs/web-uploads/`. Cần khoảng 2,4 GiB trống tạm thời cho bước tải và giải nén, ngoài dung lượng cài thư viện.
 
 ### 3.2. Quy trình Khôi phục Về Trạng thái Gốc (Reset)
 Nếu bản làm việc của demo hoặc thư mục upload bị cấu hình sai:
@@ -64,7 +65,7 @@ Nếu bản làm việc của demo hoặc thư mục upload bị cấu hình sai
    ```powershell
    .\setup.bat
    ```
-4. `setup.bat` sẽ tái tạo lại bản sao demo chuẩn từ `codebase/demo/` với đầy đủ trạng thái ban đầu.
+4. `setup.bat` tái tạo demo ngắn từ `codebase/demo/` hoặc tải lại demo toàn trận, tùy job đã được di chuyển.
 5. Để khôi phục các tệp mã nguồn hoặc weights bị thay đổi ngoài ý muốn, sử dụng Git:
    ```powershell
    git checkout -- codebase/models/ codebase/demo/

@@ -93,11 +93,11 @@ if not exist "%PREPARE_SCRIPT%" (
     endlocal & exit /b 1
 )
 
-echo [*] Verifying model weights and demo integrity...
+echo [*] Verifying model weights and installing both dashboard demos...
 set "PYTHONPATH=%ROOT_DIR%\codebase\src;%ROOT_DIR%\codebase\scripts;%PYTHONPATH%"
 "%VENV_PYTHON%" "%PREPARE_SCRIPT%"
 if errorlevel 1 (
-    echo [ERROR] Environment preparation or model verification failed.
+    echo [ERROR] Environment preparation or demo installation failed.
     endlocal & exit /b 1
 )
 

@@ -39,7 +39,7 @@ Bạn có thể truyền thêm các tham số khi chạy `start_dashboard.bat`:
 
 ## 2. Demo đóng gói và demo toàn trận
 
-Kho mã nguồn đi kèm clip HCM1–HN1 dài 48,07 giây. Demo toàn trận UB–Ulaanbaatar dùng dữ liệu phân tích đã lưu trên máy.
+Kho mã nguồn đi kèm clip HCM1–HN1 dài 48,07 giây. `setup.bat` tải demo toàn trận UB–Ulaanbaatar từ GitHub Releases trong lần cài đầu.
 
 ### A. Demo đóng gói HCM1–HN1 (48 giây)
 - **Mục đích:** Kiểm tra nhanh toàn bộ tính năng và giao diện sau khi cài đặt.
@@ -53,7 +53,7 @@ Kho mã nguồn đi kèm clip HCM1–HN1 dài 48,07 giây. Demo toàn trận UB�
 ### B. Demo Toàn trận 23 phút 18 giây (Full Match)
 - **Mục đích:** Đánh giá độ ổn định và năng lực xử lý dữ liệu lớn (Big Data Tracking).
 - **Dữ liệu:** 83.865 frame, 635.297 detection, 804.400 quan sát tracking trên 2.299 track, 6.989 frame overlay.
-- **Cách mở:** Trên máy đã lưu job toàn trận trong `codebase/outputs/web-uploads/`, mở địa chỉ sau:
+- **Cách mở:** Bấm **Xem demo toàn trận** hoặc mở địa chỉ sau:
   ```
   http://127.0.0.1:8081/?job=d21759aefdd948ff967fc5fe2dadd2a8
   ```

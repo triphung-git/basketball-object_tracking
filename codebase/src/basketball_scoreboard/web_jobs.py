@@ -9,6 +9,7 @@ import subprocess
 import sys
 import threading
 import uuid
+from .full_match_demo import FULL_MATCH_JOB_ID, full_match_present
 from .shared_jobs import SharedJobs
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -185,6 +186,11 @@ class VideoJobs:
         data = json.loads(pointer.read_text(encoding='utf-8'))
         job = self._get(data.get('job_id'))
         return {'job': _public_job(job)}
+
+    def full_match_demo_job(self) -> dict:
+        if not full_match_present(self.root / FULL_MATCH_JOB_ID):
+            return {'job': None}
+        return {'job': _public_job(self._get(FULL_MATCH_JOB_ID))}
 
     def spatial_status(self, job_id: str) -> dict:
         from .spatial_analysis import config_revision

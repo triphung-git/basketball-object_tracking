@@ -66,7 +66,7 @@ Hệ thống phân tích thị giác máy tính và bản đồ sân 2D cho vide
 
 ## Trải nghiệm Demo
 
-Kho mã nguồn đi kèm clip HCM1–HN1 dài 48,07 giây. Demo toàn trận UB–Ulaanbaatar dùng dữ liệu phân tích đã lưu trên máy.
+Kho mã nguồn đi kèm clip HCM1–HN1 dài 48,07 giây. Lần đầu chạy `setup.bat`, trình cài đặt tải thêm demo toàn trận UB–Ulaanbaatar (~903 MB) từ GitHub Releases. Sau đó cả hai demo dùng được offline.
 
 ### 1. Demo đóng gói HCM1–HN1 (48 giây)
 - **Tệp:** `codebase/demo/` (1.210 khung hình, 1038 × 480).
@@ -84,7 +84,7 @@ Kho mã nguồn đi kèm clip HCM1–HN1 dài 48,07 giây. Demo toàn trận UB�
   - 6.989 frame overlay đồng bộ 5 Hz.
   - 371.799 vị trí chiếu sân hợp lệ (tỷ lệ chiếu đạt **74,72%**).
   - Phân tích đầy đủ 8 cầu thủ của hai đội UB và Ulaanbaatar MMC Energy.
-- **Cách mở:** Trên máy đã lưu job toàn trận trong `codebase/outputs/web-uploads/`, mở địa chỉ sau:
+- **Cách mở:** Chạy `start_dashboard.bat` và bấm **Xem demo toàn trận**, hoặc mở địa chỉ sau:
   ```
   http://127.0.0.1:8081/?job=d21759aefdd948ff967fc5fe2dadd2a8
   ```
@@ -116,7 +116,7 @@ cd basketball-object_tracking
 ```
 
 > [!NOTE]
-> `setup.bat` sẽ tự động tạo môi trường ảo tại `codebase/.venv`, cài đặt các thư viện cần thiết, kiểm tra checksum SHA-256 của weights detector ONNX và thiết lập sẵn thư mục demo. Quá trình này không yêu cầu GPU hay tài khoản dịch vụ ngoài.
+> `setup.bat` tạo môi trường ảo tại `codebase/.venv`, cài thư viện, kiểm tra mô hình và cài cả hai demo. Cần Internet trong lần cài đầu để tải thư viện và demo toàn trận. Lần chạy lại giữ các chỉnh sửa đã lưu của demo.
 
 Mở trình duyệt tại địa chỉ: **`http://127.0.0.1:8081`** (hoặc `http://127.0.0.1:8080` nếu cổng 8081 đang bận).
 

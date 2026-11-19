@@ -152,6 +152,9 @@ class DashboardRequestHandler(BaseHTTPRequestHandler):
             if path == '/api/demo-job':
                 self._send_json(self.jobs.demo_job())
                 return
+            if path == '/api/full-match-demo':
+                self._send_json(self.jobs.full_match_demo_job())
+                return
             if path == "/api/job":
                 self._send_json(self.jobs.status(job_id))
                 return
